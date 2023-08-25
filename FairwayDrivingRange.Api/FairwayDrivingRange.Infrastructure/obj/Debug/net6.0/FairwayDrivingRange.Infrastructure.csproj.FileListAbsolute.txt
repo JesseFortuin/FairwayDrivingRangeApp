@@ -1,0 +1,17 @@
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Infrastructure\bin\Debug\net6.0\FairwayDrivingRange.Infrastructure.deps.json
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Infrastructure\bin\Debug\net6.0\FairwayDrivingRange.Infrastructure.runtimeconfig.json
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Infrastructure\bin\Debug\net6.0\FairwayDrivingRange.Infrastructure.dll
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Infrastructure\bin\Debug\net6.0\FairwayDrivingRange.Infrastructure.pdb
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Infrastructure\bin\Debug\net6.0\FairwayDrivingRange.Domain.dll
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Infrastructure\bin\Debug\net6.0\FairwayDrivingRange.Domain.pdb
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Infrastructure\obj\Debug\net6.0\FairwayDrivingRange.Infrastructure.csproj.AssemblyReference.cache
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Infrastructure\obj\Debug\net6.0\FairwayDrivingRange.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Infrastructure\obj\Debug\net6.0\FairwayDrivingRange.Infrastructure.AssemblyInfoInputs.cache
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Infrastructure\obj\Debug\net6.0\FairwayDrivingRange.Infrastructure.AssemblyInfo.cs
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Infrastructure\obj\Debug\net6.0\FairwayDrivingRange.Infrastructure.csproj.CoreCompileInputs.cache
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Infrastructure\obj\Debug\net6.0\FairwayDrivingRange.Infrastructure.csproj.CopyComplete
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Infrastructure\obj\Debug\net6.0\FairwayDrivingRange.Infrastructure.dll
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Infrastructure\obj\Debug\net6.0\refint\FairwayDrivingRange.Infrastructure.dll
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Infrastructure\obj\Debug\net6.0\FairwayDrivingRange.Infrastructure.pdb
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Infrastructure\obj\Debug\net6.0\FairwayDrivingRange.Infrastructure.genruntimeconfig.cache
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Infrastructure\obj\Debug\net6.0\ref\FairwayDrivingRange.Infrastructure.dll
