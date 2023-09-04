@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FairwayDrivingRange.Api", "FairwayDrivingRange.Api\FairwayDrivingRange.Api.csproj", "{E502032B-145D-4D02-AA8D-6F6F9D61CCB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FairwayDrivingRange.Api", "FairwayDrivingRange.Api\FairwayDrivingRange.Api.csproj", "{E502032B-145D-4D02-AA8D-6F6F9D61CCB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FairwayDrivingRange.Infrastructure", "FairwayDrivingRange.Infrastructure\FairwayDrivingRange.Infrastructure.csproj", "{BAF483D2-D8A3-48EC-A108-D01976A7B2EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FairwayDrivingRange.Infrastructure", "FairwayDrivingRange.Infrastructure\FairwayDrivingRange.Infrastructure.csproj", "{BAF483D2-D8A3-48EC-A108-D01976A7B2EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FairwayDrivingRange.Domain", "FairwayDrivingRange.Domain\FairwayDrivingRange.Domain.csproj", "{13A8BF56-BF14-45DE-9CC6-F3B9E308B1B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FairwayDrivingRange.Domain", "FairwayDrivingRange.Domain\FairwayDrivingRange.Domain.csproj", "{13A8BF56-BF14-45DE-9CC6-F3B9E308B1B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FairwayDrivingRange.Shared", "FairwayDrivingRange.Shared\FairwayDrivingRange.Shared.csproj", "{2F47939C-1FD3-4B8C-B1E6-15AC4F7CDB73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FairwayDrivingRange.Test", "FairwayDrivingRange.Test\FairwayDrivingRange.Test.csproj", "{97D65398-E7AD-4192-B277-A164A8F3F56A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{13A8BF56-BF14-45DE-9CC6-F3B9E308B1B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13A8BF56-BF14-45DE-9CC6-F3B9E308B1B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13A8BF56-BF14-45DE-9CC6-F3B9E308B1B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F47939C-1FD3-4B8C-B1E6-15AC4F7CDB73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F47939C-1FD3-4B8C-B1E6-15AC4F7CDB73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F47939C-1FD3-4B8C-B1E6-15AC4F7CDB73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F47939C-1FD3-4B8C-B1E6-15AC4F7CDB73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97D65398-E7AD-4192-B277-A164A8F3F56A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97D65398-E7AD-4192-B277-A164A8F3F56A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97D65398-E7AD-4192-B277-A164A8F3F56A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97D65398-E7AD-4192-B277-A164A8F3F56A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

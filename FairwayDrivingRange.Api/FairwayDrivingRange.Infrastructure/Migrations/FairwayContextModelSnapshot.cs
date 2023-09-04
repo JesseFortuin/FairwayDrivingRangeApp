@@ -30,8 +30,8 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DateBooked")
                         .HasColumnType("datetime2");
@@ -41,17 +41,18 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId")
-                        .IsUnique();
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("FairwayDrivingRange.Domain.Entities.CustomerInformation", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -71,11 +72,11 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
 
             modelBuilder.Entity("FairwayDrivingRange.Domain.Entities.GolfClub", b =>
                 {
-                    b.Property<int>("SerialNumber")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SerialNumber"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("BookingId")
                         .HasColumnType("int");
@@ -83,7 +84,10 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
 
-                    b.HasKey("SerialNumber");
+                    b.Property<int>("SerialNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("BookingId");
 
@@ -104,16 +108,15 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
                     b.Property<double>("ClubPrice")
                         .HasColumnType("float");
 
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
 
                     b.Property<double>("Total")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId")
-                        .IsUnique();
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Transactions");
                 });
@@ -121,8 +124,8 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
             modelBuilder.Entity("FairwayDrivingRange.Domain.Entities.Booking", b =>
                 {
                     b.HasOne("FairwayDrivingRange.Domain.Entities.CustomerInformation", "Customer")
-                        .WithOne("Booking")
-                        .HasForeignKey("FairwayDrivingRange.Domain.Entities.Booking", "CustomerId")
+                        .WithMany("Booking")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -132,7 +135,7 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
             modelBuilder.Entity("FairwayDrivingRange.Domain.Entities.GolfClub", b =>
                 {
                     b.HasOne("FairwayDrivingRange.Domain.Entities.Booking", "Booking")
-                        .WithMany("clubs")
+                        .WithMany("Clubs")
                         .HasForeignKey("BookingId");
 
                     b.Navigation("Booking");
@@ -141,8 +144,8 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
             modelBuilder.Entity("FairwayDrivingRange.Domain.Entities.Transaction", b =>
                 {
                     b.HasOne("FairwayDrivingRange.Domain.Entities.CustomerInformation", "CustomerInformation")
-                        .WithOne("Transaction")
-                        .HasForeignKey("FairwayDrivingRange.Domain.Entities.Transaction", "CustomerId")
+                        .WithMany("Transaction")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -151,7 +154,7 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
 
             modelBuilder.Entity("FairwayDrivingRange.Domain.Entities.Booking", b =>
                 {
-                    b.Navigation("clubs");
+                    b.Navigation("Clubs");
                 });
 
             modelBuilder.Entity("FairwayDrivingRange.Domain.Entities.CustomerInformation", b =>

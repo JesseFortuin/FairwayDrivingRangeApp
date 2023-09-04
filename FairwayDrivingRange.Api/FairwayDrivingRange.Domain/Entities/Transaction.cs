@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 
 namespace FairwayDrivingRange.Domain.Entities
 {
-    public class Transaction
+    public class Transaction : IEntity
     {
         public int Id { get; set; }
 
-        [ForeignKey("CustomerId")]
         public CustomerInformation CustomerInformation { get; set; }
 
-        public Guid CustomerId { get; set; }
+        public int CustomerId { get; set; }
 
         public double ClubPrice { get; set; }
 

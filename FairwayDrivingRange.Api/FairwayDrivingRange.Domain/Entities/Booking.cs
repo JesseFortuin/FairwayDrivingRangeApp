@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FairwayDrivingRange.Domain.Entities
 {
-    public class Booking
+    public class Booking : IEntity
     {
         public int Id { get; set; }
 
@@ -16,8 +16,8 @@ namespace FairwayDrivingRange.Domain.Entities
 
         public CustomerInformation Customer { get; set; }
 
-        public Guid CustomerId { get; set; }    
+        public int CustomerId { get; set; }    
 
-        public List<GolfClub> clubs { get; set; } 
+        public IEnumerable<GolfClub> Clubs { get; set; } = new List<GolfClub>();
     }
 }
