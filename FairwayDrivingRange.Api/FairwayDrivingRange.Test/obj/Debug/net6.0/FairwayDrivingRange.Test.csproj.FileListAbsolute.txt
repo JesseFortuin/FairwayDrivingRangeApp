@@ -152,3 +152,5 @@ D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDriving
 D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Test\obj\Debug\net6.0\FairwayDrivingRange.Test.pdb
 D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Test\obj\Debug\net6.0\FairwayDrivingRange.Test.genruntimeconfig.cache
 D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Test\obj\Debug\net6.0\ref\FairwayDrivingRange.Test.dll
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Test\bin\Debug\net6.0\FairwayDrivingRange.Application.dll
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Test\bin\Debug\net6.0\FairwayDrivingRange.Application.pdb

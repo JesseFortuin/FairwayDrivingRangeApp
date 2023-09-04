@@ -7,7 +7,7 @@ namespace FairwayDrivingRange.Test
 {
     public class InMemoryDatabase
     {
-        readonly IRepository<CustomerInformation> customerInformationRepository;
+        public readonly IRepository<CustomerInformation> customerInformationRepository;
 
         readonly FairwayContext context;
 

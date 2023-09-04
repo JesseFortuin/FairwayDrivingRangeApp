@@ -1,4 +1,5 @@
-﻿using FairwayDrivingRange.Infrastructure.Data;
+﻿using FairwayDrivingRange.Domain.Entities;
+using FairwayDrivingRange.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FairwayDrivingRange.Infrastructure
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class, IEntity
     {
         private readonly FairwayContext fairwayContext;
 
@@ -27,22 +28,30 @@ namespace FairwayDrivingRange.Infrastructure
 
         public bool Delete(T entity)
         {
-            throw new NotImplementedException();
+            fairwayContext.Set<T>().Remove(entity);
+
+            fairwayContext.SaveChanges();
+
+            return true;
         }
 
         public List<T> GetAll()
         {
-            throw new NotImplementedException();
+            return fairwayContext.Set<T>().ToList();
         }
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            return fairwayContext.Set<T>().FirstOrDefault(x => x.Id == id);
         }
 
         public bool Update(T entity)
         {
-            throw new NotImplementedException();
+            fairwayContext.Set<T>().Update(entity);
+
+            fairwayContext.SaveChanges();
+
+            return true;
         }
     }
 }

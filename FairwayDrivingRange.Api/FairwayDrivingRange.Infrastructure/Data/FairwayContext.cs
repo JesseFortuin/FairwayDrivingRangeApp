@@ -45,9 +45,9 @@ namespace FairwayDrivingRange.Infrastructure.Data
  *
 * | DATE USED  |   NAME                        |  Created Date & Purpose
 * ====================================================================================================================================
-* |            |   Zosma                       | 2023-08-25 - initial migration to add Tables
-* |            |   Zibal                       | 2023-08-31 - recreated tables with OnModelCreate
-* |            |   Zavijava                    | 2023-09-04
+* |            |   Zosma                       | 2023-09-04 - initial migration to add Tables
+* |            |   Zibal                       |
+* |            |   Zavijava                    | 
 * |            |   Zaurak                      | 
 * |            |   Zaniah                      | 
 * |            |   Yildun                      | 

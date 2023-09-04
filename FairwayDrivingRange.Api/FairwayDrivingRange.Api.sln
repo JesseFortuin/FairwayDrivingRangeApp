@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FairwayDrivingRange.Infrast
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FairwayDrivingRange.Domain", "FairwayDrivingRange.Domain\FairwayDrivingRange.Domain.csproj", "{13A8BF56-BF14-45DE-9CC6-F3B9E308B1B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FairwayDrivingRange.Shared", "FairwayDrivingRange.Shared\FairwayDrivingRange.Shared.csproj", "{2F47939C-1FD3-4B8C-B1E6-15AC4F7CDB73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FairwayDrivingRange.Shared", "FairwayDrivingRange.Shared\FairwayDrivingRange.Shared.csproj", "{2F47939C-1FD3-4B8C-B1E6-15AC4F7CDB73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FairwayDrivingRange.Test", "FairwayDrivingRange.Test\FairwayDrivingRange.Test.csproj", "{97D65398-E7AD-4192-B277-A164A8F3F56A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FairwayDrivingRange.Test", "FairwayDrivingRange.Test\FairwayDrivingRange.Test.csproj", "{97D65398-E7AD-4192-B277-A164A8F3F56A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FairwayDrivingRange.Application", "FairwayDrivingRange.Application\FairwayDrivingRange.Application.csproj", "{CC187FAC-465D-474E-9737-F514F5F6A70F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{97D65398-E7AD-4192-B277-A164A8F3F56A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97D65398-E7AD-4192-B277-A164A8F3F56A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97D65398-E7AD-4192-B277-A164A8F3F56A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC187FAC-465D-474E-9737-F514F5F6A70F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC187FAC-465D-474E-9737-F514F5F6A70F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC187FAC-465D-474E-9737-F514F5F6A70F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC187FAC-465D-474E-9737-F514F5F6A70F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

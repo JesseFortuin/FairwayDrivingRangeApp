@@ -1,3 +1,5 @@
+using FairwayDrivingRange.Application;
+using FairwayDrivingRange.Domain.Entities;
 using FairwayDrivingRange.Infrastructure.Data;
 using FairwayDrivingRange.Shared.Dtos;
 
@@ -11,9 +13,7 @@ namespace FairwayDrivingRange.Test
             using (var context = new FairwayContext(DatabaseSetup().Options))
             {
                 //Arrange
-
-
-                //ICustomerFacade customerFacade = new CustomerFacade(null);
+                ICustomerFacade customerFacade = new CustomerFacade(null);
 
                 var customerDto = new AddCustomerDto
                 {
@@ -32,70 +32,68 @@ namespace FairwayDrivingRange.Test
             }
         }
 
-        //    [Fact]
-        //    public void AddCustomer_Fails_InvalidEmailCustomerDto()
-        //    {
-        //        using (var context = new FairwayContext(DatabaseSetup().Options))
-        //        {
-        //            //Arrange
-        //            ICustomerFacade customerFacade = new CustomerFacade(null, null);
+        [Fact]
+        public void AddCustomer_Fails_InvalidEmailCustomerDto()
+        {
+            using (var context = new FairwayContext(DatabaseSetup().Options))
+            {
+                //Arrange
+                ICustomerFacade customerFacade = new CustomerFacade(null);
 
-        //            var customerDto = new AddCustomerDto
-        //            {
-        //                name = "Jane Doe",
-        //                email = "",
-        //                isPaid = false
-        //            };
+                var customerDto = new AddCustomerDto
+                {
+                    name = "Jane Doe",
+                    email = "",
+                    isPaid = false
+                };
 
-        //            var expected = new ApiResponseDto<bool>("Invalid Customer object");
+                var expected = new ApiResponseDto<bool>("Invalid Customer object");
 
-        //            //Act
-        //            var actual = customerFacade.AddCustomer(customerDto);
+                //Act
+                var actual = customerFacade.AddCustomer(customerDto);
 
-        //            //Assert
-        //            Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
-        //        }
-        //    }
+                //Assert
+                Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
+            }
+        }
 
-        //    [Fact]
-        //    public void AddCustomer_Succeeds_ValidCustomerDto() 
-        //    {
-        //        using (var context = new FairwayContext(DatabaseSetup().Options))
-        //        {
-        //            //Arrange
-        //            ICustomerRepository customerRepository = new CustomerRepository(context);
+        [Fact]
+        public void AddCustomer_Succeeds_ValidCustomerDto()
+        {
+            using (var context = new FairwayContext(DatabaseSetup().Options))
+            {
+                //Arrange               
+                IRepository<CustomerInformation> repository = new CustomerRepository(context);
 
-        //            IRepository<CustomerInformation> crudRepository = new CustomerRepository(context);
+                var customer = new CustomerInformation
+                {
+                    Name = "Test Name",
+                    Email = "thisisanEmail@email.com",
+                    IsPaid = false
+                };
 
-        //            var customer = new CustomerInformation
-        //            {
-        //                Name = "Test Name",
-        //                Email = "thisisanEmail@email.com",
-        //                IsPaid = false
-        //            };
+                context.Add(customer);
 
-        //            context.Add(customer);
+                context.SaveChanges();
 
-        //            context.SaveChanges();
+                ICustomerFacade customerFacade = new CustomerFacade();
 
-        //            ICustomerFacade customerFacade = new CustomerFacade(customerRepository, crudRepository);
+                var customerDto = new AddCustomerDto
+                {
+                    name = "Test Name",
+                    email = "thisisanEmail@email.com",
+                    isPaid = false
+                };
 
-        //            var customerDto = new AddCustomerDto
-        //            {
-        //                name = "Test Name",
-        //                email = "thisisanEmail@email.com",
-        //                isPaid = false
-        //            };
+                var expected = new ApiResponseDto<bool>(true);
 
-        //            var expected = new ApiResponseDto<bool>(true);
+                //Act
+                var actual = customerFacade.AddCustomer(customerDto);
 
-        //            //Act
-        //            var actual = customerFacade.AddCustomer(customerDto);
-
-        //            //Assert
-        //            Assert.Equal(expected.Value, actual.Value);
-        //        }
-        //    }
+                //Assert
+                Assert.Equal(expected.Value, actual.Value);
+            }
+        }
 
         //    [Fact]
         //    public void GetCustomers_Succeeds()

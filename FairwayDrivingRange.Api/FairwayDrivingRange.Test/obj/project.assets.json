@@ -2564,6 +2564,20 @@
           "build/netcoreapp3.1/xunit.runner.visualstudio.props": {}
         }
       },
+      "FairwayDrivingRange.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "FairwayDrivingRange.Infrastructure": "1.0.0",
+          "FairwayDrivingRange.Shared": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/FairwayDrivingRange.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FairwayDrivingRange.Application.dll": {}
+        }
+      },
       "FairwayDrivingRange.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -7889,6 +7903,11 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
+    "FairwayDrivingRange.Application/1.0.0": {
+      "type": "project",
+      "path": "../FairwayDrivingRange.Application/FairwayDrivingRange.Application.csproj",
+      "msbuildProject": "../FairwayDrivingRange.Application/FairwayDrivingRange.Application.csproj"
+    },
     "FairwayDrivingRange.Domain/1.0.0": {
       "type": "project",
       "path": "../FairwayDrivingRange.Domain/FairwayDrivingRange.Domain.csproj",
@@ -7907,6 +7926,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "FairwayDrivingRange.Application >= 1.0.0",
       "FairwayDrivingRange.Infrastructure >= 1.0.0",
       "FairwayDrivingRange.Shared >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 7.0.10",
@@ -7949,6 +7969,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "D:\\Dev\\Lessons\\A Driving Range Booking App\\FairwayDrivingRangeApp\\FairwayDrivingRange.Api\\FairwayDrivingRange.Application\\FairwayDrivingRange.Application.csproj": {
+              "projectPath": "D:\\Dev\\Lessons\\A Driving Range Booking App\\FairwayDrivingRangeApp\\FairwayDrivingRange.Api\\FairwayDrivingRange.Application\\FairwayDrivingRange.Application.csproj"
+            },
             "D:\\Dev\\Lessons\\A Driving Range Booking App\\FairwayDrivingRangeApp\\FairwayDrivingRange.Api\\FairwayDrivingRange.Infrastructure\\FairwayDrivingRange.Infrastructure.csproj": {
               "projectPath": "D:\\Dev\\Lessons\\A Driving Range Booking App\\FairwayDrivingRangeApp\\FairwayDrivingRange.Api\\FairwayDrivingRange.Infrastructure\\FairwayDrivingRange.Infrastructure.csproj"
             },
