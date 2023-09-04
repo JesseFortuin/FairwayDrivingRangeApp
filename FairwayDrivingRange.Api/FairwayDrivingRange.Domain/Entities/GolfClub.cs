@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 
 namespace FairwayDrivingRange.Domain.Entities
 {
-    public class GolfClub
+    public class GolfClub : IEntity
     {
-        [Key]
+        public int Id { get; set; }
+
         public int SerialNumber { get; set; }
 
         public int? BookingId { get; set; }
 
-        public Booking? Booking { get; set; }
+        public Booking Booking { get; set; }
 
         public bool IsAvailable { get; set; }
     }

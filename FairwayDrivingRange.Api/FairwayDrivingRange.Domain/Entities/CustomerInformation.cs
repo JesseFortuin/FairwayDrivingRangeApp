@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace FairwayDrivingRange.Domain.Entities
 {
-    public class CustomerInformation
+    public class CustomerInformation : IEntity
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
@@ -17,8 +17,8 @@ namespace FairwayDrivingRange.Domain.Entities
 
         public bool IsPaid { get; set; }
 
-        public Booking? Booking { get; set; }
+        public IEnumerable<Booking> Booking { get; set; } = new List<Booking>();
 
-        public Transaction? Transaction { get; set; }
+        public IEnumerable<Transaction> Transaction { get; set; } = new List<Transaction>();
     }
 }
