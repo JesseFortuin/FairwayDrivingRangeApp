@@ -6,8 +6,12 @@ namespace FairwayDrivingRange.Application
     {
         public ApiResponseDto<bool> AddCustomer(AddCustomerDto customerDto);
 
-        public ApiResponseDto<bool> UpdateCustomer(AddCustomerDto customerDto);
+        public ApiResponseDto<bool> UpdateCustomer(int customerId, AddCustomerDto customerDto);
 
-        public ApiResponseDto<List<CustomerDto>> GetCustomers();
+        public ApiResponseDto<IEnumerable<CustomerDto>> GetCustomers();
+
+        public ApiResponseDto<CustomerDto> GetCustomerById(int customerId);
+
+        public ApiResponseDto<bool> DeleteCustomer(int customerId);
     }
 }

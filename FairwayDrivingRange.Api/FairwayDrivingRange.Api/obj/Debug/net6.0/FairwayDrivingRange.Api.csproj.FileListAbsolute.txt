@@ -89,3 +89,7 @@ D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDriving
 D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Api\obj\Debug\net6.0\FairwayDrivingRange.Api.pdb
 D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Api\obj\Debug\net6.0\FairwayDrivingRange.Api.genruntimeconfig.cache
 D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Api\obj\Debug\net6.0\ref\FairwayDrivingRange.Api.dll
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Api\bin\Debug\net6.0\FairwayDrivingRange.Application.dll
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Api\bin\Debug\net6.0\FairwayDrivingRange.Shared.dll
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Api\bin\Debug\net6.0\FairwayDrivingRange.Application.pdb
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Api\bin\Debug\net6.0\FairwayDrivingRange.Shared.pdb

@@ -35,9 +35,9 @@ namespace FairwayDrivingRange.Infrastructure
             return true;
         }
 
-        public List<T> GetAll()
+        public IEnumerable<T> GetAll()
         {
-            return fairwayContext.Set<T>().ToList();
+            return fairwayContext.Set<T>().AsEnumerable();
         }
 
         public T GetById(int id)

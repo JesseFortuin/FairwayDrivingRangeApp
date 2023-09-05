@@ -16,6 +16,26 @@ namespace FairwayDrivingRange.Test
             context = new FairwayContext(DatabaseSetup().Options);
 
             customerInformationRepository = new Repository<CustomerInformation>(context);
+
+            var customers = new List<CustomerInformation>
+            {
+                new CustomerInformation
+                {
+                    Name = "J",
+                    Email = "e@gmail.com",
+                    IsPaid = false
+                },
+                new CustomerInformation
+                {
+                    Name = "k",
+                    Email = "e@gmail.com",
+                    IsPaid = true
+                }
+            };
+
+            context.CustomerInformation.AddRange(customers);
+
+            context.SaveChanges();
         }
 
         public DbContextOptionsBuilder<FairwayContext> DatabaseSetup()

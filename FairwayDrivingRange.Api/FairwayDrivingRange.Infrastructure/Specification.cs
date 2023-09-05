@@ -8,6 +8,9 @@ namespace FairwayDrivingRange.Infrastructure
 {
     public abstract class Specification<T> : ISpecification<T>
     {
-        
+        public bool IsSatisfied(T obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

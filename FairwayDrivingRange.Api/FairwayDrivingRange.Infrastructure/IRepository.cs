@@ -8,7 +8,7 @@ namespace FairwayDrivingRange.Infrastructure
 {
     public interface IRepository<TEntity>
     {
-        public List<TEntity> GetAll();
+        public IEnumerable<TEntity> GetAll();
 
         public TEntity GetById(int id);
 

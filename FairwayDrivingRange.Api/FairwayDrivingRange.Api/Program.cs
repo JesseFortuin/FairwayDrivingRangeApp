@@ -1,3 +1,6 @@
+using FairwayDrivingRange.Application;
+using FairwayDrivingRange.Domain.Entities;
+using FairwayDrivingRange.Infrastructure;
 using FairwayDrivingRange.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +12,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<ICustomerFacade, CustomerFacade>();
+
+builder.Services.AddScoped<IRepository<CustomerInformation>, Repository<CustomerInformation>>();
 
 builder.Services.AddDbContext<FairwayContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("FairwayConectionString")));

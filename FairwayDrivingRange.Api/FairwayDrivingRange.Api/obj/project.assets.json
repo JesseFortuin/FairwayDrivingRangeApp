@@ -1231,6 +1231,20 @@
           }
         }
       },
+      "FairwayDrivingRange.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "FairwayDrivingRange.Infrastructure": "1.0.0",
+          "FairwayDrivingRange.Shared": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/FairwayDrivingRange.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FairwayDrivingRange.Application.dll": {}
+        }
+      },
       "FairwayDrivingRange.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -1253,6 +1267,16 @@
         },
         "runtime": {
           "bin/placeholder/FairwayDrivingRange.Infrastructure.dll": {}
+        }
+      },
+      "FairwayDrivingRange.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/FairwayDrivingRange.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FairwayDrivingRange.Shared.dll": {}
         }
       }
     }
@@ -3913,6 +3937,11 @@
         "version.txt"
       ]
     },
+    "FairwayDrivingRange.Application/1.0.0": {
+      "type": "project",
+      "path": "../FairwayDrivingRange.Application/FairwayDrivingRange.Application.csproj",
+      "msbuildProject": "../FairwayDrivingRange.Application/FairwayDrivingRange.Application.csproj"
+    },
     "FairwayDrivingRange.Domain/1.0.0": {
       "type": "project",
       "path": "../FairwayDrivingRange.Domain/FairwayDrivingRange.Domain.csproj",
@@ -3922,10 +3951,16 @@
       "type": "project",
       "path": "../FairwayDrivingRange.Infrastructure/FairwayDrivingRange.Infrastructure.csproj",
       "msbuildProject": "../FairwayDrivingRange.Infrastructure/FairwayDrivingRange.Infrastructure.csproj"
+    },
+    "FairwayDrivingRange.Shared/1.0.0": {
+      "type": "project",
+      "path": "../FairwayDrivingRange.Shared/FairwayDrivingRange.Shared.csproj",
+      "msbuildProject": "../FairwayDrivingRange.Shared/FairwayDrivingRange.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "FairwayDrivingRange.Application >= 1.0.0",
       "FairwayDrivingRange.Infrastructure >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.10",
       "Swashbuckle.AspNetCore >= 6.5.0"
@@ -3963,6 +3998,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "D:\\Dev\\Lessons\\A Driving Range Booking App\\FairwayDrivingRangeApp\\FairwayDrivingRange.Api\\FairwayDrivingRange.Application\\FairwayDrivingRange.Application.csproj": {
+              "projectPath": "D:\\Dev\\Lessons\\A Driving Range Booking App\\FairwayDrivingRangeApp\\FairwayDrivingRange.Api\\FairwayDrivingRange.Application\\FairwayDrivingRange.Application.csproj"
+            },
             "D:\\Dev\\Lessons\\A Driving Range Booking App\\FairwayDrivingRangeApp\\FairwayDrivingRange.Api\\FairwayDrivingRange.Infrastructure\\FairwayDrivingRange.Infrastructure.csproj": {
               "projectPath": "D:\\Dev\\Lessons\\A Driving Range Booking App\\FairwayDrivingRangeApp\\FairwayDrivingRange.Api\\FairwayDrivingRange.Infrastructure\\FairwayDrivingRange.Infrastructure.csproj"
             }
