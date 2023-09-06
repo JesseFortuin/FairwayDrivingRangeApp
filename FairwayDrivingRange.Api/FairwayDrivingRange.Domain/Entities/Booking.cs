@@ -18,6 +18,6 @@ namespace FairwayDrivingRange.Domain.Entities
 
         public int CustomerId { get; set; }    
 
-        public IEnumerable<GolfClub> Clubs { get; set; } = new List<GolfClub>();
+        public List<GolfClub> Clubs { get; set; } = new List<GolfClub>();
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FairwayDrivingRange.Api.Controllers
 {
-    [Route("api")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
     {
@@ -16,7 +16,7 @@ namespace FairwayDrivingRange.Api.Controllers
             this.customerFacade = customerFacade;
         }
 
-        [HttpGet("customers")]
+        [HttpGet()]
         public ActionResult<ApiResponseDto<IEnumerable<CustomerDto>>> GetCustomers() 
         { 
             var result = customerFacade.GetCustomers();
@@ -32,7 +32,7 @@ namespace FairwayDrivingRange.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPost("customer")]
+        [HttpPost("add")]
         public ActionResult<ApiResponseDto<bool>> AddCustomer(AddCustomerDto customerDto) 
         {
             var result = customerFacade.AddCustomer(customerDto);

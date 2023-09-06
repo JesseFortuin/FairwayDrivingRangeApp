@@ -43,7 +43,7 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Bookings");
+                    b.ToTable("Bookings", (string)null);
                 });
 
             modelBuilder.Entity("FairwayDrivingRange.Domain.Entities.CustomerInformation", b =>
@@ -67,7 +67,7 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CustomerInformation");
+                    b.ToTable("CustomerInformation", (string)null);
                 });
 
             modelBuilder.Entity("FairwayDrivingRange.Domain.Entities.GolfClub", b =>
@@ -91,7 +91,7 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
 
                     b.HasIndex("BookingId");
 
-                    b.ToTable("GolfClubs");
+                    b.ToTable("GolfClubs", (string)null);
                 });
 
             modelBuilder.Entity("FairwayDrivingRange.Domain.Entities.Transaction", b =>
@@ -118,7 +118,7 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Transactions");
+                    b.ToTable("Transactions", (string)null);
                 });
 
             modelBuilder.Entity("FairwayDrivingRange.Domain.Entities.Booking", b =>

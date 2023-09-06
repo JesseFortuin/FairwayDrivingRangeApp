@@ -15,7 +15,7 @@ namespace FairwayDrivingRange.Domain.Entities
 
         public int CustomerId { get; set; }
 
-        public double ClubPrice { get; set; }
+        public double? ClubPrice { get; set; }
 
         public double BookingPrice { get; set; }
 
