@@ -128,9 +128,7 @@ namespace FairwayDrivingRange.Application
                 return new ApiResponseDto<bool>("Customer Not Found");
             }
 
-            booking.CustomerId = bookingDto.customerId;
-            booking.DateBooked = bookingDto.dateBooked;
-            booking.Lane = bookingDto.lane;
+            mapper.Map(bookingDto, booking);
 
             var result = repository.Update(booking);
 

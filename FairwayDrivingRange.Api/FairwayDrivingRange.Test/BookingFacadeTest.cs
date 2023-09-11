@@ -586,7 +586,7 @@ namespace FairwayDrivingRange.Test
         }
 
         [Fact]
-        public void UpdateCustomer_Succeeds_CustomerUpdated()
+        public void UpdateBooking_Succeeds_CustomerUpdated()
         {
             //Arrange
             var bookingDto = new AddBookingDto

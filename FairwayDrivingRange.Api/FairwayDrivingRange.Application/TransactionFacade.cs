@@ -138,13 +138,7 @@ namespace FairwayDrivingRange.Application
                 return new ApiResponseDto<bool>("Transaction Not Found");
             }
 
-            transaction.CustomerId = transactionDto.customerId;
-
-            transaction.Total = transactionDto.total;
-
-            transaction.ClubPrice = transactionDto.clubPrice;
-
-            transaction.BookingPrice = transactionDto.bookingPrice;
+            mapper.Map(transactionDto, transaction);
 
             var result = repository.Update(transaction);
 

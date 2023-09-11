@@ -118,11 +118,7 @@ namespace FairwayDrivingRange.Application
                 }
             }
 
-            golfClub.SerialNumber = golfClubDto.serialNumber;
-
-            golfClub.BookingId = golfClubDto.bookingId;
-
-            golfClub.IsAvailable = golfClubDto.isAvailable;
+            mapper.Map(golfClubDto, golfClub);
 
             var result = repository.Update(golfClub);
 

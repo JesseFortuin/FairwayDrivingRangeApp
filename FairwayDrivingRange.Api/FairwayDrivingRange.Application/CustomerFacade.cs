@@ -101,11 +101,7 @@ namespace FairwayDrivingRange.Application
                 return new ApiResponseDto<bool>("Invalid Customer Object");
             }
 
-            customer.Name = customerDto.name; 
-
-            customer.Email = customerDto.email;
-
-            customer.IsPaid = customerDto.isPaid;
+            mapper.Map(customerDto, customer);
 
             var result = repository.Update(customer);
 
