@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace FairwayDrivingRange.Shared.Dtos
 {
-    public class AddGolfClubDto
+    public class UpdateGolfClubDto
     {
         public int serialNumber { get; set; }
+
+        public int? bookingId { get; set; }
 
         public bool isAvailable { get; set; }
     }

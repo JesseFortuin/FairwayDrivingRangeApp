@@ -93,3 +93,5 @@ D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDriving
 D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Api\bin\Debug\net6.0\FairwayDrivingRange.Shared.dll
 D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Api\bin\Debug\net6.0\FairwayDrivingRange.Application.pdb
 D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Api\bin\Debug\net6.0\FairwayDrivingRange.Shared.pdb
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Api\bin\Debug\net6.0\AutoMapper.dll
+D:\Dev\Lessons\A Driving Range Booking App\FairwayDrivingRangeApp\FairwayDrivingRange.Api\FairwayDrivingRange.Api\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

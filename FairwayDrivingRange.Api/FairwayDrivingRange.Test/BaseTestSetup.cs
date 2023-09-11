@@ -1,4 +1,5 @@
-﻿using FairwayDrivingRange.Application;
+﻿using AutoMapper;
+using FairwayDrivingRange.Application;
 using FairwayDrivingRange.Domain.Entities;
 using FairwayDrivingRange.Infrastructure;
 using FairwayDrivingRange.Infrastructure.Data;
@@ -28,23 +29,30 @@ namespace FairwayDrivingRange.Test
 
         public BaseTestSetup()
         {
+            var mapperConfiguration = new MapperConfiguration(configuration =>
+            {
+                configuration.AddProfile(new AutoMapperProfiles());
+            });
+
+            var mapper = mapperConfiguration.CreateMapper();
+
             context = new FairwayContext(DatabaseSetup().Options);
 
             customerInformationRepository = new Repository<CustomerInformation>(context);
 
-            customerFacade = new CustomerFacade(customerInformationRepository);
+            customerFacade = new CustomerFacade(customerInformationRepository, mapper);
 
             bookingRepository = new Repository<Booking>(context);
 
-            bookingFacade = new BookingFacade(bookingRepository);
+            bookingFacade = new BookingFacade(bookingRepository, customerInformationRepository, mapper);
 
             golfClubRepository = new Repository<GolfClub>(context);
 
-            golfClubFacade = new GolfClubFacade(golfClubRepository);
+            golfClubFacade = new GolfClubFacade(golfClubRepository, bookingRepository, mapper);
 
             transactionRepository = new Repository<Transaction>(context);
 
-            transactionFacade = new TransactionFacade(transactionRepository);
+            transactionFacade = new TransactionFacade(transactionRepository, customerInformationRepository, mapper);
         }
 
         public DbContextOptionsBuilder<FairwayContext> DatabaseSetup()

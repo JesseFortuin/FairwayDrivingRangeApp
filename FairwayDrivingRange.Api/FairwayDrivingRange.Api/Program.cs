@@ -20,6 +20,8 @@ builder.Services.AddScoped<IRepository<CustomerInformation>, Repository<Customer
 builder.Services.AddDbContext<FairwayContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("FairwayConectionString")));
 
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

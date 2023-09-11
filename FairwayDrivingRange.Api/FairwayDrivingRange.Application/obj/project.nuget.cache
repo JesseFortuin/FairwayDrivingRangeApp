@@ -1,13 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "wfvy016+nEnkN48sVw73cEYqlZ6X31MEiaJhnvOT4bUC4K4o6Qp5KZ7z6CczL6ux/593AXhigkYWYSrA7Ivi9g==",
+  "dgSpecHash": "WEoidqAHCkf/eV/KPkbxAEgM8BtOQWAn7iHORQ37nQKVDqs/ruD+SecZXHARtTq9/VVv4gQr0PUzCLLw48JpdQ==",
   "success": true,
   "projectFilePath": "D:\\Dev\\Lessons\\A Driving Range Booking App\\FairwayDrivingRangeApp\\FairwayDrivingRange.Api\\FairwayDrivingRange.Application\\FairwayDrivingRange.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\jesse\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\jesse\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\jesse\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\jesse\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\jesse\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
-    "C:\\Users\\jesse\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\jesse\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\jesse\\.nuget\\packages\\microsoft.data.sqlclient\\5.0.2\\microsoft.data.sqlclient.5.0.2.nupkg.sha512",
     "C:\\Users\\jesse\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\5.0.1\\microsoft.data.sqlclient.sni.runtime.5.0.1.nupkg.sha512",
     "C:\\Users\\jesse\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.10\\microsoft.entityframeworkcore.7.0.10.nupkg.sha512",

@@ -1,4 +1,5 @@
-﻿using FairwayDrivingRange.Domain.Entities;
+﻿using AutoMapper;
+using FairwayDrivingRange.Domain.Entities;
 using FairwayDrivingRange.Infrastructure;
 using FairwayDrivingRange.Shared.Dtos;
 
@@ -7,10 +8,13 @@ namespace FairwayDrivingRange.Application
     public class CustomerFacade : ICustomerFacade
     {
         private readonly IRepository<CustomerInformation> repository;
+        private readonly IMapper mapper;
 
-        public CustomerFacade(IRepository<CustomerInformation> repository)
+        public CustomerFacade(IRepository<CustomerInformation> repository,
+                                 IMapper mapper)
         {
             this.repository = repository;
+            this.mapper = mapper;
         }
 
         public ApiResponseDto<bool> AddCustomer(AddCustomerDto customerDto) 
@@ -22,12 +26,7 @@ namespace FairwayDrivingRange.Application
                 return new ApiResponseDto<bool>("Invalid Customer Object");
             }
 
-            var customer = new CustomerInformation
-            {
-                Name = customerDto.name,
-                Email = customerDto.email,
-                IsPaid = customerDto.isPaid,
-            };
+            var customer = mapper.Map<CustomerInformation>(customerDto);
 
             var result = repository.Create(customer);
 
@@ -67,35 +66,16 @@ namespace FairwayDrivingRange.Application
                 return new ApiResponseDto<CustomerDto>("Customer Not Found");
             }
 
-            var customerDto = new CustomerDto
-            {
-                id = result.Id,
-                name = result.Name,
-                email = result.Email,
-                isPaid = result.IsPaid
-            };
+            var customerDto = mapper.Map<CustomerDto>(result);
 
             return new ApiResponseDto<CustomerDto>(customerDto);
         }
 
         public ApiResponseDto<IEnumerable<CustomerDto>> GetCustomers()
         {
-            var customerDtos = new List<CustomerDto>();
-
             var customers = repository.GetAll();
 
-            foreach (var customer in customers)
-            {
-                var customerDto = new CustomerDto
-                {
-                    name = customer.Name,
-                    email = customer.Email,
-                    id = customer.Id,
-                    isPaid = customer.IsPaid
-                };
-
-                customerDtos.Add(customerDto);
-            }
+            var customerDtos = mapper.Map<IEnumerable<CustomerDto>>(customers); ;
 
             return new ApiResponseDto<IEnumerable<CustomerDto>>(customerDtos);
         }

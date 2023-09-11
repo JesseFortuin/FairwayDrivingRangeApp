@@ -11,7 +11,7 @@ namespace FairwayDrivingRange.Application
     {
         public ApiResponseDto<bool> AddGolfClub(AddGolfClubDto golfClubDto);
 
-        public ApiResponseDto<bool> UpdateGolfClub(int golfClubId, AddGolfClubDto golfClubDto);
+        public ApiResponseDto<bool> UpdateGolfClub(int golfClubId, UpdateGolfClubDto golfClubDto);
 
         public ApiResponseDto<IEnumerable<GolfClubDto>> GetGolfClubs();
 
