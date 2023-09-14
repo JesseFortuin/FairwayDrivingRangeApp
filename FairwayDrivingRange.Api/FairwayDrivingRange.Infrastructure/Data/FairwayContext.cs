@@ -18,6 +18,8 @@ namespace FairwayDrivingRange.Infrastructure.Data
 
         public DbSet<Transaction> Transactions { get; set; }
 
+        public DbSet<Admin> Admins { get; set; }
+
         public FairwayContext(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -46,7 +48,7 @@ namespace FairwayDrivingRange.Infrastructure.Data
 * | DATE USED  |   NAME                        |  Created Date & Purpose
 * ====================================================================================================================================
 * |            |   Zosma                       | 2023-09-04 - initial migration to add Tables
-* |            |   Zibal                       |
+* |            |   Zibal                       | 2023-09-14 - added Admins table, golf club price in transaction table nullable
 * |            |   Zavijava                    | 
 * |            |   Zaurak                      | 
 * |            |   Zaniah                      | 

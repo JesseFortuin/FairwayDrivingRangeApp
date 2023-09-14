@@ -22,6 +22,27 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("FairwayDrivingRange.Domain.Entities.Admin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AdminName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Admins");
+                });
+
             modelBuilder.Entity("FairwayDrivingRange.Domain.Entities.Booking", b =>
                 {
                     b.Property<int>("Id")
@@ -43,7 +64,7 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Bookings", (string)null);
+                    b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("FairwayDrivingRange.Domain.Entities.CustomerInformation", b =>
@@ -67,7 +88,7 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CustomerInformation", (string)null);
+                    b.ToTable("CustomerInformation");
                 });
 
             modelBuilder.Entity("FairwayDrivingRange.Domain.Entities.GolfClub", b =>
@@ -91,7 +112,7 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
 
                     b.HasIndex("BookingId");
 
-                    b.ToTable("GolfClubs", (string)null);
+                    b.ToTable("GolfClubs");
                 });
 
             modelBuilder.Entity("FairwayDrivingRange.Domain.Entities.Transaction", b =>
@@ -105,7 +126,7 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
                     b.Property<double>("BookingPrice")
                         .HasColumnType("float");
 
-                    b.Property<double>("ClubPrice")
+                    b.Property<double?>("ClubPrice")
                         .HasColumnType("float");
 
                     b.Property<int>("CustomerId")
@@ -118,7 +139,7 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Transactions", (string)null);
+                    b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("FairwayDrivingRange.Domain.Entities.Booking", b =>

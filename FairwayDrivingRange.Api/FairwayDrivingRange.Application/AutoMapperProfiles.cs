@@ -30,6 +30,8 @@ namespace FairwayDrivingRange.Application
             CreateMap<Booking, BookingDto>().ReverseMap();
 
             CreateMap<AddBookingDto, Booking>();
+
+            CreateMap<Admin, AdminDto>().ReverseMap();
         }
     }
 }
