@@ -21,7 +21,7 @@ namespace FairwayDrivingRange.Test
                 lane = 4,
             };
 
-            var expected = new ApiResponseDto<bool>("Invalid Customer Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Customer Id");
 
             //Act
             var actual = bookingFacade.AddBooking(bookingDto);
@@ -41,7 +41,7 @@ namespace FairwayDrivingRange.Test
                 lane = 4,
             };
 
-            var expected = new ApiResponseDto<bool>("Invalid Customer Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Customer Id");
 
             //Act
             var actual = bookingFacade.AddBooking(bookingDto);
@@ -61,7 +61,7 @@ namespace FairwayDrivingRange.Test
                 lane = 4,
             };
 
-            var expected = new ApiResponseDto<bool>("Customer Not Found");
+            var expected = ApiResponseDto<bool>.Error("Customer Not Found");
 
             //Act
             var actual = bookingFacade.AddBooking(bookingDto);
@@ -92,7 +92,7 @@ namespace FairwayDrivingRange.Test
 
             context.SaveChanges();
 
-            var expected = new ApiResponseDto<bool>("Invalid Booking Object");
+            var expected = ApiResponseDto<bool>.Error("Invalid Booking Object");
 
             //Act
             var actual = bookingFacade.AddBooking(bookingDto);
@@ -123,7 +123,7 @@ namespace FairwayDrivingRange.Test
 
             context.SaveChanges();
 
-            var expected = new ApiResponseDto<bool>("Invalid Booking Object");
+            var expected = ApiResponseDto<bool>.Error("Invalid Booking Object");
 
             //Act
             var actual = bookingFacade.AddBooking(bookingDto);
@@ -154,7 +154,7 @@ namespace FairwayDrivingRange.Test
 
             context.SaveChanges();
 
-            var expected = new ApiResponseDto<bool>("Invalid Booking Object");
+            var expected = ApiResponseDto<bool>.Error("Invalid Booking Object");
 
             //Act
             var actual = bookingFacade.AddBooking(bookingDto);
@@ -283,7 +283,7 @@ namespace FairwayDrivingRange.Test
         public void GetBooking_Fails_IdNegativeNumber()
         {
             //Arrange
-            var expected = new ApiResponseDto<BookingDto>("Invalid Id");
+            var expected = ApiResponseDto<BookingDto>.Error("Invalid Id");
 
             //Act
             var actual = bookingFacade.GetBookingById(-1);
@@ -296,7 +296,7 @@ namespace FairwayDrivingRange.Test
         public void GetBooking_Fails_IdZero()
         {
             //Arrange
-            var expected = new ApiResponseDto<BookingDto>("Invalid Id");
+            var expected = ApiResponseDto<BookingDto>.Error("Invalid Id");
 
             //Act
             var actual = bookingFacade.GetBookingById(-1);
@@ -309,7 +309,7 @@ namespace FairwayDrivingRange.Test
         public void GetBooking_Fails_BookingNotFound()
         {
             //Arrange
-            var expected = new ApiResponseDto<BookingDto>("Booking Not Found");
+            var expected = ApiResponseDto<BookingDto>.Error("Booking Not Found");
 
             //Act
             var actual = bookingFacade.GetBookingById(1);
@@ -368,7 +368,7 @@ namespace FairwayDrivingRange.Test
         public void DeleteBooking_Fails_IdNegativeNumber()
         {
             //Arrange
-            var expected = new ApiResponseDto<bool>("Invalid Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Id");
 
             //Act
             var actual = bookingFacade.DeleteBooking(-1);
@@ -381,7 +381,7 @@ namespace FairwayDrivingRange.Test
         public void DeleteBooking_Fails_IdZero()
         {
             //Arrange
-            var expected = new ApiResponseDto<bool>("Invalid Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Id");
 
             //Act
             var actual = bookingFacade.DeleteBooking(0);
@@ -394,7 +394,7 @@ namespace FairwayDrivingRange.Test
         public void DeleteBooking_Fails_NumberNotFound()
         {
             //Arrange
-            var expected = new ApiResponseDto<bool>("Booking Not Found");
+            var expected = ApiResponseDto<bool>.Error("Booking Not Found");
 
             //Act
             var actual = bookingFacade.DeleteBooking(3);
@@ -470,7 +470,7 @@ namespace FairwayDrivingRange.Test
         public void UpdateBooking_Fails_IdNegativeNumber()
         {
             //Arrange
-            var expected = new ApiResponseDto<bool>("Invalid Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Id");
 
             //Act
             var actual = bookingFacade.UpdateBooking(-1, null);
@@ -483,7 +483,7 @@ namespace FairwayDrivingRange.Test
         public void UpdateBooking_Fails_IdZero()
         {
             //Arrange
-            var expected = new ApiResponseDto<bool>("Invalid Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Id");
 
             //Act
             var actual = bookingFacade.UpdateBooking(0, null);
@@ -496,7 +496,7 @@ namespace FairwayDrivingRange.Test
         public void UpdateBooking_Fails_NumberNotFound()
         {
             //Arrange
-            var expected = new ApiResponseDto<bool>("Booking Not Found");
+            var expected = ApiResponseDto<bool>.Error("Booking Not Found");
 
             //Act
             var actual = bookingFacade.UpdateBooking(3, null);
@@ -536,7 +536,7 @@ namespace FairwayDrivingRange.Test
 
             context.SaveChanges();
 
-            var expected = new ApiResponseDto<bool>("Invalid Booking Object");
+            var expected = ApiResponseDto<bool>.Error("Invalid Booking Object");
 
             //Act
             var actual = bookingFacade.UpdateBooking(1, bookingDto);
@@ -576,7 +576,7 @@ namespace FairwayDrivingRange.Test
 
             context.SaveChanges();
 
-            var expected = new ApiResponseDto<bool>("Invalid Booking Object");
+            var expected = ApiResponseDto<bool>.Error("Invalid Booking Object");
 
             //Act
             var actual = bookingFacade.UpdateBooking(1, bookingDto);

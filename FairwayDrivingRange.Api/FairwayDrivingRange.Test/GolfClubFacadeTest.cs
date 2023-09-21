@@ -21,7 +21,7 @@ namespace FairwayDrivingRange.Test
                 isAvailable = false,
             };
 
-            var expected = new ApiResponseDto<bool>("Invalid Serial Number");
+            var expected = ApiResponseDto<bool>.Error("Invalid Serial Number");
             //Act
 
             var actual = golfClubFacade.AddGolfClub(golfClubDto);
@@ -56,7 +56,7 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var golfClubId = -1;
 
-            var expected = new ApiResponseDto<bool>("Invalid Golf Club Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Golf Club Id");
 
             //Act
             var actual = golfClubFacade.DeleteGolfClub(golfClubId);
@@ -71,7 +71,7 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var golfClubId = 1;
 
-            var expected = new ApiResponseDto<bool>("Golf Club Not Found");
+            var expected = ApiResponseDto<bool>.Error("Golf Club Not Found");
 
             //Act
             var actual = golfClubFacade.DeleteGolfClub(golfClubId);
@@ -182,7 +182,7 @@ namespace FairwayDrivingRange.Test
         public void GetGolfClubById_Fails_InvalidIdZero()
         {
             //Arrange
-            var expected = new ApiResponseDto<GolfClubDto>("Invalid Golf Club Id");
+            var expected = ApiResponseDto<GolfClubDto>.Error("Invalid Golf Club Id");
 
             var id = 0;
 
@@ -197,7 +197,7 @@ namespace FairwayDrivingRange.Test
         public void GetGolfClubById_Fails_InvalidIdNegativeNumber()
         {
             //Arrange
-            var expected = new ApiResponseDto<GolfClubDto>("Invalid Golf Club Id");
+            var expected = ApiResponseDto<GolfClubDto>.Error("Invalid Golf Club Id");
 
             var id = -1;
 
@@ -212,7 +212,7 @@ namespace FairwayDrivingRange.Test
         public void GetGolfClubById_Fails_GolfClubNotFound()
         {
             //Arrange 
-            var expected = new ApiResponseDto<GolfClubDto>("Golf Club Not Found");
+            var expected = ApiResponseDto<GolfClubDto>.Error("Golf Club Not Found");
 
             var id = 1;
 
@@ -264,7 +264,7 @@ namespace FairwayDrivingRange.Test
         public void UpdateGolfClub_Fails_InvalidGolfClubId()
         {
             //Arrange
-            var expected = new ApiResponseDto<bool>("Invalid Golf Club Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Golf Club Id");
 
             var golfClubId = 0;
 
@@ -279,7 +279,7 @@ namespace FairwayDrivingRange.Test
         public void UpdateGolfClub_Fails_GolfClubNotFound()
         {
             //Arrange
-            var expected = new ApiResponseDto<bool>("Golf Club Not Found");
+            var expected = ApiResponseDto<bool>.Error("Golf Club Not Found");
 
             var golfClubId = 1;
 
@@ -313,7 +313,7 @@ namespace FairwayDrivingRange.Test
 
             var id = 1;
 
-            var expected = new ApiResponseDto<bool>("Invalid Serial Number");
+            var expected = ApiResponseDto<bool>.Error("Invalid Serial Number");
 
             //Act
             var actual = golfClubFacade.UpdateGolfClub(id, golfClubDto);
@@ -346,7 +346,7 @@ namespace FairwayDrivingRange.Test
 
             var id = 1;
 
-            var expected = new ApiResponseDto<bool>("Invalid Booking Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Booking Id");
 
             //Act
             var actual = golfClubFacade.UpdateGolfClub(id, golfClubDto);
@@ -379,7 +379,7 @@ namespace FairwayDrivingRange.Test
 
             var id = 1;
 
-            var expected = new ApiResponseDto<bool>("Booking Not Found");
+            var expected = ApiResponseDto<bool>.Error("Booking Not Found");
 
             //Act
             var actual = golfClubFacade.UpdateGolfClub(id, golfClubDto);

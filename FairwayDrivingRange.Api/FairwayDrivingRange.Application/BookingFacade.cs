@@ -24,20 +24,20 @@ namespace FairwayDrivingRange.Application
         {
             if (bookingDto.customerId <= 0)
             {
-                return new ApiResponseDto<bool>("Invalid Customer Id");
+                return ApiResponseDto<bool>.Error("Invalid Customer Id");
             }
 
             var customer = customerRepository.GetById(bookingDto.customerId);
 
             if (customer == null)
             {
-                return new ApiResponseDto<bool>("Customer Not Found");
+                return ApiResponseDto<bool>.Error("Customer Not Found");
             }
 
             if (bookingDto.lane <= 0 ||
-                bookingDto.lane > 20)
+                bookingDto.lane > 10)
             {
-                return new ApiResponseDto<bool>("Invalid Booking Object");
+                return ApiResponseDto<bool>.Error("Invalid Booking Object");
             }
 
             var booking = mapper.Map<Booking>(bookingDto);
@@ -51,14 +51,14 @@ namespace FairwayDrivingRange.Application
         {
             if (bookingId <= 0)
             {
-                return new ApiResponseDto<bool>("Invalid Id");
+                return ApiResponseDto<bool>.Error("Invalid Id");
             }
 
             var booking = repository.GetById(bookingId);
 
             if (booking == null)
             {
-                return new ApiResponseDto<bool>("Booking Not Found");
+                return ApiResponseDto<bool>.Error("Booking Not Found");
             }
 
             var result = repository.Delete(booking);
@@ -70,14 +70,14 @@ namespace FairwayDrivingRange.Application
         {
             if (bookingId <= 0)
             {
-                return new ApiResponseDto<BookingDto>("Invalid Id");
+                return ApiResponseDto<BookingDto>.Error("Invalid Id");
             }
 
             var booking = repository.GetById(bookingId);
 
             if (booking == null)
             {
-                return new ApiResponseDto<BookingDto>("Booking Not Found");
+                return ApiResponseDto<BookingDto>.Error("Booking Not Found");
             }
 
             var bookingDto = mapper.Map<BookingDto>(booking);
@@ -98,26 +98,26 @@ namespace FairwayDrivingRange.Application
         {
             if (bookingId <= 0)
             {
-                return new ApiResponseDto<bool>("Invalid Id");
+                return ApiResponseDto<bool>.Error("Invalid Id");
             }
 
             var booking = repository.GetById(bookingId);
 
             if (booking == null)
             {
-                return new ApiResponseDto<bool>("Booking Not Found");
+                return ApiResponseDto<bool>.Error("Booking Not Found");
             }
 
             if (bookingDto.lane <= 0 ||
                 bookingDto.lane > 20 ||
                 bookingDto.customerId <= 0)
             {
-                return new ApiResponseDto<bool>("Invalid Booking Object");
+                return ApiResponseDto<bool>.Error("Invalid Booking Object");
             }
 
             if (bookingDto.customerId <= 0)
             {
-                return new ApiResponseDto<bool>("Invalid Customer Id");
+                return ApiResponseDto<bool>.Error("Invalid Customer Id");
             }
 
             var customer = repository.GetById(bookingDto.customerId);
@@ -125,12 +125,10 @@ namespace FairwayDrivingRange.Application
             if (customer == null ||
                 customer.Customer == null)
             {
-                return new ApiResponseDto<bool>("Customer Not Found");
+                return ApiResponseDto<bool>.Error("Customer Not Found");
             }
 
-            booking.CustomerId = bookingDto.customerId;
-            booking.DateBooked = bookingDto.dateBooked;
-            booking.Lane = bookingDto.lane;
+            mapper.Map(bookingDto, booking);
 
             var result = repository.Update(booking);
 

@@ -24,7 +24,7 @@ namespace FairwayDrivingRange.Application
         {
             if (golfClubDto.serialNumber <= 0)
             {
-                return new ApiResponseDto<bool>("Invalid Serial Number");
+                return ApiResponseDto<bool>.Error("Invalid Serial Number");
             };
 
             var golfClub = mapper.Map<GolfClub>(golfClubDto);
@@ -38,14 +38,14 @@ namespace FairwayDrivingRange.Application
         {
             if (golfClubId <= 0)
             {
-                return new ApiResponseDto<bool>("Invalid Golf Club Id");
+                return ApiResponseDto<bool>.Error("Invalid Golf Club Id");
             };
 
             var golfClub = repository.GetById(golfClubId);
 
             if (golfClub == null)
             {
-                return new ApiResponseDto<bool>("Golf Club Not Found");
+                return ApiResponseDto<bool>.Error("Golf Club Not Found");
             };
 
             var result = repository.Delete(golfClub);
@@ -57,14 +57,14 @@ namespace FairwayDrivingRange.Application
         {
             if (golfClubId <= 0)
             {
-                return new ApiResponseDto<GolfClubDto>("Invalid Golf Club Id");
+                return ApiResponseDto<GolfClubDto>.Error("Invalid Golf Club Id");
             };
 
             var golfClub = repository.GetById(golfClubId);
 
             if (golfClub == null)
             {
-                return new ApiResponseDto<GolfClubDto>("Golf Club Not Found");
+                return ApiResponseDto<GolfClubDto>.Error("Golf Club Not Found");
             }
 
             var golfClubDto = mapper.Map<GolfClubDto>(golfClub);
@@ -85,24 +85,24 @@ namespace FairwayDrivingRange.Application
         {
             if (golfClubId <= 0)
             {
-                return new ApiResponseDto<bool>("Invalid Golf Club Id");
+                return ApiResponseDto<bool>.Error("Invalid Golf Club Id");
             }
 
             var golfClub = repository.GetById(golfClubId);
 
             if (golfClub == null)
             {
-                return new ApiResponseDto<bool>("Golf Club Not Found");
+                return ApiResponseDto<bool>.Error("Golf Club Not Found");
             }
 
             if (golfClubDto.serialNumber <= 0)
             {
-                return new ApiResponseDto<bool>("Invalid Serial Number");
+                return ApiResponseDto<bool>.Error("Invalid Serial Number");
             };
 
             if (golfClubDto.bookingId <= 0)
             {
-                return new ApiResponseDto<bool>("Invalid Booking Id");
+                return ApiResponseDto<bool>.Error("Invalid Booking Id");
             }
 
             var booking = new Booking();
@@ -114,15 +114,11 @@ namespace FairwayDrivingRange.Application
                 if (booking == null ||
                     booking.Id == 0)
                 {
-                    return new ApiResponseDto<bool>("Booking Not Found");
+                    return ApiResponseDto<bool>.Error("Booking Not Found");
                 }
             }
 
-            golfClub.SerialNumber = golfClubDto.serialNumber;
-
-            golfClub.BookingId = golfClubDto.bookingId;
-
-            golfClub.IsAvailable = golfClubDto.isAvailable;
+            mapper.Map(golfClubDto, golfClub);
 
             var result = repository.Update(golfClub);
 

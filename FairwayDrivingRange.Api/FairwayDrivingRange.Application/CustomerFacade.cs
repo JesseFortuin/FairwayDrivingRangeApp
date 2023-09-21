@@ -23,7 +23,7 @@ namespace FairwayDrivingRange.Application
                 string.IsNullOrWhiteSpace(customerDto.name) ||
                 string.IsNullOrWhiteSpace(customerDto.email))
             {
-                return new ApiResponseDto<bool>("Invalid Customer Object");
+                return ApiResponseDto<bool>.Error("Invalid Customer Object");
             }
 
             var customer = mapper.Map<CustomerInformation>(customerDto);
@@ -37,14 +37,14 @@ namespace FairwayDrivingRange.Application
         {
             if (customerId <= 0)
             {
-                return new ApiResponseDto<bool>("Invalid Id");
+                return ApiResponseDto<bool>.Error("Invalid Id");
             }
 
             var customer = repository.GetById(customerId);
 
             if (customer == null)
             {
-                return new ApiResponseDto<bool>("Customer Not Found");
+                return ApiResponseDto<bool>.Error("Customer Not Found");
             }
 
             var result = repository.Delete(customer);
@@ -56,14 +56,14 @@ namespace FairwayDrivingRange.Application
         {
             if (customerId <= 0) 
             {
-                return new ApiResponseDto<CustomerDto>("Invalid Id");
+                return ApiResponseDto<CustomerDto>.Error("Invalid Id");
             }
 
             var result = repository.GetById(customerId);
 
             if (result == null)
             {
-                return new ApiResponseDto<CustomerDto>("Customer Not Found");
+                return ApiResponseDto<CustomerDto>.Error("Customer Not Found");
             }
 
             var customerDto = mapper.Map<CustomerDto>(result);
@@ -84,28 +84,24 @@ namespace FairwayDrivingRange.Application
         {
             if (customerId <= 0)
             {
-                return new ApiResponseDto<bool>("Invalid Id");
+                return ApiResponseDto<bool>.Error("Invalid Id");
             }
 
             var customer = repository.GetById(customerId);
 
             if (customer == null)
             {
-                return new ApiResponseDto<bool>("Customer Not Found");
+                return ApiResponseDto<bool>.Error("Customer Not Found");
             }
 
             if (customerDto == null ||
                 string.IsNullOrWhiteSpace(customerDto.name) ||
                 string.IsNullOrWhiteSpace(customerDto.email))
             {
-                return new ApiResponseDto<bool>("Invalid Customer Object");
+                return ApiResponseDto<bool>.Error("Invalid Customer Object");
             }
 
-            customer.Name = customerDto.name; 
-
-            customer.Email = customerDto.email;
-
-            customer.IsPaid = customerDto.isPaid;
+            mapper.Map(customerDto, customer);
 
             var result = repository.Update(customer);
 

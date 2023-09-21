@@ -18,7 +18,7 @@ namespace FairwayDrivingRange.Test
                 isPaid = false
             };
 
-            var expected = new ApiResponseDto<bool>("Invalid Customer Object");
+            var expected = ApiResponseDto<bool>.Error("Invalid Customer Object");
 
             //Act
             var actual = customerFacade.AddCustomer(customerDto);
@@ -39,7 +39,7 @@ namespace FairwayDrivingRange.Test
                 isPaid = false
             };
 
-            var expected = new ApiResponseDto<bool>("Invalid Customer Object");
+            var expected = ApiResponseDto<bool>.Error("Invalid Customer Object");
 
             //Act
             var actual = customerFacade.AddCustomer(customerDto);
@@ -174,7 +174,7 @@ namespace FairwayDrivingRange.Test
         public void GetCustomer_Fails_IdNegativeNumber()
         {
             //Arrange
-            var expected = new ApiResponseDto<bool>("Invalid Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Id");
 
             //Act
             var actual = customerFacade.GetCustomerById(-1);
@@ -187,7 +187,7 @@ namespace FairwayDrivingRange.Test
         public void GetCustomer_Fails_IdZero()
         {
             //Arrange
-            var expected = new ApiResponseDto<bool>("Invalid Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Id");
 
             //Act
             var actual = customerFacade.GetCustomerById(0);
@@ -202,7 +202,7 @@ namespace FairwayDrivingRange.Test
         {
             
             //Arrange
-            var expected = new ApiResponseDto<bool>("Customer Not Found");
+            var expected = ApiResponseDto<bool>.Error("Customer Not Found");
 
             //Act
             var actual = customerFacade.GetCustomerById(30);
@@ -216,7 +216,7 @@ namespace FairwayDrivingRange.Test
         public void DeleteCustomer_Fails_IdNegativeNumber() 
         {
             //Arrange
-            var expected = new ApiResponseDto<bool>("Invalid Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Id");
 
             //Act
             var actual = customerFacade.DeleteCustomer(-1);
@@ -229,7 +229,7 @@ namespace FairwayDrivingRange.Test
         public void DeleteCustomer_Fails_IdZero() 
         {
             //Arrange
-            var expected = new ApiResponseDto<bool>("Invalid Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Id");
 
             //Act
             var actual = customerFacade.DeleteCustomer(0);
@@ -242,7 +242,7 @@ namespace FairwayDrivingRange.Test
         public void DeleteCustomer_Fails_NumberNotFound() 
         {
             //Arrange
-            var expected = new ApiResponseDto<bool>("Customer Not Found");
+            var expected = ApiResponseDto<bool>.Error("Customer Not Found");
 
             //Act
             var actual = customerFacade.DeleteCustomer(3);
@@ -292,7 +292,7 @@ namespace FairwayDrivingRange.Test
         public void UpdateCustomer_Fails_IdNegativeNumber()
         {
             //Arrange
-            var expected = new ApiResponseDto<bool>("Invalid Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Id");
 
             //Act
             var actual = customerFacade.UpdateCustomer(-1, null);
@@ -305,7 +305,7 @@ namespace FairwayDrivingRange.Test
         public void UpdateCustomer_Fails_IdZero()
         {
             //Arrange
-            var expected = new ApiResponseDto<bool>("Invalid Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Id");
 
             //Act
             var actual = customerFacade.UpdateCustomer(0, null);
@@ -318,7 +318,7 @@ namespace FairwayDrivingRange.Test
         public void UpdateCustomer_Fails_NumberNotFound()
         {
             //Arrange
-            var expected = new ApiResponseDto<bool>("Customer Not Found");
+            var expected = ApiResponseDto<bool>.Error("Customer Not Found");
 
             //Act
             var actual = customerFacade.UpdateCustomer(3, null);
@@ -358,7 +358,7 @@ namespace FairwayDrivingRange.Test
 
             context.SaveChanges();
 
-            var expected = new ApiResponseDto<bool>("Invalid Customer Object");
+            var expected = ApiResponseDto<bool>.Error("Invalid Customer Object");
 
             //Act
             var actual = customerFacade.UpdateCustomer(1, customerDto);
@@ -398,7 +398,7 @@ namespace FairwayDrivingRange.Test
 
             context.SaveChanges();
 
-            var expected = new ApiResponseDto<bool>("Invalid Customer Object");
+            var expected = ApiResponseDto<bool>.Error("Invalid Customer Object");
 
             //Act
             var actual = customerFacade.UpdateCustomer(1, customerDto);

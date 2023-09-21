@@ -24,26 +24,26 @@ namespace FairwayDrivingRange.Application
         {
             if (transactionDto.customerId <= 0)
             {
-                return new ApiResponseDto<bool>("Invalid Customer Id");
+                return ApiResponseDto<bool>.Error("Invalid Customer Id");
             }
 
             var customer = customerRepository.GetById(transactionDto.customerId);
 
             if (customer == null)
             {
-                return new ApiResponseDto<bool>("Customer Not Found");
+                return ApiResponseDto<bool>.Error("Customer Not Found");
             }
 
             if (transactionDto.bookingPrice <= 0 ||
                 transactionDto.total <= 0)
             {
-                return new ApiResponseDto<bool>("Booking Price And Total Can Not Be 0");
+                return ApiResponseDto<bool>.Error("Booking Price And Total Can Not Be 0");
             }
 
             if (transactionDto.clubPrice + transactionDto.bookingPrice 
                 != transactionDto.total)
             {
-                return new ApiResponseDto<bool>("Total Price Does Not Add Up");
+                return ApiResponseDto<bool>.Error("Total Price Does Not Add Up");
             }
 
             var transaction = mapper.Map<Transaction>(transactionDto);
@@ -57,14 +57,14 @@ namespace FairwayDrivingRange.Application
         {
             if (transactionId <= 0)
             {
-                return new ApiResponseDto<bool>("Invalid Id");
+                return ApiResponseDto<bool>.Error("Invalid Id");
             }
 
             var transaction = repository.GetById(transactionId);
 
             if (transaction == null)
             {
-                return new ApiResponseDto<bool>("Transaction Not Found");
+                return ApiResponseDto<bool>.Error("Transaction Not Found");
             }
 
             var result = repository.Delete(transaction);
@@ -76,14 +76,14 @@ namespace FairwayDrivingRange.Application
         {
             if (transactionId <= 0)
             {
-                return new ApiResponseDto<TransactionDto>("Invalid Id");
+                return ApiResponseDto<TransactionDto>.Error("Invalid Id");
             }
 
             var transaction = repository.GetById(transactionId);
 
             if (transaction == null)
             {
-                return new ApiResponseDto<TransactionDto>("Transaction Not Found");
+                return ApiResponseDto<TransactionDto>.Error("Transaction Not Found");
             }
 
             var transactionDto = mapper.Map<TransactionDto>(transaction);
@@ -104,47 +104,41 @@ namespace FairwayDrivingRange.Application
         {
             if (transactionDto.customerId <= 0)
             {
-                return new ApiResponseDto<bool>("Invalid Customer Id");
+                return ApiResponseDto<bool>.Error("Invalid Customer Id");
             }
 
             var customer = customerRepository.GetById(transactionDto.customerId);
 
             if (customer == null)
             {
-                return new ApiResponseDto<bool>("Customer Not Found");
+                return ApiResponseDto<bool>.Error("Customer Not Found");
             }
 
             if (transactionDto.bookingPrice <= 0 ||
                 transactionDto.total <= 0)
             {
-                return new ApiResponseDto<bool>("Booking Price And Total Can Not Be 0");
+                return ApiResponseDto<bool>.Error("Booking Price And Total Can Not Be 0");
             }
 
             if (transactionDto.clubPrice + transactionDto.bookingPrice
                 != transactionDto.total)
             {
-                return new ApiResponseDto<bool>("Total Price Does Not Add Up");
+                return ApiResponseDto<bool>.Error("Total Price Does Not Add Up");
             }
 
             if (transactionId <= 0)
             {
-                return new ApiResponseDto<bool>("Invalid Transaction Id");
+                return ApiResponseDto<bool>.Error("Invalid Transaction Id");
             }
 
             var transaction = repository.GetById(transactionId);
 
             if (transaction == null)
             {
-                return new ApiResponseDto<bool>("Transaction Not Found");
+                return ApiResponseDto<bool>.Error("Transaction Not Found");
             }
 
-            transaction.CustomerId = transactionDto.customerId;
-
-            transaction.Total = transactionDto.total;
-
-            transaction.ClubPrice = transactionDto.clubPrice;
-
-            transaction.BookingPrice = transactionDto.bookingPrice;
+            mapper.Map(transactionDto, transaction);
 
             var result = repository.Update(transaction);
 

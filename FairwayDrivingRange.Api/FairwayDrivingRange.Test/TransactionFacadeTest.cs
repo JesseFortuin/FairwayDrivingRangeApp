@@ -22,7 +22,7 @@ namespace FairwayDrivingRange.Test
                 total = 120
             };
 
-            var expected = new ApiResponseDto<bool>("Invalid Customer Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Customer Id");
 
             //Act
             var actual = transactionFacade.AddTransaction(transactionDto);
@@ -43,7 +43,7 @@ namespace FairwayDrivingRange.Test
                 total = 120
             };
 
-            var expected = new ApiResponseDto<bool>("Invalid Customer Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Customer Id");
 
             //Act
             var actual = transactionFacade.AddTransaction(transactionDto);
@@ -75,7 +75,7 @@ namespace FairwayDrivingRange.Test
 
             context.SaveChanges();
 
-            var expected = new ApiResponseDto<bool>("Booking Price And Total Can Not Be 0");
+            var expected = ApiResponseDto<bool>.Error("Booking Price And Total Can Not Be 0");
 
             //Act
             var actual = transactionFacade.AddTransaction(transactionDto);
@@ -107,7 +107,7 @@ namespace FairwayDrivingRange.Test
 
             context.SaveChanges();
 
-            var expected = new ApiResponseDto<bool>("Booking Price And Total Can Not Be 0");
+            var expected = ApiResponseDto<bool>.Error("Booking Price And Total Can Not Be 0");
 
             //Act
             var actual = transactionFacade.AddTransaction(transactionDto);
@@ -139,7 +139,7 @@ namespace FairwayDrivingRange.Test
 
             context.SaveChanges();
 
-            var expected = new ApiResponseDto<bool>("Total Price Does Not Add Up");
+            var expected = ApiResponseDto<bool>.Error("Total Price Does Not Add Up");
 
             //Act
             var actual = transactionFacade.AddTransaction(transactionDto);
@@ -160,7 +160,7 @@ namespace FairwayDrivingRange.Test
                 total = 120
             };
 
-            var expected = new ApiResponseDto<bool>("Customer Not Found");
+            var expected = ApiResponseDto<bool>.Error("Customer Not Found");
 
             //Act
             var actual = transactionFacade.AddTransaction(transactionDto);
@@ -287,7 +287,7 @@ namespace FairwayDrivingRange.Test
         public void GetTransaction_Fails_IdNegativeNumber()
         {
             //Arrange
-            var expected = new ApiResponseDto<TransactionDto>("Invalid Id");
+            var expected = ApiResponseDto<TransactionDto>.Error("Invalid Id");
 
             //Act
             var actual = transactionFacade.GetTransactionById(-1);
@@ -300,7 +300,7 @@ namespace FairwayDrivingRange.Test
         public void GetTransaction_Fails_IdZero()
         {
             //Arrange
-            var expected = new ApiResponseDto<TransactionDto>("Invalid Id");
+            var expected = ApiResponseDto<TransactionDto>.Error("Invalid Id");
 
             //Act
             var actual = transactionFacade.GetTransactionById(-1);
@@ -313,7 +313,7 @@ namespace FairwayDrivingRange.Test
         public void GetTransaction_Fails_TransactionNotFound()
         {
             //Arrange
-            var expected = new ApiResponseDto<TransactionDto>("Transaction Not Found");
+            var expected = ApiResponseDto<TransactionDto>.Error("Transaction Not Found");
 
             //Act
             var actual = transactionFacade.GetTransactionById(1);
@@ -375,7 +375,7 @@ namespace FairwayDrivingRange.Test
         public void DeleteTransaction_Fails_IdNegativeNumber()
         {
             //Arrange
-            var expected = new ApiResponseDto<bool>("Invalid Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Id");
 
             //Act
             var actual = transactionFacade.DeleteTransaction(-1);
@@ -388,7 +388,7 @@ namespace FairwayDrivingRange.Test
         public void DeleteTransaction_Fails_IdZero()
         {
             //Arrange
-            var expected = new ApiResponseDto<bool>("Invalid Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Id");
 
             //Act
             var actual = transactionFacade.DeleteTransaction(0);
@@ -401,7 +401,7 @@ namespace FairwayDrivingRange.Test
         public void DeleteTransaction_Fails_NumberNotFound()
         {
             //Arrange
-            var expected = new ApiResponseDto<bool>("Transaction Not Found");
+            var expected = ApiResponseDto<bool>.Error("Transaction Not Found");
 
             //Act
             var actual = transactionFacade.DeleteTransaction(3);
@@ -498,7 +498,7 @@ namespace FairwayDrivingRange.Test
 
             context.SaveChanges();
 
-            var expected = new ApiResponseDto<bool>("Invalid Transaction Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Transaction Id");
 
             //Act
             var actual = transactionFacade.UpdateTransaction(-1, transactionDto);
@@ -530,7 +530,7 @@ namespace FairwayDrivingRange.Test
 
             context.SaveChanges();
 
-            var expected = new ApiResponseDto<bool>("Invalid Transaction Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Transaction Id");
 
             //Act
             var actual = transactionFacade.UpdateTransaction(0, transactionDto);
@@ -562,7 +562,7 @@ namespace FairwayDrivingRange.Test
 
             context.SaveChanges();
 
-            var expected = new ApiResponseDto<bool>("Transaction Not Found");
+            var expected = ApiResponseDto<bool>.Error("Transaction Not Found");
 
             //Act
             var actual = transactionFacade.UpdateTransaction(3, transactionDto);
@@ -604,7 +604,7 @@ namespace FairwayDrivingRange.Test
 
             context.SaveChanges();
 
-            var expected = new ApiResponseDto<bool>("Invalid Customer Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Customer Id");
 
             //Act
             var actual = transactionFacade.UpdateTransaction(1, transactionDto);
@@ -646,7 +646,7 @@ namespace FairwayDrivingRange.Test
 
             context.SaveChanges();
 
-            var expected = new ApiResponseDto<bool>("Total Price Does Not Add Up");
+            var expected = ApiResponseDto<bool>.Error("Total Price Does Not Add Up");
 
             //Act
             var actual = transactionFacade.UpdateTransaction(1, transactionDto);

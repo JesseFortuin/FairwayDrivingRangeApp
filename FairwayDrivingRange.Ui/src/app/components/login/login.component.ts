@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 import { ILoginResponse } from 'src/assets/ILoginResponse';
+import { authGuard } from './authGuard/authGuard';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,8 @@ import { ILoginResponse } from 'src/assets/ILoginResponse';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private authService: AuthentificationService) {}
+  constructor(private authService: AuthentificationService,
+              public router: Router) {}
 
   ngOnInit(): void {
   }
@@ -21,7 +23,19 @@ export class LoginComponent implements OnInit {
 
   loginProcess() {
     this.authService.login(this.loginObj).subscribe((result : ILoginResponse) =>{
-      localStorage.setItem('Token', result.errorMessage)
+      if (!result.isSuccess){
+        sessionStorage.clear();
+
+        alert(result.errorMessage);
+      }
+
+      if (result.isSuccess){
+        sessionStorage.setItem('Token', result.value);
+
+        authGuard();
+
+        this.router.navigate(['admin'])
+      };
     })
   }
 }
