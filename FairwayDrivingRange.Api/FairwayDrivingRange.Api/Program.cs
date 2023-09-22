@@ -2,6 +2,7 @@ using FairwayDrivingRange.Application;
 using FairwayDrivingRange.Domain.Entities;
 using FairwayDrivingRange.Infrastructure;
 using FairwayDrivingRange.Infrastructure.Data;
+using FairwayDrivingRange.Test;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -38,6 +39,8 @@ builder.Services.AddScoped<IAdminFacade, AdminFacade>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 
 builder.Services.AddScoped<IRepository<Admin>, Repository<Admin>>();
+
+builder.Services.Configure<Jwt>(builder.Configuration.GetSection("Jwt"));
 
 builder.Services.AddDbContext<FairwayContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("FairwayConectionString")));

@@ -5,10 +5,21 @@ using FairwayDrivingRange.Infrastructure;
 using FairwayDrivingRange.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
+/*
+ TODO 
+ setup admin facade tests
+ */
+
 namespace FairwayDrivingRange.Test
 {
     public class BaseTestSetup
     {
+        public IRepository<Admin> adminRepository;
+
+        public IAdminRepository adminRepos;
+
+        public IAdminFacade adminFacade;
+
         public IRepository<CustomerInformation> customerInformationRepository;
 
         public ICustomerFacade customerFacade;
@@ -27,16 +38,26 @@ namespace FairwayDrivingRange.Test
 
         public readonly FairwayContext context;
 
-        public BaseTestSetup()
+        //private readonly Jwt jwt;
+
+        public BaseTestSetup(/*IOptions<Jwt> options*/)
         {
             var mapperConfiguration = new MapperConfiguration(configuration =>
             {
                 configuration.AddProfile(new AutoMapperProfiles());
             });
 
+            //jwt = options.Value;
+
             var mapper = mapperConfiguration.CreateMapper();
 
             context = new FairwayContext(DatabaseSetup().Options);
+
+            adminRepository = new Repository<Admin>(context);
+
+            adminRepos = new AdminRepository(context);
+
+            //adminFacade = new AdminFacade(adminRepository, adminRepos, mapper, jwt);
 
             customerInformationRepository = new Repository<CustomerInformation>(context);
 

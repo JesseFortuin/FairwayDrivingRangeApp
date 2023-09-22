@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FairwayDrivingRange.Application\FairwayDrivingRange.Application.csproj" />
     <ProjectReference Include="..\FairwayDrivingRange.Infrastructure\FairwayDrivingRange.Infrastructure.csproj" />
+    <ProjectReference Include="..\FairwayDrivingRange.Test\FairwayDrivingRange.Test.csproj" />
   </ItemGroup>
 
 </Project>
