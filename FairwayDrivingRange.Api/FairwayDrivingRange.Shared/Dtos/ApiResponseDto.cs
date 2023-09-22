@@ -7,7 +7,7 @@
         public T? Value { get; private set; }
 
         public string ErrorMessage { get; private set; }
-
+     
         public ApiResponseDto(T value)
         {
             IsSuccess = true;
@@ -15,11 +15,18 @@
             Value = value;
         }
 
-        public ApiResponseDto(string errorMessage)
+        public ApiResponseDto()
         {
-            IsSuccess = false;
+            
+        }
 
-            ErrorMessage = errorMessage;
+        public static ApiResponseDto<T> Error(string errorMessage)
+        {
+            return new ApiResponseDto<T>
+            {
+                IsSuccess = false,
+                ErrorMessage = errorMessage
+            };
         }
     }
 }

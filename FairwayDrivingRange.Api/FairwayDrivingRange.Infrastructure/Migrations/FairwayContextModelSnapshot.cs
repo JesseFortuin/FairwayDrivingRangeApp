@@ -22,6 +22,27 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("FairwayDrivingRange.Domain.Entities.Admin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AdminName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Admins");
+                });
+
             modelBuilder.Entity("FairwayDrivingRange.Domain.Entities.Booking", b =>
                 {
                     b.Property<int>("Id")
@@ -105,7 +126,7 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
                     b.Property<double>("BookingPrice")
                         .HasColumnType("float");
 
-                    b.Property<double>("ClubPrice")
+                    b.Property<double?>("ClubPrice")
                         .HasColumnType("float");
 
                     b.Property<int>("CustomerId")
