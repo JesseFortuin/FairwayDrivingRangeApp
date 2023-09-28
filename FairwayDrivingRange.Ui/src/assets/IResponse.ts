@@ -1,4 +1,4 @@
-export interface ILoginResponse{
+export interface IResponse{
   isSuccess: boolean;
   value: string;
   errorMessage: string;

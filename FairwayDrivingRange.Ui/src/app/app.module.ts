@@ -7,12 +7,16 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './components/admin/admin.component';
+import { CustomerInformationComponent } from './components/booking/customer-information/customer-information.component';
+import { BookingTableComponent } from './components/booking/booking-table/booking-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    AdminComponent
+    AdminComponent,
+    CustomerInformationComponent,
+    BookingTableComponent
   ],
   imports: [
     BrowserModule,

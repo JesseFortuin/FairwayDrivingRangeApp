@@ -13,5 +13,7 @@ namespace FairwayDrivingRange.Shared.Dtos
         public string email { get; set; }
 
         public bool isPaid { get; set; }
+
+        public long phone {  get; set; }
     }
 }

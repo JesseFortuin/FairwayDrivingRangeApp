@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FairwayDrivingRange.Application.Services;
 using FairwayDrivingRange.Domain.Entities;
 using FairwayDrivingRange.Infrastructure;
 using FairwayDrivingRange.Shared.Dtos;
@@ -15,17 +16,17 @@ namespace FairwayDrivingRange.Application
         private readonly IRepository<Admin> repository;
         private readonly IAdminRepository adminRepository;
         private readonly IMapper mapper;
-        private readonly IConfiguration configuration;
+        private readonly IAuthenticationService authenticationService;
 
         public AdminFacade(IRepository<Admin> repository,
                            IAdminRepository adminRepository,
                            IMapper mapper,
-                           IConfiguration configuration)
+                           IAuthenticationService authenticationService)
         {
             this.repository = repository;
             this.adminRepository = adminRepository;
             this.mapper = mapper;
-            this.configuration = configuration;
+            this.authenticationService = authenticationService;
         }
 
         public ApiResponseDto<string> Login(AdminDto adminDto)
@@ -53,22 +54,7 @@ namespace FairwayDrivingRange.Application
                 return ApiResponseDto<string>.Error("Invalid Username Or Password");
             }
 
-            List<Claim> claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, admin.AdminName)
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration
-                .GetSection("Jwt:Token").Value!));
-
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(
-                expires: DateTime.Now.AddHours(1),
-                signingCredentials: creds,
-                claims: claims
-                );
-            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+            var jwt = authenticationService.GenerateToken(admin.AdminName);
 
             return new ApiResponseDto<string>(jwt);
         }

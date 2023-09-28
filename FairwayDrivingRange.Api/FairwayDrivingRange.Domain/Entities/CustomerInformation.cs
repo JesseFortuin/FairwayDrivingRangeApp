@@ -8,6 +8,8 @@
 
         public string Email { get; set; }
 
+        public long? Phone {  get; set; }
+
         public bool IsPaid { get; set; }
 
         public List<Booking> Booking { get; set; } = new List<Booking>();

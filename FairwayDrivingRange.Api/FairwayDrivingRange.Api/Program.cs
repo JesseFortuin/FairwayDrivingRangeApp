@@ -1,4 +1,5 @@
 using FairwayDrivingRange.Application;
+using FairwayDrivingRange.Application.Services;
 using FairwayDrivingRange.Domain.Entities;
 using FairwayDrivingRange.Infrastructure;
 using FairwayDrivingRange.Infrastructure.Data;
@@ -41,6 +42,8 @@ builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<IRepository<Admin>, Repository<Admin>>();
 
 builder.Services.Configure<Jwt>(builder.Configuration.GetSection("Jwt"));
+
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 
 builder.Services.AddDbContext<FairwayContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("FairwayConectionString")));

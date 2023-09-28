@@ -49,7 +49,7 @@ namespace FairwayDrivingRange.Infrastructure.Data
 * ====================================================================================================================================
 * |            |   Zosma                       | 2023-09-04 - initial migration to add Tables
 * |            |   Zibal                       | 2023-09-14 - added Admins table, golf club price in transaction table nullable
-* |            |   Zavijava                    | 
+* |            |   Zavijava                    | 2023-09-22 - added phone column to customer information table
 * |            |   Zaurak                      | 
 * |            |   Zaniah                      | 
 * |            |   Yildun                      | 
