@@ -9,6 +9,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './components/admin/admin.component';
 import { CustomerInformationComponent } from './components/booking/customer-information/customer-information.component';
 import { BookingTableComponent } from './components/booking/booking-table/booking-table.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { CommonModule } from '@angular/common';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { BookingTableComponent } from './components/booking/booking-table/bookin
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [],
   bootstrap: [AppComponent]
