@@ -34,11 +34,11 @@ namespace FairwayDrivingRange.Application
                 return ApiResponseDto<bool>.Error("Customer Not Found");
             }
 
-            if (bookingDto.lane <= 0 ||
-                bookingDto.lane > 10)
-            {
-                return ApiResponseDto<bool>.Error("Invalid Booking Object");
-            }
+            //if (bookingDto.lane <= 0 ||
+            //    bookingDto.lane > 10)
+            //{
+            //    return ApiResponseDto<bool>.Error("Invalid Booking Object");
+            //}
 
             var booking = mapper.Map<Booking>(bookingDto);
 
@@ -108,9 +108,14 @@ namespace FairwayDrivingRange.Application
                 return ApiResponseDto<bool>.Error("Booking Not Found");
             }
 
-            if (bookingDto.lane <= 0 ||
-                bookingDto.lane > 20 ||
-                bookingDto.customerId <= 0)
+            //if (bookingDto.lane <= 0 ||
+            //    bookingDto.lane > 20 ||
+            //    bookingDto.customerId <= 0)
+            //{
+            //    return ApiResponseDto<bool>.Error("Invalid Booking Object");
+            //}
+
+            if (bookingDto.customerId <= 0)
             {
                 return ApiResponseDto<bool>.Error("Invalid Booking Object");
             }

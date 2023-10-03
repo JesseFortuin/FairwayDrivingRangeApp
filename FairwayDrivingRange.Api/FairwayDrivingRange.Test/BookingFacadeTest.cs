@@ -1,10 +1,5 @@
 ﻿using FairwayDrivingRange.Domain.Entities;
 using FairwayDrivingRange.Shared.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FairwayDrivingRange.Test
 {
@@ -17,8 +12,8 @@ namespace FairwayDrivingRange.Test
             var bookingDto = new AddBookingDto
             {
                 customerId = -1,
-                dateBooked = new DateTime(),
-                lane = 4,
+                start = new DateTime(),
+                end = DateTime.Now.AddHours(1),
             };
 
             var expected = ApiResponseDto<bool>.Error("Invalid Customer Id");
@@ -29,7 +24,7 @@ namespace FairwayDrivingRange.Test
             //Assert
             Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
         }
-        
+
         [Fact]
         public void AddBooking_Fails_InvalidBookingDtoIdZero()
         {
@@ -37,8 +32,8 @@ namespace FairwayDrivingRange.Test
             var bookingDto = new AddBookingDto
             {
                 customerId = 0,
-                dateBooked = DateTime.Now,
-                lane = 4,
+                start = DateTime.Now,
+                end = DateTime.Now.AddHours(1)          
             };
 
             var expected = ApiResponseDto<bool>.Error("Invalid Customer Id");
@@ -57,8 +52,8 @@ namespace FairwayDrivingRange.Test
             var bookingDto = new AddBookingDto
             {
                 customerId = 1,
-                dateBooked = DateTime.Now,
-                lane = 4,
+                start = DateTime.Now,
+                end = DateTime.Now.AddHours(1)
             };
 
             var expected = ApiResponseDto<bool>.Error("Customer Not Found");
@@ -70,98 +65,98 @@ namespace FairwayDrivingRange.Test
             Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
         }
 
-        [Fact]
-        public void AddBooking_Fails_InvalidDtoLaneOverTwenty()
-        {
-            //Arrange
-            var bookingDto = new AddBookingDto
-            {
-                customerId = 1,
-                dateBooked = DateTime.Now,
-                lane = 21,
-            };
+        //[Fact]
+        //public void AddBooking_Fails_InvalidDtoLaneOverTwenty()
+        //{
+        //    //Arrange
+        //    var bookingDto = new AddBookingDto
+        //    {
+        //        customerId = 1,
+        //        start = DateTime.Now,
+        //        end = DateTime.Now.AddHours(1)
+        //    };
 
-            var customer = new CustomerInformation
-            {
-                Name = "J",
-                Email = "e@gmail.com",
-                IsPaid = false
-            };
+        //    var customer = new CustomerInformation
+        //    {
+        //        Name = "J",
+        //        Email = "e@gmail.com",
+        //        IsPaid = false
+        //    };
 
-            context.CustomerInformation.Add(customer);
+        //    context.CustomerInformation.Add(customer);
 
-            context.SaveChanges();
+        //    context.SaveChanges();
 
-            var expected = ApiResponseDto<bool>.Error("Invalid Booking Object");
+        //    var expected = ApiResponseDto<bool>.Error("Invalid Booking Object");
 
-            //Act
-            var actual = bookingFacade.AddBooking(bookingDto);
+        //    //Act
+        //    var actual = bookingFacade.AddBooking(bookingDto);
 
-            //Assert
-            Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
-        }
+        //    //Assert
+        //    Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
+        //}
 
-        [Fact]
-        public void AddBooking_Fails_InvalidDtoLaneZero()
-        {
-            //Arrange
-            var bookingDto = new AddBookingDto
-            {
-                customerId = 1,
-                dateBooked = DateTime.Now,
-                lane = 0,
-            };
+        //[Fact]
+        //public void AddBooking_Fails_InvalidDtoLaneZero()
+        //{
+        //    //Arrange
+        //    var bookingDto = new AddBookingDto
+        //    {
+        //        customerId = 1,
+        //        start = DateTime.Now,
+        //        end = DateTime.Now.AddHours(1)
+        //    };
 
-            var customer = new CustomerInformation
-            {
-                Name = "J",
-                Email = "e@gmail.com",
-                IsPaid = false
-            };
+        //    var customer = new CustomerInformation
+        //    {
+        //        Name = "J",
+        //        Email = "e@gmail.com",
+        //        IsPaid = false
+        //    };
 
-            context.CustomerInformation.Add(customer);
+        //    context.CustomerInformation.Add(customer);
 
-            context.SaveChanges();
+        //    context.SaveChanges();
 
-            var expected = ApiResponseDto<bool>.Error("Invalid Booking Object");
+        //    var expected = ApiResponseDto<bool>.Error("Invalid Booking Object");
 
-            //Act
-            var actual = bookingFacade.AddBooking(bookingDto);
+        //    //Act
+        //    var actual = bookingFacade.AddBooking(bookingDto);
 
-            //Assert
-            Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
-        }
+        //    //Assert
+        //    Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
+        //}
 
-        [Fact]
-        public void AddBooking_Fails_InvalidDtoLaneNegativeNumber()
-        {
-            //Arrange
-            var bookingDto = new AddBookingDto
-            {
-                customerId = 1,
-                dateBooked = DateTime.Now,
-                lane = -1,
-            };
+        //[Fact]
+        //public void AddBooking_Fails_InvalidDtoLaneNegativeNumber()
+        //{
+        //    //Arrange
+        //    var bookingDto = new AddBookingDto
+        //    {
+        //        customerId = 1,
+        //        start = DateTime.Now,
+        //        end = DateTime.Now.AddHours(1)
+        //    };
 
-            var customer = new CustomerInformation
-            {
-                Name = "J",
-                Email = "e@gmail.com",
-                IsPaid = false
-            };
+        //    var customer = new CustomerInformation
+        //    {
+        //        Name = "J",
+        //        Email = "e@gmail.com",
+        //        IsPaid = false
+        //    };
 
-            context.CustomerInformation.Add(customer);
+        //    context.CustomerInformation.Add(customer);
 
-            context.SaveChanges();
+        //    context.SaveChanges();
 
-            var expected = ApiResponseDto<bool>.Error("Invalid Booking Object");
+        //    var expected = ApiResponseDto<bool>.Error("Invalid Booking Object");
 
-            //Act
-            var actual = bookingFacade.AddBooking(bookingDto);
+        //    //Act
+        //    var actual = bookingFacade.AddBooking(bookingDto);
 
-            //Assert
-            Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
-        }
+        //    //Assert
+        //    Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
+        //}
 
         [Fact]
         public void AddBooking_Succeeds_BookingAdded()
@@ -170,15 +165,15 @@ namespace FairwayDrivingRange.Test
             var bookingDto = new AddBookingDto
             {
                 customerId = 1,
-                dateBooked = DateTime.Now,
-                lane = 4,
+                start = DateTime.Now,
+                end= DateTime.Now.AddHours(1)
             };
 
             var booking = new Booking
             {
                 CustomerId = 1,
                 DateBooked = DateTime.Now,
-                Lane = 4,
+                End = DateTime.Now.AddHours(1)
             };
 
             var customer = new CustomerInformation
@@ -211,15 +206,15 @@ namespace FairwayDrivingRange.Test
                 new BookingDto
                 {
                     id = 1,
-                    dateBooked = DateTime.Today,
-                    lane = 1,
+                    start = DateTime.Today,
+                    end = DateTime.Today,
                     customerId = 1
                 },
                 new BookingDto
                 {
                     id = 2,
-                    dateBooked = DateTime.Today,
-                    lane = 2,
+                    start = DateTime.Today,
+                    end = DateTime.Today,
                     customerId = 2
                 }
             };
@@ -229,13 +224,13 @@ namespace FairwayDrivingRange.Test
                 new Booking
                 {
                     DateBooked = DateTime.Today,
-                    Lane = 1,
+                    End = DateTime.Today,
                     CustomerId = 1
                 },
                 new Booking
                 {
                     DateBooked = DateTime.Today,
-                    Lane = 2,
+                    End = DateTime.Today,
                     CustomerId = 2
                 }
             };
@@ -269,13 +264,13 @@ namespace FairwayDrivingRange.Test
 
             //Assert
             Assert.Equal(expected.Value.ToList()[0].id, actual.Value.ToList()[0].id);
-            Assert.Equal(expected.Value.ToList()[0].dateBooked, actual.Value.ToList()[0].dateBooked);
-            Assert.Equal(expected.Value.ToList()[0].lane, actual.Value.ToList()[0].lane);
+            Assert.Equal(expected.Value.ToList()[0].end, actual.Value.ToList()[0].end);
+            Assert.Equal(expected.Value.ToList()[0].start, actual.Value.ToList()[0].start);
             Assert.Equal(expected.Value.ToList()[0].customerId, actual.Value.ToList()[0].customerId);
 
             Assert.Equal(expected.Value.ToList()[1].id, actual.Value.ToList()[1].id);
-            Assert.Equal(expected.Value.ToList()[1].dateBooked, actual.Value.ToList()[1].dateBooked);
-            Assert.Equal(expected.Value.ToList()[1].lane, actual.Value.ToList()[1].lane);
+            Assert.Equal(expected.Value.ToList()[1].start, actual.Value.ToList()[1].start);
+            Assert.Equal(expected.Value.ToList()[1].end, actual.Value.ToList()[1].end);
             Assert.Equal(expected.Value.ToList()[1].customerId, actual.Value.ToList()[1].customerId);
         }
 
@@ -292,7 +287,7 @@ namespace FairwayDrivingRange.Test
             Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
         }
 
-        [Fact]             
+        [Fact]
         public void GetBooking_Fails_IdZero()
         {
             //Arrange
@@ -322,18 +317,18 @@ namespace FairwayDrivingRange.Test
         public void GetBooking_Succeeds_BookingFound()
         {
             //Arrange
-            var booking = new Booking 
+            var booking = new Booking
             {
                 DateBooked = DateTime.Today,
-                Lane = 1,
+                End = DateTime.Today,
                 CustomerId = 1
             };
 
             var bookingDto = new BookingDto
             {
                 id = 1,
-                dateBooked = DateTime.Today,
-                lane = 1,
+                start = DateTime.Today,
+                end = DateTime.Today,
                 customerId = 1
             };
 
@@ -359,8 +354,8 @@ namespace FairwayDrivingRange.Test
 
             //Assert
             Assert.Equal(expected.Value.id, actual.Value.id);
-            Assert.Equal(expected.Value.lane, actual.Value.lane);
-            Assert.Equal(expected.Value.dateBooked, actual.Value.dateBooked);
+            Assert.Equal(expected.Value.end, actual.Value.end);
+            Assert.Equal(expected.Value.start, actual.Value.start);
             Assert.Equal(expected.Value.customerId, actual.Value.customerId);
         }
 
@@ -416,13 +411,13 @@ namespace FairwayDrivingRange.Test
                 new Booking
                 {
                     DateBooked = DateTime.Today,
-                    Lane = 1,
+                    End = DateTime.Today,
                     CustomerId = 1
                 },
                 new Booking
                 {
                     DateBooked = DateTime.Today,
-                    Lane = 2,
+                    End = DateTime.Today,
                     CustomerId = 2
                 }
             };
@@ -455,7 +450,7 @@ namespace FairwayDrivingRange.Test
             var bookings = bookingFacade.GetBookings();
 
             var bookingCount = bookings.Value.Count();
-            
+
             var customers = customerFacade.GetCustomers();
 
             var customerCount = customers.Value.Count();
@@ -512,8 +507,8 @@ namespace FairwayDrivingRange.Test
             var bookingDto = new AddBookingDto
             {
                 customerId = 0,
-                dateBooked = DateTime.Now,
-                lane = 4,
+                start = DateTime.Now,
+                end = DateTime.Today,
             };
 
             var customer = new CustomerInformation
@@ -526,7 +521,7 @@ namespace FairwayDrivingRange.Test
             var booking = new Booking
             {
                 DateBooked = DateTime.Today,
-                Lane = 1,
+                End = DateTime.Today,
                 CustomerId = 1
             };
 
@@ -545,45 +540,45 @@ namespace FairwayDrivingRange.Test
             Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
         }
 
-        [Fact]
-        public void UpdateBooking_Fails_InvalidDtoLane()
-        {
-            //Arrange
-            var bookingDto = new AddBookingDto
-            {
-                customerId = 1,
-                dateBooked = DateTime.Now,
-                lane = 0,
-            };
+        //[Fact]
+        //public void UpdateBooking_Fails_InvalidDtoLane()
+        //{
+        //    //Arrange
+        //    var bookingDto = new AddBookingDto
+        //    {
+        //        customerId = 1,
+        //        start = DateTime.Now,
+        //        lane = 0,
+        //    };
 
-            var customer = new CustomerInformation
-            {
-                Name = "J",
-                Email = "e@gmail.com",
-                IsPaid = false
-            };
+        //    var customer = new CustomerInformation
+        //    {
+        //        Name = "J",
+        //        Email = "e@gmail.com",
+        //        IsPaid = false
+        //    };
 
-            var booking = new Booking
-            {
-                DateBooked = DateTime.Today,
-                Lane = 1,
-                CustomerId = 1
-            };
+        //    var booking = new Booking
+        //    {
+        //        DateBooked = DateTime.Today,
+        //        End = DateTime.Today,
+        //        CustomerId = 1
+        //    };
 
-            context.CustomerInformation.Add(customer);
+        //    context.CustomerInformation.Add(customer);
 
-            context.Bookings.Add(booking);
+        //    context.Bookings.Add(booking);
 
-            context.SaveChanges();
+        //    context.SaveChanges();
 
-            var expected = ApiResponseDto<bool>.Error("Invalid Booking Object");
+        //    var expected = ApiResponseDto<bool>.Error("Invalid Booking Object");
 
-            //Act
-            var actual = bookingFacade.UpdateBooking(1, bookingDto);
+        //    //Act
+        //    var actual = bookingFacade.UpdateBooking(1, bookingDto);
 
-            //Assert
-            Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
-        }
+        //    //Assert
+        //    Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
+        //}
 
         [Fact]
         public void UpdateCustomer_Succeeds_CustomerUpdated()
@@ -592,8 +587,8 @@ namespace FairwayDrivingRange.Test
             var bookingDto = new AddBookingDto
             {
                 customerId = 2,
-                dateBooked = DateTime.Now,
-                lane = 6,
+                start = DateTime.Now,
+                end = DateTime.Today,
             };
 
             var bookings = new List<Booking>
@@ -601,13 +596,13 @@ namespace FairwayDrivingRange.Test
                 new Booking
                 {
                     DateBooked = DateTime.Today,
-                    Lane = 1,
+                    End = DateTime.Today,
                     CustomerId = 1
                 },
                 new Booking
                 {
                     DateBooked = DateTime.Today,
-                    Lane = 2,
+                    End = DateTime.Today,
                     CustomerId = 2
                 }
             };
@@ -642,8 +637,8 @@ namespace FairwayDrivingRange.Test
             var booking = bookingFacade.GetBookingById(1);
 
             //Assert
-            Assert.Equal(booking.Value.dateBooked, bookingDto.dateBooked);
-            Assert.Equal(booking.Value.lane, bookingDto.lane);
+            Assert.Equal(booking.Value.start, bookingDto.start);
+            Assert.Equal(booking.Value.end, bookingDto.end);
             Assert.Equal(booking.Value.customerId, bookingDto.customerId);
             Assert.Equal(expected.Value, actual.Value);
         }

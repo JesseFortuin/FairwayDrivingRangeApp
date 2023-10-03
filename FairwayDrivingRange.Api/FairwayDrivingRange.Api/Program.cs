@@ -35,6 +35,18 @@ builder.Services.AddScoped<ICustomerFacade, CustomerFacade>();
 
 builder.Services.AddScoped<IRepository<CustomerInformation>, Repository<CustomerInformation>>();
 
+builder.Services.AddScoped<IBookingFacade, BookingFacade>();
+
+builder.Services.AddScoped<IRepository<Booking>, Repository<Booking>>();
+
+builder.Services.AddScoped<IGolfClubFacade, GolfClubFacade>();
+
+builder.Services.AddScoped<IRepository<GolfClub>, Repository<GolfClub>>();
+
+builder.Services.AddScoped<ITransactionFacade, TransactionFacade>();
+
+builder.Services.AddScoped<IRepository<Transaction>, Repository<Transaction>>();
+
 builder.Services.AddScoped<IAdminFacade, AdminFacade>();
 
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();

@@ -1,27 +1,17 @@
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-booking-table',
-//   templateUrl: './booking-table.component.html',
-//   styleUrls: ['./booking-table.component.css']
-// })
-// export class BookingTableComponent {
-
-
-// }
-
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   Injectable,
+  OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { CalendarEvent, CalendarEventTitleFormatter } from 'angular-calendar';
+import { CalendarEvent, CalendarEventTitleFormatter, CalendarWeekViewBeforeRenderEvent,  } from 'angular-calendar';
 import { WeekViewHourSegment } from 'calendar-utils';
 import { fromEvent } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
 import { addDays, addMinutes, endOfWeek } from 'date-fns';
+import { BookingService } from 'src/app/services/booking/booking.service';
 
 
 function floorToNearest(amount: number, precision: number) {
@@ -34,17 +24,19 @@ function ceilToNearest(amount: number, precision: number) {
 
 @Injectable()
 export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
-  // weekTooltip(event: CalendarEvent, title: string) {
-  //   if (!event.meta.tmpEvent) {
-  //     return super.weekTooltip(event, title);
-  //   }
-  // }
+  override weekTooltip(event: CalendarEvent, title: string) : string {
+    if (!event.meta.tmpEvent) {
+      return super.weekTooltip(event, title);
+    }
+    return ''
+  }
 
-  // dayTooltip(event: CalendarEvent, title: string) {
-  //   if (!event.meta.tmpEvent) {
-  //     return super.dayTooltip(event, title);
-  //   }
-  // }
+  override dayTooltip(event: CalendarEvent, title: string) : string {
+    if (!event.meta.tmpEvent) {
+      return super.dayTooltip(event, title);
+    }
+    return ''
+  }
 }
 
 @Component({
@@ -67,7 +59,8 @@ export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
   ],
   encapsulation: ViewEncapsulation.None,
 })
-export class BookingTableComponent {
+
+export class BookingTableComponent implements OnInit {
   viewDate = new Date();
 
   events: CalendarEvent[] = [];
@@ -76,7 +69,42 @@ export class BookingTableComponent {
 
   weekStartsOn: 0 = 0;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  dayStartHour: number = 7;
+
+  dayEndHour: number = 19;
+
+  constructor(private cdr: ChangeDetectorRef,
+              private bookingService : BookingService) {}
+
+  ngOnInit(): void {
+    this.bookingService.getBookings()
+    .subscribe({
+      next: (bookings) => {
+        this.events = bookings.value
+      },
+      error: (response) => {
+        console.log(response);
+      }
+    });
+  }
+
+  minDate: Date = new Date();
+
+  dateIsValid(date: Date): boolean {
+    return date >= this.minDate;
+  }
+
+  beforeViewRender(body: CalendarWeekViewBeforeRenderEvent): void {
+    body.hourColumns.forEach(hourCol => {
+      hourCol.hours.forEach(hour => {
+        hour.segments.forEach(segment => {
+          if (!this.dateIsValid(segment.date)) {
+            segment.cssClass = 'cal-disabled';
+          }
+        });
+      });
+    });
+  }
 
   startDragToCreate(
     segment: WeekViewHourSegment,
@@ -85,13 +113,14 @@ export class BookingTableComponent {
   ) {
     const dragToSelectEvent: CalendarEvent = {
       id: this.events.length,
-      title: 'New event',
+      title: 'Booked',
       start: segment.date,
       meta: {
         tmpEvent: true,
       },
     };
     this.events = [...this.events, dragToSelectEvent];
+    console.log(this.events);
     const segmentPosition = segmentElement.getBoundingClientRect();
     this.dragToCreateActive = true;
     const endOfView = endOfWeek(this.viewDate, {
@@ -107,15 +136,15 @@ export class BookingTableComponent {
         }),
         takeUntil(fromEvent(document, 'mouseup'))
       )
-      .subscribe((mouseMoveEvent: MouseEvent) => {
+      .subscribe(mouseMoveEvent => {
         const minutesDiff = ceilToNearest(
-          mouseMoveEvent.clientY - segmentPosition.top,
+          (mouseMoveEvent as MouseEvent).clientY - segmentPosition.top,
           30
         );
 
         const daysDiff =
           floorToNearest(
-            mouseMoveEvent.clientX - segmentPosition.left,
+            (mouseMoveEvent as MouseEvent).clientX - segmentPosition.left,
             segmentPosition.width
           ) / segmentPosition.width;
 

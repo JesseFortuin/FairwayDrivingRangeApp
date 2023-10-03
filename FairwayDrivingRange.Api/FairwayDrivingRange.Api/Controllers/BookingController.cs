@@ -1,6 +1,5 @@
 ﻿using FairwayDrivingRange.Application;
 using FairwayDrivingRange.Shared.Dtos;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FairwayDrivingRange.Api.Controllers

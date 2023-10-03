@@ -1,17 +1,12 @@
 ﻿using AutoMapper;
 using FairwayDrivingRange.Domain.Entities;
 using FairwayDrivingRange.Shared.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FairwayDrivingRange.Application
 {
     public class AutoMapperProfiles : Profile
     {
-        public AutoMapperProfiles() 
+        public AutoMapperProfiles()
         {
             CreateMap<Transaction, TransactionDto>().ReverseMap();
 
@@ -27,9 +22,9 @@ namespace FairwayDrivingRange.Application
 
             CreateMap<UpdateGolfClubDto, GolfClub>();
 
-            CreateMap<Booking, BookingDto>().ReverseMap();
+            CreateMap<Booking, BookingDto>().ForMember(dest => dest.start, opt => opt.MapFrom(src => src.DateBooked)).ReverseMap();
 
-            CreateMap<AddBookingDto, Booking>();
+            CreateMap<AddBookingDto, Booking>().ForMember(dest => dest.DateBooked, opt => opt.MapFrom(src => src.start));
 
             CreateMap<Admin, AdminDto>().ReverseMap();
         }

@@ -10,9 +10,9 @@ namespace FairwayDrivingRange.Shared.Dtos
     {
         public int id { get; set; }
 
-        public DateTime dateBooked { get; set; }
+        public DateTime start { get; set; }
 
-        public int lane { get; set; }
+        public DateTime end { get; set; }
 
         public int customerId { get; set; }
     }

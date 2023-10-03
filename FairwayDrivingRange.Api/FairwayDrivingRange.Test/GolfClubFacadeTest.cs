@@ -395,7 +395,7 @@ namespace FairwayDrivingRange.Test
             var booking = new Booking
             {
                 DateBooked = DateTime.Today,
-                Lane = 4,
+                //Lane = 4,
                 CustomerId = 1,
             };
 

@@ -59,5 +59,8 @@
   [events]="events"
   [hourSegmentTemplate]="weekViewHourSegmentTemplate"
   [weekStartsOn]="weekStartsOn"
+  [dayStartHour]="dayStartHour"
+  [dayEndHour]="dayEndHour"
+  (beforeViewRender)="beforeViewRender($event)"
 >
 </mwl-calendar-week-view>

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FairwayDrivingRange.Domain.Entities
+﻿namespace FairwayDrivingRange.Domain.Entities
 {
     public class Booking : IEntity
     {
@@ -12,11 +6,11 @@ namespace FairwayDrivingRange.Domain.Entities
 
         public DateTime DateBooked { get; set; }
 
-        public int Lane { get; set; }
+        public DateTime End {  get; set; }
 
         public CustomerInformation Customer { get; set; }
 
-        public int CustomerId { get; set; }    
+        public int CustomerId { get; set; }
 
         public List<GolfClub> Clubs { get; set; } = new List<GolfClub>();
     }
