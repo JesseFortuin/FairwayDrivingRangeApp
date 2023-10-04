@@ -51,6 +51,8 @@ builder.Services.AddScoped<IAdminFacade, AdminFacade>();
 
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 
+builder.Services.AddScoped<ICustomerRepository, CustomerRespository>();
+
 builder.Services.AddScoped<IRepository<Admin>, Repository<Admin>>();
 
 builder.Services.Configure<Jwt>(builder.Configuration.GetSection("Jwt"));

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { CalendarEvent } from 'angular-calendar';
 import { Observable } from 'rxjs';
 import { IBooking } from 'src/assets/IBooking';
+import { IEvent } from 'src/assets/IEvent';
 import { IResponse } from 'src/assets/IResponse';
 
 @Injectable({
@@ -15,5 +16,9 @@ export class BookingService {
 
   getBookings(): Observable<IBooking> {
     return this.http.get<IBooking>(this.url + 'Booking');
+  }
+
+  addBooking(data: CalendarEvent): Observable<any> {
+    return this.http.post(`${this.url}Booking/email`, data)
   }
 }

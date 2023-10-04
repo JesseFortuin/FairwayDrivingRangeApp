@@ -26,6 +26,8 @@ namespace FairwayDrivingRange.Application
 
             CreateMap<AddBookingDto, Booking>().ForMember(dest => dest.DateBooked, opt => opt.MapFrom(src => src.start));
 
+            CreateMap<AddBookingEmailDto, Booking>().ForMember(dest => dest.DateBooked, opt => opt.MapFrom(src => src.start));
+
             CreateMap<Admin, AdminDto>().ReverseMap();
         }
     }

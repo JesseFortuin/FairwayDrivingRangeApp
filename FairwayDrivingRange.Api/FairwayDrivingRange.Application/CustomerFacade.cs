@@ -9,12 +9,15 @@ namespace FairwayDrivingRange.Application
     {
         private readonly IRepository<CustomerInformation> repository;
         private readonly IMapper mapper;
+        private readonly ICustomerRepository customerRepository;
 
         public CustomerFacade(IRepository<CustomerInformation> repository,
-                                 IMapper mapper)
+                              IMapper mapper,
+                              ICustomerRepository customerRepository)
         {
             this.repository = repository;
             this.mapper = mapper;
+            this.customerRepository = customerRepository;
         }
 
         public ApiResponseDto<bool> AddCustomer(AddCustomerDto customerDto) 
@@ -64,6 +67,25 @@ namespace FairwayDrivingRange.Application
             if (result == null)
             {
                 return ApiResponseDto<CustomerDto>.Error("Customer Not Found");
+            }
+
+            var customerDto = mapper.Map<CustomerDto>(result);
+
+            return new ApiResponseDto<CustomerDto>(customerDto);
+        }
+
+        public ApiResponseDto<CustomerDto> GetCustomerByEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                return ApiResponseDto<CustomerDto>.Error("You were not found on the database");
+            }
+
+            var result = customerRepository.GetCustomerByEmail(email);
+
+            if (result == null)
+            {
+                return ApiResponseDto<CustomerDto>.Error("You were not found on the database");
             }
 
             var customerDto = mapper.Map<CustomerDto>(result);

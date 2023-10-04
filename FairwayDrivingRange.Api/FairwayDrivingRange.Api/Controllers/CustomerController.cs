@@ -32,6 +32,14 @@ namespace FairwayDrivingRange.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet("email")]
+        public ActionResult<ApiResponseDto<CustomerDto>> GetCustomerByEmail(string email)
+        {
+            var result = customerFacade.GetCustomerByEmail(email);
+
+            return Ok(result);
+        }
+
         [HttpPost("add")]
         public ActionResult<ApiResponseDto<bool>> AddCustomer(AddCustomerDto customerDto) 
         {

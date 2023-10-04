@@ -13,5 +13,7 @@ namespace FairwayDrivingRange.Application
         public ApiResponseDto<CustomerDto> GetCustomerById(int customerId);
 
         public ApiResponseDto<bool> DeleteCustomer(int customerId);
+
+        public ApiResponseDto<CustomerDto> GetCustomerByEmail(string email);
     }
 }

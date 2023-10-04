@@ -6,6 +6,106 @@ namespace FairwayDrivingRange.Test
     public class BookingFacadeTest : BaseTestSetup
     {
         [Fact]
+        public void AddBookingEmail_Fails_InvalidBoookingDtoEmailEmpty()
+        {
+            //Arrange
+            var bookingDto = new AddBookingEmailDto
+            {
+                email = "",
+                start = new DateTime(),
+                end = DateTime.Now.AddHours(1),
+            };
+
+            var expected = ApiResponseDto<bool>.Error("Invalid Email");
+
+            //Act
+            var actual = bookingFacade.AddBookingEmail(bookingDto);
+
+            //Assert
+            Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
+        }
+
+        [Fact]
+        public void AddBookingEmail_Fails_InvalidBoookingDtoEmailnull()
+        {
+            //Arrange
+            var bookingDto = new AddBookingEmailDto
+            {
+                email = null,
+                start = new DateTime(),
+                end = DateTime.Now.AddHours(1),
+            };
+
+            var expected = ApiResponseDto<bool>.Error("Invalid Email");
+            
+            //Act
+            var actual = bookingFacade.AddBookingEmail(bookingDto);
+
+            //Assert
+            Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
+        }
+
+        [Fact]
+        public void AddBookingEmail_Fails_CustomerNotFound()
+        {
+            //Arrange
+            var bookingDto = new AddBookingEmailDto
+            {
+                email = "bingbong@gmail.com",
+                start = DateTime.Now,
+                end = DateTime.Now.AddHours(1)
+            };
+
+            var expected = ApiResponseDto<bool>.Error("Customer Not Found");
+
+            //Act
+            var actual = bookingFacade.AddBookingEmail(bookingDto);
+
+            //Assert
+            Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
+        }
+
+        [Fact]
+        public void AddBookingEmail_Succeeds_BookingAdded()
+        {
+            //Arrange
+            var bookingDto = new AddBookingEmailDto
+            {
+                email = "e@gmail.com",
+                start = DateTime.Now,
+                end = DateTime.Now.AddHours(1)
+            };
+
+            var booking = new Booking
+            {
+                CustomerId = 1,
+                DateBooked = DateTime.Now,
+                End = DateTime.Now.AddHours(1)
+            };
+
+            var customer = new CustomerInformation
+            {
+                Name = "J",
+                Email = "e@gmail.com",
+                IsPaid = false
+            };
+
+            context.CustomerInformation.Add(customer);
+
+            context.Bookings.Add(booking);
+
+            context.SaveChanges();
+
+            var expected = new ApiResponseDto<bool>(true);
+
+            //Act
+            var actual = bookingFacade.AddBookingEmail(bookingDto);
+
+            //Assert
+            Assert.Equal(expected.Value, actual.Value);
+        }
+
+        [Fact]
         public void AddBooking_Fails_InvalidBookingDtoIdNegativeNumber()
         {
             //Arrange

@@ -4,9 +4,9 @@ import { CustomerInformationService } from 'src/app/services/customer-informatio
 import { IResponse } from 'src/assets/IResponse';
 
 @Component({
-  selector: 'app-customer-information',
-  templateUrl: './customer-information.component.html',
-  styleUrls: ['./customer-information.component.css']
+  selector: 'app-register-customer',
+  templateUrl: './register-customer.component.html',
+  styleUrls: ['./register-customer.component.css']
 })
 export class CustomerInformationComponent {
   constructor(private infoService: CustomerInformationService,
@@ -21,6 +21,7 @@ export class CustomerInformationComponent {
   registerProcess() {
     this.infoService.register(this.customerObj).subscribe((result: IResponse) =>{
       if (result.isSuccess){
+        sessionStorage.setItem('customer',this.customerObj),
         this.router.navigate(['booking']);
       }
 

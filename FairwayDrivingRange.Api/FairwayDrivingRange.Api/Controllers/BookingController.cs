@@ -39,6 +39,14 @@ namespace FairwayDrivingRange.Api.Controllers
             return Ok(result);
         }
 
+        [HttpPost("email")]
+        public ActionResult<ApiResponseDto<bool>> AddBookingEmail(AddBookingEmailDto bookingDto)
+        {
+            var result = bookingFacade.AddBookingEmail(bookingDto);
+
+            return Ok(result);
+        }
+
         [HttpPut("{bookingId}")]
         public ActionResult<ApiResponseDto<bool>> UpdateBooking(int bookingId, AddBookingDto bookingDto)
         {

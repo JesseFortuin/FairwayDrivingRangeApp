@@ -12,6 +12,8 @@ import { fromEvent } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
 import { addDays, addMinutes, endOfWeek } from 'date-fns';
 import { BookingService } from 'src/app/services/booking/booking.service';
+import { IResponse } from 'src/assets/IResponse';
+import { IEvent } from 'src/assets/IEvent';
 
 
 function floorToNearest(amount: number, precision: number) {
@@ -119,8 +121,20 @@ export class BookingTableComponent implements OnInit {
         tmpEvent: true,
       },
     };
+
     this.events = [...this.events, dragToSelectEvent];
     console.log(this.events);
+
+    this.bookingService.addBooking(dragToSelectEvent).subscribe((result: IResponse) =>{
+      if (result.isSuccess){
+        console.log(result.value)
+      }
+
+      if (!result.isSuccess){
+        console.log(result.errorMessage)
+      }
+    });
+
     const segmentPosition = segmentElement.getBoundingClientRect();
     this.dragToCreateActive = true;
     const endOfView = endOfWeek(this.viewDate, {

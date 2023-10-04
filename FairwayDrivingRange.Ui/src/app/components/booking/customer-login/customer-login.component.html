@@ -1,5 +1,5 @@
 <div class="text-center">
-  <form class="was-validated" style="max-width: 360px; margin: auto;" (ngSubmit)="registerProcess()">
+  <form class="was-validated" style="max-width: 360px; margin: auto;" (ngSubmit)="loginProcess()">
     <img class="mt-5 mb-4" width="50px" src="assets\images\png-transparent-telephone-logo-iphone-telephone-call-smartphone-phone-electronics-text-trademark-thumbnail.png" alt="Telephone logo image">
     <h1 class="font-weight-normal mb-3 h3">Register</h1>
     <div class="form-group">
@@ -12,11 +12,6 @@
       <input type="email" class="form-control" id="email" placeholder="Email" [(ngModel)]="customerObj.email"  name="email" required>
       <div class="invalid-feedback">Please fill in field</div>
     </div>
-    <div class="form-group mt-2 mb-2">
-      <label class="visually-hidden" for="phone">Phone</label>
-      <input type="tel" class="form-control" id="phone" placeholder="Contact number" [(ngModel)]="customerObj.phone"  name="phone" required>
-      <div class="invalid-feedback">Please fill in field</div>
-    </div>
-    <button style="display: block;" type="submit" class="btn btn-success">Register</button>
+    <button style="display: block;" type="submit" class="me-5 btn btn-success">Login</button>
   </form>
 </div>

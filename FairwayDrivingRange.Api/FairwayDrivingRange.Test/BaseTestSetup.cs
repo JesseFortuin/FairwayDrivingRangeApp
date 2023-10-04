@@ -18,6 +18,8 @@ namespace FairwayDrivingRange.Test
 
         public IAdminRepository adminRepos;
 
+        public ICustomerRepository customerRepos;
+
         public IAdminFacade adminFacade;
 
         public IRepository<CustomerInformation> customerInformationRepository;
@@ -57,15 +59,17 @@ namespace FairwayDrivingRange.Test
 
             adminRepos = new AdminRepository(context);
 
+            customerRepos = new CustomerRespository(context);
+
             //adminFacade = new AdminFacade(adminRepository, adminRepos, mapper, jwt);
 
             customerInformationRepository = new Repository<CustomerInformation>(context);
 
-            customerFacade = new CustomerFacade(customerInformationRepository, mapper);
+            customerFacade = new CustomerFacade(customerInformationRepository, mapper, customerRepos);
 
             bookingRepository = new Repository<Booking>(context);
 
-            bookingFacade = new BookingFacade(bookingRepository, customerInformationRepository, mapper);
+            bookingFacade = new BookingFacade(bookingRepository, customerInformationRepository, customerRepos, mapper);
 
             golfClubRepository = new Repository<GolfClub>(context);
 
