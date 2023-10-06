@@ -4,6 +4,7 @@ using FairwayDrivingRange.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FairwayDrivingRange.Infrastructure.Migrations
 {
     [DbContext(typeof(FairwayContext))]
-    partial class FairwayContextModelSnapshot : ModelSnapshot
+    [Migration("20231006074643_LinkedTransactionToBooking")]
+    partial class LinkedTransactionToBooking
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,6 +55,7 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("CustomerId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateBooked")
@@ -150,7 +154,9 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
                 {
                     b.HasOne("FairwayDrivingRange.Domain.Entities.CustomerInformation", "Customer")
                         .WithMany("Booking")
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Customer");
                 });

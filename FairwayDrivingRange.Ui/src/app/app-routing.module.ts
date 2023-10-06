@@ -3,14 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { authGuard } from './components/login/authGuard/authGuard';
-import { CustomerInformationComponent } from './components/booking/register-customer/register-customer.component';
+import { RegisterCustomerComponent } from './components/booking/register-customer/register-customer.component';
 import { BookingTableComponent } from './components/booking/booking-table/booking-table.component';
 import { CustomerLoginComponent } from './components/booking/customer-login/customer-login.component';
+import { bookingGuard } from './components/login/authGuard/bookingGuard';
+import { OrderConfirmationComponent } from './components/booking/order-confirmation/order-confirmation.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: CustomerInformationComponent
+    path: 'customer',
+    component: RegisterCustomerComponent,
+    canActivate: [bookingGuard]
   },
   {
     path: 'registered',
@@ -26,8 +29,12 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: 'booking',
+    path: '',
     component: BookingTableComponent
+  },
+  {
+    path: 'confirmation',
+    component: OrderConfirmationComponent
   }
 ];
 

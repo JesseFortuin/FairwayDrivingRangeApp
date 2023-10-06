@@ -402,8 +402,7 @@ namespace FairwayDrivingRange.Test
             var customer = new CustomerInformation
             {
                 Name = "J",
-                Email = "e@gmail.com",
-                IsPaid = false
+                Email = "e@gmail.com"
             };
 
             var golfClubDto = new UpdateGolfClubDto

@@ -1,10 +1,5 @@
 ﻿using FairwayDrivingRange.Domain.Entities;
 using FairwayDrivingRange.Shared.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FairwayDrivingRange.Test
 {
@@ -16,13 +11,13 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                customerId = -1,
+                bookingId = -1,
                 clubPrice = 0,
                 bookingPrice = 120,
                 total = 120
             };
 
-            var expected = ApiResponseDto<bool>.Error("Invalid Customer Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Booking Id");
 
             //Act
             var actual = transactionFacade.AddTransaction(transactionDto);
@@ -37,13 +32,13 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                customerId = 0,
+                bookingId = 0,
                 clubPrice = 0,
                 bookingPrice = 120,
                 total = 120
             };
 
-            var expected = ApiResponseDto<bool>.Error("Invalid Customer Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Booking Id");
 
             //Act
             var actual = transactionFacade.AddTransaction(transactionDto);
@@ -58,20 +53,19 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                customerId = 1,
+                bookingId = 1,
                 clubPrice = 0,
                 bookingPrice = 120,
                 total = 0
             };
 
-            var customer = new CustomerInformation
+            var booking = new Booking
             {
-                Name = "J",
-                Email = "e@gmail.com",
-                IsPaid = false
+                DateBooked = DateTime.Now,
+                End = DateTime.Now.AddHours(1),
             };
 
-            context.CustomerInformation.Add(customer);
+            context.Bookings.Add(booking);
 
             context.SaveChanges();
 
@@ -90,20 +84,20 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                customerId = 1,
+                bookingId = 1,
                 clubPrice = 65,
                 bookingPrice = 0,
                 total = 120
             };
 
-            var customer = new CustomerInformation
+            var booking = new Booking
             {
-                Name = "J",
-                Email = "e@gmail.com",
+                DateBooked = DateTime.Now, 
+                End = DateTime.Now.AddHours(1),
                 IsPaid = false
             };
 
-            context.CustomerInformation.Add(customer);
+            context.Bookings.Add(booking);
 
             context.SaveChanges();
 
@@ -122,20 +116,20 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                customerId = 1,
+                bookingId = 1,
                 clubPrice = 65,
                 bookingPrice = 80,
                 total = 120
             };
 
-            var customer = new CustomerInformation
+            var booking = new Booking
             {
-                Name = "J",
-                Email = "e@gmail.com",
+                DateBooked = DateTime.Now,
+                End = DateTime.Now.AddHours(1),
                 IsPaid = false
             };
 
-            context.CustomerInformation.Add(customer);
+            context.Bookings.Add(booking);
 
             context.SaveChanges();
 
@@ -149,18 +143,18 @@ namespace FairwayDrivingRange.Test
         }
 
         [Fact]
-        public void AddTransaction_Fails_CustomerNotFound()
+        public void AddTransaction_Fails_BookingNotFound()
         {
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                customerId = 1,
+                bookingId = 1,
                 clubPrice = 0,
                 bookingPrice = 120,
                 total = 120
             };
 
-            var expected = ApiResponseDto<bool>.Error("Customer Not Found");
+            var expected = ApiResponseDto<bool>.Error("Booking Not Found");
 
             //Act
             var actual = transactionFacade.AddTransaction(transactionDto);
@@ -175,20 +169,20 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                customerId = 1,
+                bookingId = 1,
                 clubPrice = 0,
                 bookingPrice = 120,
                 total = 120
             };
 
-            var customer = new CustomerInformation
+            var booking = new Booking
             {
-                Name = "J",
-                Email = "e@gmail.com",
+                DateBooked = DateTime.Now,
+                End = DateTime.Now.AddHours(1),
                 IsPaid = false
             };
 
-            context.CustomerInformation.Add(customer);
+            context.Bookings.Add(booking);
 
             context.SaveChanges();
 
@@ -212,12 +206,12 @@ namespace FairwayDrivingRange.Test
                     clubPrice = 0,
                     bookingPrice = 120,
                     total = 120,
-                    customerId = 1,
+                    bookingId = 1,
                 },
                 new TransactionDto
                 {
                     id = 2,
-                    customerId = 2,
+                    bookingId = 2,
                     clubPrice = 50,
                     bookingPrice = 120,
                     total = 170
@@ -227,38 +221,38 @@ namespace FairwayDrivingRange.Test
             var transactions = new List<Transaction>
             {
                 new Transaction
-                {
-                    CustomerId = 1,
+                { 
+                    BookingId = 1,
                     ClubPrice = 0,
                     BookingPrice = 120,
                     Total = 120
                 },
                 new Transaction
                 {
-                    CustomerId = 2,
+                    BookingId = 2,
                     ClubPrice = 50,
                     BookingPrice = 120,
                     Total = 170
                 }
             };
 
-            var customers = new List<CustomerInformation>
+            var bookings = new List<Booking>
             {
-                new CustomerInformation
+                new Booking
                 {
-                    Name = "J",
-                    Email = "e@gmail.com",
+                    DateBooked = DateTime.Now,
+                    End = DateTime.Now.AddHours(1),
                     IsPaid = false
                 },
-                new CustomerInformation
+                new Booking
                 {
-                    Name = "k",
-                    Email = "e@gmail.com",
-                    IsPaid = true
+                    DateBooked = DateTime.Now,
+                    End = DateTime.Now.AddHours(2),
+                    IsPaid = false
                 }
             };
 
-            context.CustomerInformation.AddRange(customers);
+            context.Bookings.AddRange(bookings);
 
             context.Transactions.AddRange(transactions);
 
@@ -274,13 +268,13 @@ namespace FairwayDrivingRange.Test
             Assert.Equal(expected.Value.ToList()[0].clubPrice, actual.Value.ToList()[0].clubPrice);
             Assert.Equal(expected.Value.ToList()[0].bookingPrice, actual.Value.ToList()[0].bookingPrice);
             Assert.Equal(expected.Value.ToList()[0].total, actual.Value.ToList()[0].total);
-            Assert.Equal(expected.Value.ToList()[0].customerId, actual.Value.ToList()[0].customerId);
+            Assert.Equal(expected.Value.ToList()[0].bookingId, actual.Value.ToList()[0].bookingId);
 
             Assert.Equal(expected.Value.ToList()[1].id, actual.Value.ToList()[1].id);
             Assert.Equal(expected.Value.ToList()[1].clubPrice, actual.Value.ToList()[1].clubPrice);
             Assert.Equal(expected.Value.ToList()[1].bookingPrice, actual.Value.ToList()[1].bookingPrice);
             Assert.Equal(expected.Value.ToList()[1].total, actual.Value.ToList()[1].total);
-            Assert.Equal(expected.Value.ToList()[1].customerId, actual.Value.ToList()[1].customerId);
+            Assert.Equal(expected.Value.ToList()[1].bookingId, actual.Value.ToList()[1].bookingId);
         }
 
         [Fact]
@@ -328,7 +322,7 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transaction = new Transaction
             {
-                CustomerId = 1,
+                BookingId = 1,
                 ClubPrice = 0,
                 BookingPrice = 120,
                 Total = 120
@@ -340,19 +334,19 @@ namespace FairwayDrivingRange.Test
                 clubPrice = 0,
                 bookingPrice = 120,
                 total = 120,
-                customerId = 1
+                bookingId = 1
             };
 
-            var customer = new CustomerInformation
+            var booking = new Booking
             {
-                Name = "J",
-                Email = "e@gmail.com",
+                DateBooked = DateTime.Now,
+                End = DateTime.Now.AddHours(1),
                 IsPaid = false
             };
 
             var id = 1;
 
-            context.CustomerInformation.Add(customer);
+            context.Bookings.Add(booking);
 
             context.Transactions.Add(transaction);
 
@@ -368,7 +362,7 @@ namespace FairwayDrivingRange.Test
             Assert.Equal(expected.Value.clubPrice, actual.Value.clubPrice);
             Assert.Equal(expected.Value.bookingPrice, actual.Value.bookingPrice);
             Assert.Equal(expected.Value.total, actual.Value.total);
-            Assert.Equal(expected.Value.customerId, actual.Value.customerId);
+            Assert.Equal(expected.Value.bookingId, actual.Value.bookingId);
         }
 
         [Fact]
@@ -416,43 +410,43 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var expectedTransactions = 1;
 
-            var expectedCustomers = 2;
+            var expectedBookings = 2;
 
             var addedTransactions = new List<Transaction>
             {
                 new Transaction
                 {
-                    CustomerId = 1,
+                    BookingId = 1,
                     ClubPrice = 0,
                     BookingPrice = 120,
                     Total = 120
                 },
                 new Transaction
                 {
-                    CustomerId = 2,
+                    BookingId = 2,
                     ClubPrice = 50,
                     BookingPrice = 120,
                     Total = 170
                 }
             };
 
-            var addedCustomers = new List<CustomerInformation>
+            var addedBookings = new List<Booking>
             {
-                new CustomerInformation
+                new Booking
                 {
-                    Name = "J",
-                    Email = "e@gmail.com",
+                    DateBooked = DateTime.Now,
+                    End = DateTime.Now.AddHours(1),
                     IsPaid = false
                 },
-                new CustomerInformation
+                new Booking
                 {
-                    Name = "k",
-                    Email = "e@gmail.com",
-                    IsPaid = true
+                    DateBooked = DateTime.Now,
+                    End = DateTime.Now.AddHours(2),
+                    IsPaid = false
                 }
             };
 
-            context.CustomerInformation.AddRange(addedCustomers);
+            context.Bookings.AddRange(addedBookings);
 
             context.Transactions.AddRange(addedTransactions);
 
@@ -465,12 +459,12 @@ namespace FairwayDrivingRange.Test
 
             var transactionCount = transactions.Value.Count();
 
-            var customers = customerFacade.GetCustomers();
+            var bookings = bookingFacade.GetBookings();
 
-            var customerCount = customers.Value.Count();
+            var bookingCount = bookings.Value.Count();
 
             //Assert
-            Assert.Equal(customerCount, expectedCustomers);
+            Assert.Equal(bookingCount, expectedBookings);
 
             Assert.Equal(transactionCount, expectedTransactions);
         }
@@ -484,17 +478,17 @@ namespace FairwayDrivingRange.Test
                 clubPrice = 0,
                 bookingPrice = 120,
                 total = 120,
-                customerId = 1
+                bookingId = 1
             };
 
-            var customer = new CustomerInformation
+            var booking = new Booking
             {
-                Name = "J",
-                Email = "e@gmail.com",
+                DateBooked = DateTime.Now,
+                End = DateTime.Now.AddHours(2),
                 IsPaid = false
             };
 
-            context.CustomerInformation.Add(customer);
+            context.Bookings.Add(booking);
 
             context.SaveChanges();
 
@@ -516,17 +510,17 @@ namespace FairwayDrivingRange.Test
                 clubPrice = 0,
                 bookingPrice = 120,
                 total = 120,
-                customerId = 1
+                bookingId = 1
             };
 
-            var customer = new CustomerInformation
+            var booking = new Booking
             {
-                Name = "J",
-                Email = "e@gmail.com",
+                DateBooked = DateTime.Now,
+                End = DateTime.Now.AddHours(2),
                 IsPaid = false
             };
 
-            context.CustomerInformation.Add(customer);
+            context.Bookings.Add(booking);
 
             context.SaveChanges();
 
@@ -548,17 +542,17 @@ namespace FairwayDrivingRange.Test
                 clubPrice = 0,
                 bookingPrice = 120,
                 total = 120,
-                customerId = 1
+                bookingId = 1
             };
 
-            var customer = new CustomerInformation
+            var booking = new Booking
             {
-                Name = "J",
-                Email = "e@gmail.com",
+                DateBooked = DateTime.Now,
+                End = DateTime.Now.AddHours(2),
                 IsPaid = false
             };
 
-            context.CustomerInformation.Add(customer);
+            context.Bookings.Add(booking);
 
             context.SaveChanges();
 
@@ -580,31 +574,31 @@ namespace FairwayDrivingRange.Test
                 clubPrice = 0,
                 bookingPrice = 120,
                 total = 120,
-                customerId = 0
+                bookingId = 0
             };
 
-            var customer = new CustomerInformation
+            var booking = new Booking
             {
-                Name = "J",
-                Email = "e@gmail.com",
+                DateBooked = DateTime.Now,
+                End = DateTime.Now.AddHours(2),
                 IsPaid = false
             };
 
             var transaction = new Transaction
-            {              
+            {
                 ClubPrice = 0,
                 BookingPrice = 120,
                 Total = 120,
-                CustomerId = 1
+                BookingId = 1
             };
 
-            context.CustomerInformation.Add(customer);
+            context.Bookings.Add(booking);
 
             context.Transactions.Add(transaction);
 
             context.SaveChanges();
 
-            var expected = ApiResponseDto<bool>.Error("Invalid Customer Id");
+            var expected = ApiResponseDto<bool>.Error("Invalid Booking Id");
 
             //Act
             var actual = transactionFacade.UpdateTransaction(1, transactionDto);
@@ -622,13 +616,13 @@ namespace FairwayDrivingRange.Test
                 clubPrice = 5,
                 bookingPrice = 120,
                 total = 120,
-                customerId = 1
+                bookingId = 1
             };
 
-            var customer = new CustomerInformation
+            var booking = new Booking
             {
-                Name = "J",
-                Email = "e@gmail.com",
+                DateBooked = DateTime.Now,
+                End = DateTime.Now.AddHours(2),
                 IsPaid = false
             };
 
@@ -637,10 +631,10 @@ namespace FairwayDrivingRange.Test
                 ClubPrice = 0,
                 BookingPrice = 120,
                 Total = 120,
-                CustomerId = 1
+                BookingId = 1
             };
 
-            context.CustomerInformation.Add(customer);
+            context.Bookings.Add(booking);
 
             context.Transactions.Add(transaction);
 
@@ -664,44 +658,44 @@ namespace FairwayDrivingRange.Test
                 clubPrice = 5,
                 bookingPrice = 120,
                 total = 125,
-                customerId = 2
+                bookingId = 2
             };
 
             var transactions = new List<Transaction>
             {
                 new Transaction
                 {
-                    CustomerId = 1,
+                    BookingId = 1,
                     ClubPrice = 0,
                     BookingPrice = 120,
                     Total = 120
                 },
                 new Transaction
                 {
-                    CustomerId = 2,
+                    BookingId = 2,
                     ClubPrice = 50,
                     BookingPrice = 120,
                     Total = 170
                 }
             };
 
-            var customers = new List<CustomerInformation>
+            var bookings = new List<Booking>
             {
-                new CustomerInformation
+                new Booking
                 {
-                    Name = "J",
-                    Email = "e@gmail.com",
+                    DateBooked = DateTime.Now,
+                    End = DateTime.Now.AddHours(1),
                     IsPaid = false
                 },
-                new CustomerInformation
+                new Booking
                 {
-                    Name = "k",
-                    Email = "e@gmail.com",
-                    IsPaid = true
+                    DateBooked = DateTime.Now,
+                    End = DateTime.Now.AddHours(2),
+                    IsPaid = false
                 }
             };
 
-            context.CustomerInformation.AddRange(customers);
+            context.Bookings.AddRange(bookings);
 
             context.Transactions.AddRange(transactions);
 
@@ -718,7 +712,7 @@ namespace FairwayDrivingRange.Test
             Assert.Equal(transaction.Value.clubPrice, transactionDto.clubPrice);
             Assert.Equal(transaction.Value.bookingPrice, transactionDto.bookingPrice);
             Assert.Equal(transaction.Value.total, transactionDto.total);
-            Assert.Equal(transaction.Value.customerId, transactionDto.customerId);
+            Assert.Equal(transaction.Value.bookingId, transactionDto.bookingId);
             Assert.Equal(expected.Value, actual.Value);
         }
     }

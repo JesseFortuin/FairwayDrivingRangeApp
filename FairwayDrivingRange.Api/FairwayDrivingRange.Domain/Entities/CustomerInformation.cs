@@ -10,10 +10,8 @@
 
         public long? Phone {  get; set; }
 
-        public bool IsPaid { get; set; }
-
         public List<Booking> Booking { get; set; } = new List<Booking>();
 
-        public List<Transaction> Transaction { get; set; } = new List<Transaction>();
+        //public List<Transaction> Transaction { get; set; } = new List<Transaction>();
     }
 }

@@ -77,7 +77,7 @@ namespace FairwayDrivingRange.Test
 
             transactionRepository = new Repository<Transaction>(context);
 
-            transactionFacade = new TransactionFacade(transactionRepository, customerInformationRepository, mapper);
+            transactionFacade = new TransactionFacade(transactionRepository, bookingRepository, mapper);
         }
 
         public DbContextOptionsBuilder<FairwayContext> DatabaseSetup()

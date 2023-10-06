@@ -8,30 +8,30 @@ namespace FairwayDrivingRange.Application
     public class TransactionFacade : ITransactionFacade
     {
         private readonly IRepository<Transaction> repository;
-        private readonly IRepository<CustomerInformation> customerRepository;
+        private readonly IRepository<Booking> bookingRepository;
         private readonly IMapper mapper;
 
         public TransactionFacade(IRepository<Transaction> repository,
-                                 IRepository<CustomerInformation> customerRepository,
+                                 IRepository<Booking> bookingRepository,
                                  IMapper mapper)
         {
             this.repository = repository;
-            this.customerRepository = customerRepository;
+            this.bookingRepository = bookingRepository;
             this.mapper = mapper;
         }
 
         public ApiResponseDto<bool> AddTransaction(AddTransactionDto transactionDto)
         {
-            if (transactionDto.customerId <= 0)
+            if (transactionDto.bookingId <= 0)
             {
-                return ApiResponseDto<bool>.Error("Invalid Customer Id");
+                return ApiResponseDto<bool>.Error("Invalid Booking Id");
             }
 
-            var customer = customerRepository.GetById(transactionDto.customerId);
+            var booking = bookingRepository.GetById(transactionDto.bookingId);
 
-            if (customer == null)
+            if (booking == null)
             {
-                return ApiResponseDto<bool>.Error("Customer Not Found");
+                return ApiResponseDto<bool>.Error("Booking Not Found");
             }
 
             if (transactionDto.bookingPrice <= 0 ||
@@ -102,16 +102,16 @@ namespace FairwayDrivingRange.Application
 
         public ApiResponseDto<bool> UpdateTransaction(int transactionId, AddTransactionDto transactionDto)
         {
-            if (transactionDto.customerId <= 0)
+            if (transactionDto.bookingId <= 0)
             {
-                return ApiResponseDto<bool>.Error("Invalid Customer Id");
+                return ApiResponseDto<bool>.Error("Invalid Booking Id");
             }
 
-            var customer = customerRepository.GetById(transactionDto.customerId);
+            var booking = bookingRepository.GetById(transactionDto.bookingId);
 
-            if (customer == null)
+            if (booking == null)
             {
-                return ApiResponseDto<bool>.Error("Customer Not Found");
+                return ApiResponseDto<bool>.Error("Booking Not Found");
             }
 
             if (transactionDto.bookingPrice <= 0 ||

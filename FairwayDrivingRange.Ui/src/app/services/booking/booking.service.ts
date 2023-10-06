@@ -2,9 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CalendarEvent } from 'angular-calendar';
 import { Observable } from 'rxjs';
-import { IBooking } from 'src/assets/IBooking';
-import { IEvent } from 'src/assets/IEvent';
-import { IResponse } from 'src/assets/IResponse';
+import { IAddBooking } from 'src/app/shared/interfaces/IAddBooking';
+import { IGetBookings } from 'src/app/shared/interfaces/IGetBookings';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +13,11 @@ export class BookingService {
 
   constructor(private http : HttpClient) { }
 
-  getBookings(): Observable<IBooking> {
-    return this.http.get<IBooking>(this.url + 'Booking');
+  getBookings(): Observable<IGetBookings> {
+    return this.http.get<IGetBookings>(this.url + 'Booking');
   }
 
-  addBooking(data: CalendarEvent): Observable<any> {
+  addBooking(data: IAddBooking): Observable<any> {
     return this.http.post(`${this.url}Booking/email`, data)
   }
 }

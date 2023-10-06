@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IResponse } from 'src/assets/IResponse';
+import { IApiResponse } from 'src/app/shared/interfaces/IApiResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class AuthentificationService {
 
   constructor(private http: HttpClient) { }
 
-  login(data: IResponse): Observable<any>{
+  login(data: IApiResponse): Observable<any>{
     return this.http.post(`${this.url}`, data);
   }
 }

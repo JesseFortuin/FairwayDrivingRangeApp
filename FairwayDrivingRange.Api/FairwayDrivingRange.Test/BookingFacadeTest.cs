@@ -86,8 +86,7 @@ namespace FairwayDrivingRange.Test
             var customer = new CustomerInformation
             {
                 Name = "J",
-                Email = "e@gmail.com",
-                IsPaid = false
+                Email = "e@gmail.com"
             };
 
             context.CustomerInformation.Add(customer);
@@ -279,8 +278,7 @@ namespace FairwayDrivingRange.Test
             var customer = new CustomerInformation
             {
                 Name = "J",
-                Email = "e@gmail.com",
-                IsPaid = false
+                Email = "e@gmail.com"
             };
 
             context.CustomerInformation.Add(customer);
@@ -340,14 +338,12 @@ namespace FairwayDrivingRange.Test
                 new CustomerInformation
                 {
                     Name = "J",
-                    Email = "e@gmail.com",
-                    IsPaid = false
+                    Email = "e@gmail.com"
                 },
                 new CustomerInformation
                 {
                     Name = "k",
-                    Email = "e@gmail.com",
-                    IsPaid = true
+                    Email = "e@gmail.com"
                 }
             };
 
@@ -435,8 +431,7 @@ namespace FairwayDrivingRange.Test
             var customer = new CustomerInformation
             {
                 Name = "J",
-                Email = "e@gmail.com",
-                IsPaid = false
+                Email = "e@gmail.com"
             };
 
             var id = 1;
@@ -527,14 +522,12 @@ namespace FairwayDrivingRange.Test
                 new CustomerInformation
                 {
                     Name = "J",
-                    Email = "e@gmail.com",
-                    IsPaid = false
+                    Email = "e@gmail.com"
                 },
                 new CustomerInformation
                 {
                     Name = "k",
-                    Email = "e@gmail.com",
-                    IsPaid = true
+                    Email = "e@gmail.com"
                 }
             };
 
@@ -614,8 +607,7 @@ namespace FairwayDrivingRange.Test
             var customer = new CustomerInformation
             {
                 Name = "J",
-                Email = "e@gmail.com",
-                IsPaid = false
+                Email = "e@gmail.com"
             };
 
             var booking = new Booking
@@ -712,14 +704,12 @@ namespace FairwayDrivingRange.Test
                 new CustomerInformation
                 {
                     Name = "J",
-                    Email = "e@gmail.com",
-                    IsPaid = false
+                    Email = "e@gmail.com"
                 },
                 new CustomerInformation
                 {
                     Name = "k",
-                    Email = "e@gmail.com",
-                    IsPaid = true
+                    Email = "e@gmail.com"
                 }
             };
 

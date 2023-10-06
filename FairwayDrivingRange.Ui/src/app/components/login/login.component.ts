@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthentificationService } from 'src/app/services/authentification.service';
-import { IResponse } from 'src/assets/IResponse';
+import { IApiResponse } from 'src/app/shared/interfaces/IApiResponse';
 import { authGuard } from './authGuard/authGuard';
 
 @Component({
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginProcess() {
-    this.authService.login(this.loginObj).subscribe((result : IResponse) =>{
+    this.authService.login(this.loginObj).subscribe((result : IApiResponse) =>{
       if (!result.isSuccess){
         sessionStorage.clear();
 

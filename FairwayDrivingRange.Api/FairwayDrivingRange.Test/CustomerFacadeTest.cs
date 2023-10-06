@@ -1,6 +1,4 @@
-using FairwayDrivingRange.Application;
 using FairwayDrivingRange.Domain.Entities;
-using FairwayDrivingRange.Infrastructure.Data;
 using FairwayDrivingRange.Shared.Dtos;
 
 namespace FairwayDrivingRange.Test
@@ -14,8 +12,7 @@ namespace FairwayDrivingRange.Test
             var customerDto = new AddCustomerDto
             {
                 name = "",
-                email = "thisisanEmail@email.com",
-                isPaid = false
+                email = "thisisanEmail@email.com"
             };
 
             var expected = ApiResponseDto<bool>.Error("Invalid Customer Object");
@@ -35,8 +32,7 @@ namespace FairwayDrivingRange.Test
             var customerDto = new AddCustomerDto
             {
                 name = "Jane Doe",
-                email = "",
-                isPaid = false
+                email = ""
             };
 
             var expected = ApiResponseDto<bool>.Error("Invalid Customer Object");
@@ -55,8 +51,7 @@ namespace FairwayDrivingRange.Test
             var customerDto = new AddCustomerDto
             {
                 name = "Test Name",
-                email = "thisisanEmail@email.com",
-                isPaid = false
+                email = "thisisanEmail@email.com"
             };
 
             var expected = new ApiResponseDto<bool>(true);
@@ -77,15 +72,13 @@ namespace FairwayDrivingRange.Test
                     {
                         id = 1,
                         name = "J",
-                        email = "e@gmail.com",
-                        isPaid = false
+                        email = "e@gmail.com"
                     },
                     new CustomerDto
                     {
                         id = 2,
                         name = "k",
-                        email = "e@gmail.com",
-                        isPaid = true
+                        email = "e@gmail.com"
                     }
                 };
 
@@ -94,14 +87,12 @@ namespace FairwayDrivingRange.Test
                 new CustomerInformation
                 {
                     Name = "J",
-                    Email = "e@gmail.com",
-                    IsPaid = false
+                    Email = "e@gmail.com"
                 },
                 new CustomerInformation
                 {
                     Name = "k",
-                    Email = "e@gmail.com",
-                    IsPaid = true
+                    Email = "e@gmail.com"
                 }
             };
 
@@ -118,12 +109,10 @@ namespace FairwayDrivingRange.Test
             Assert.Equal(expected.Value.ToList()[0].id, actual.Value.ToList()[0].id);
             Assert.Equal(expected.Value.ToList()[0].name, actual.Value.ToList()[0].name);
             Assert.Equal(expected.Value.ToList()[0].email, actual.Value.ToList()[0].email);
-            Assert.Equal(expected.Value.ToList()[0].isPaid, actual.Value.ToList()[0].isPaid);
 
             Assert.Equal(expected.Value.ToList()[1].id, actual.Value.ToList()[1].id);
             Assert.Equal(expected.Value.ToList()[1].name, actual.Value.ToList()[1].name);
             Assert.Equal(expected.Value.ToList()[1].email, actual.Value.ToList()[1].email);
-            Assert.Equal(expected.Value.ToList()[1].isPaid, actual.Value.ToList()[1].isPaid);
         }
 
         [Fact]
@@ -134,8 +123,7 @@ namespace FairwayDrivingRange.Test
             {
                 id = 1,
                 name = "J",
-                email = "e@gmail.com",
-                isPaid = false
+                email = "e@gmail.com"
             };
 
             var customers = new List<CustomerInformation>
@@ -143,14 +131,12 @@ namespace FairwayDrivingRange.Test
                 new CustomerInformation
                 {
                     Name = "J",
-                    Email = "e@gmail.com",
-                    IsPaid = false
+                    Email = "e@gmail.com"
                 },
                 new CustomerInformation
                 {
                     Name = "k",
-                    Email = "e@gmail.com",
-                    IsPaid = true
+                    Email = "e@gmail.com"
                 }
             };
 
@@ -167,7 +153,6 @@ namespace FairwayDrivingRange.Test
             Assert.Equal(expected.Value.id, actual.Value.id);
             Assert.Equal(expected.Value.name, actual.Value.name);
             Assert.Equal(expected.Value.email, actual.Value.email);
-            Assert.Equal(expected.Value.isPaid, actual.Value.isPaid);
         }
 
         [Fact]
@@ -194,13 +179,13 @@ namespace FairwayDrivingRange.Test
 
             //Assert
             Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
-            
+
         }
 
         [Fact]
         public void GetCustomer_Fails_NumberNotFound()
         {
-            
+
             //Arrange
             var expected = ApiResponseDto<bool>.Error("Customer Not Found");
 
@@ -213,7 +198,7 @@ namespace FairwayDrivingRange.Test
         }
 
         [Fact]
-        public void DeleteCustomer_Fails_IdNegativeNumber() 
+        public void DeleteCustomer_Fails_IdNegativeNumber()
         {
             //Arrange
             var expected = ApiResponseDto<bool>.Error("Invalid Id");
@@ -224,9 +209,9 @@ namespace FairwayDrivingRange.Test
             //Assert
             Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
         }
-        
+
         [Fact]
-        public void DeleteCustomer_Fails_IdZero() 
+        public void DeleteCustomer_Fails_IdZero()
         {
             //Arrange
             var expected = ApiResponseDto<bool>.Error("Invalid Id");
@@ -239,7 +224,7 @@ namespace FairwayDrivingRange.Test
         }
 
         [Fact]
-        public void DeleteCustomer_Fails_NumberNotFound() 
+        public void DeleteCustomer_Fails_NumberNotFound()
         {
             //Arrange
             var expected = ApiResponseDto<bool>.Error("Customer Not Found");
@@ -262,14 +247,12 @@ namespace FairwayDrivingRange.Test
                 new CustomerInformation
                 {
                     Name = "J",
-                    Email = "e@gmail.com",
-                    IsPaid = false
+                    Email = "e@gmail.com"
                 },
                 new CustomerInformation
                 {
                     Name = "k",
-                    Email = "e@gmail.com",
-                    IsPaid = true
+                    Email = "e@gmail.com"
                 }
             };
 
@@ -300,7 +283,7 @@ namespace FairwayDrivingRange.Test
             //Assert
             Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
         }
-        
+
         [Fact]
         public void UpdateCustomer_Fails_IdZero()
         {
@@ -334,8 +317,7 @@ namespace FairwayDrivingRange.Test
             var customerDto = new AddCustomerDto
             {
                 name = "",
-                email = "eg@gmail.com",
-                isPaid = false
+                email = "eg@gmail.com"
             };
 
             var customers = new List<CustomerInformation>
@@ -343,14 +325,12 @@ namespace FairwayDrivingRange.Test
                 new CustomerInformation
                 {
                     Name = "J",
-                    Email = "e@gmail.com",
-                    IsPaid = false
+                    Email = "e@gmail.com"
                 },
                 new CustomerInformation
                 {
                     Name = "k",
-                    Email = "e@gmail.com",
-                    IsPaid = true
+                    Email = "e@gmail.com"
                 }
             };
 
@@ -366,7 +346,7 @@ namespace FairwayDrivingRange.Test
             //Assert
             Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
         }
-        
+
         [Fact]
         public void UpdateCustomer_Fails_InvalidDtoEmail()
         {
@@ -374,8 +354,7 @@ namespace FairwayDrivingRange.Test
             var customerDto = new AddCustomerDto
             {
                 name = "W",
-                email = "",
-                isPaid = true
+                email = ""
             };
 
             var customers = new List<CustomerInformation>
@@ -383,14 +362,12 @@ namespace FairwayDrivingRange.Test
                 new CustomerInformation
                 {
                     Name = "J",
-                    Email = "e@gmail.com",
-                    IsPaid = false
+                    Email = "e@gmail.com"
                 },
                 new CustomerInformation
                 {
                     Name = "k",
-                    Email = "e@gmail.com",
-                    IsPaid = true
+                    Email = "e@gmail.com"
                 }
             };
 
@@ -414,8 +391,7 @@ namespace FairwayDrivingRange.Test
             var customerDto = new AddCustomerDto
             {
                 name = "W",
-                email = "eg@gmail.com",
-                isPaid = true
+                email = "eg@gmail.com"
             };
 
             var customers = new List<CustomerInformation>
@@ -423,14 +399,12 @@ namespace FairwayDrivingRange.Test
                 new CustomerInformation
                 {
                     Name = "J",
-                    Email = "e@gmail.com",
-                    IsPaid = false
+                    Email = "e@gmail.com"
                 },
                 new CustomerInformation
                 {
                     Name = "k",
-                    Email = "e@gmail.com",
-                    IsPaid = true
+                    Email = "e@gmail.com"
                 }
             };
 
@@ -448,7 +422,6 @@ namespace FairwayDrivingRange.Test
             //Assert
             Assert.Equal(customer.Value.name, customerDto.name);
             Assert.Equal(customer.Value.email, customerDto.email);
-            Assert.Equal(customer.Value.isPaid, customerDto.isPaid);
             Assert.Equal(expected.Value, actual.Value);
         }
     }

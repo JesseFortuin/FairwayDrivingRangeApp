@@ -12,8 +12,7 @@ import { fromEvent } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
 import { addDays, addMinutes, endOfWeek } from 'date-fns';
 import { BookingService } from 'src/app/services/booking/booking.service';
-import { IResponse } from 'src/assets/IResponse';
-import { IEvent } from 'src/assets/IEvent';
+import { Router } from '@angular/router';
 
 
 function floorToNearest(amount: number, precision: number) {
@@ -76,7 +75,8 @@ export class BookingTableComponent implements OnInit {
   dayEndHour: number = 19;
 
   constructor(private cdr: ChangeDetectorRef,
-              private bookingService : BookingService) {}
+              private bookingService : BookingService,
+              private router : Router) {}
 
   ngOnInit(): void {
     this.bookingService.getBookings()
@@ -125,15 +125,15 @@ export class BookingTableComponent implements OnInit {
     this.events = [...this.events, dragToSelectEvent];
     console.log(this.events);
 
-    this.bookingService.addBooking(dragToSelectEvent).subscribe((result: IResponse) =>{
-      if (result.isSuccess){
-        console.log(result.value)
-      }
+    // this.bookingService.addBooking(dragToSelectEvent).subscribe((result: IApiResponse) =>{
+    //   if (result.isSuccess){
+    //     console.log(result.value)
+    //   }
 
-      if (!result.isSuccess){
-        console.log(result.errorMessage)
-      }
-    });
+    //   if (!result.isSuccess){
+    //     console.log(result.errorMessage)
+    //   }
+    // });
 
     const segmentPosition = segmentElement.getBoundingClientRect();
     this.dragToCreateActive = true;
@@ -167,6 +167,8 @@ export class BookingTableComponent implements OnInit {
           dragToSelectEvent.end = newEnd;
         }
         this.refresh();
+
+        sessionStorage.setItem('booking', JSON.stringify(dragToSelectEvent))
       });
   }
 

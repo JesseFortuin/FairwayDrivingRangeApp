@@ -1,7 +1,8 @@
+import { HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerInformationService } from 'src/app/services/customer-information.service';
-import { IResponse } from 'src/assets/IResponse';
+import { IApiResponse } from 'src/app/shared/interfaces/IApiResponse';
 
 @Component({
   selector: 'app-customer-login',
@@ -18,10 +19,12 @@ export class CustomerLoginComponent {
     public router : Router) {}
 
   loginProcess() {
-    this.infoService.login(this.customerObj.email).subscribe((result: IResponse) => {
+
+    this.infoService.login().subscribe((result: IApiResponse) => {
       if (result.isSuccess){
-        sessionStorage.setItem('customer',this.customerObj),
-        this.router.navigate(['booking']);
+        sessionStorage.setItem('customer',this.customerObj);
+
+        this.router.navigate(['confirmation'])
       }
       if (!result.isSuccess){
         alert(result.errorMessage)

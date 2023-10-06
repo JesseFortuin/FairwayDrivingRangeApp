@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IResponse} from 'src/assets/IResponse';
+import { IApiResponse} from 'src/app/shared/interfaces/IApiResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +11,17 @@ export class CustomerInformationService {
 
   constructor(private http: HttpClient) { }
 
-  register(data: IResponse): Observable<any>{
+  register(data: IApiResponse): Observable<any>{
     return this.http.post(`${this.url}add`, data);
   }
 
-  login(date: string): Observable<any>{
+  login(): Observable<any>{
 
-    return this.http.get(`${this.url}email`)
+  let queryParams = new HttpParams().set('email', '');
+
+    return this.http.get(`${this.url}email`, {params: queryParams})
   }
 }
+
+
+

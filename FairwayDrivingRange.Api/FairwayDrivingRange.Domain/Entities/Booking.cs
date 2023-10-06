@@ -10,7 +10,11 @@
 
         public CustomerInformation Customer { get; set; }
 
-        public int CustomerId { get; set; }
+        public int? CustomerId { get; set; }
+
+        public Transaction Transaction { get; set; }
+
+        public bool IsPaid { get; set; }
 
         public List<GolfClub> Clubs { get; set; } = new List<GolfClub>();
     }

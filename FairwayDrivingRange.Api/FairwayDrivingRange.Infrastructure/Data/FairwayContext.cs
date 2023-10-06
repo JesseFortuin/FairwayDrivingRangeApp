@@ -25,9 +25,8 @@ namespace FairwayDrivingRange.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Transaction>()
-                .HasOne(c => c.CustomerInformation)
-                .WithMany(t => t.Transaction)
-                .HasForeignKey(f => f.CustomerId);
+                .HasOne(b => b.Booking)
+                .WithOne(t => t.Transaction);
 
             modelBuilder.Entity<GolfClub>()
                 .HasOne(b => b.Booking)
@@ -38,7 +37,8 @@ namespace FairwayDrivingRange.Infrastructure.Data
             modelBuilder.Entity<Booking>()
                 .HasOne(c => c.Customer)
                 .WithMany(b => b.Booking)
-                .HasForeignKey(f => f.CustomerId);
+                .HasForeignKey(f => f.CustomerId)
+                .IsRequired(false);
         }
 
         /*
@@ -51,8 +51,8 @@ namespace FairwayDrivingRange.Infrastructure.Data
 * |            |   Zibal                       | 2023-09-14 - added Admins table, golf club price in transaction table nullable
 * |            |   Zavijava                    | 2023-09-22 - added phone column to customer information table
 * |            |   Zaurak                      | 2023-10-03 - added end column and removed lane column in Booking table
-* |            |   Zaniah                      | 
-* |            |   Yildun                      | 
+* |            |   Zaniah                      | 2023-10-06 - Linked transaction table to booking 
+* |            |   Yildun                      | 2023-10-06 - Made Customer optional on booking table
 * |            |   Yed_Prior                   | 
 * |            |   Yed_Posterior               | 
 * |            |   Wezen                       | 
