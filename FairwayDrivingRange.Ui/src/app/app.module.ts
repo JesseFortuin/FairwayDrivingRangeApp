@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './components/admin/admin.component';
-import { RegisterCustomerComponent } from './components/booking/register-customer/register-customer.component';
+import { CustomerInformationComponent } from './components/booking/customer-information/customer-information.component';
 import { BookingTableComponent } from './components/booking/booking-table/booking-table.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -19,7 +19,7 @@ import { OrderConfirmationComponent } from './components/booking/order-confirmat
     AppComponent,
     LoginComponent,
     AdminComponent,
-    RegisterCustomerComponent,
+    CustomerInformationComponent,
     BookingTableComponent,
     CustomerLoginComponent,
     OrderConfirmationComponent

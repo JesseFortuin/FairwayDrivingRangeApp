@@ -29,7 +29,7 @@ namespace FairwayDrivingRange.Application
 
             var golfClub = mapper.Map<GolfClub>(golfClubDto);
 
-            var result = repository.Create(golfClub);
+            var result = repository.Add(golfClub);
 
             return new ApiResponseDto<bool>(result);
         }

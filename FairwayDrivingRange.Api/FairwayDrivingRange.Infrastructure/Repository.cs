@@ -17,7 +17,7 @@ namespace FairwayDrivingRange.Infrastructure
             this.fairwayContext = fairwayContext;
         }
 
-        public bool Create(T entity)
+        public bool Add(T entity)
         {
             fairwayContext.Set<T>().Add(entity);
 

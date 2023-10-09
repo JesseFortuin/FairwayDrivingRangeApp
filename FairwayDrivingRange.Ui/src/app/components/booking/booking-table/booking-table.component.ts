@@ -23,34 +23,34 @@ function ceilToNearest(amount: number, precision: number) {
   return Math.ceil(amount / precision) * precision;
 }
 
-@Injectable()
-export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
-  override weekTooltip(event: CalendarEvent, title: string) : string {
-    if (!event.meta.tmpEvent) {
-      return super.weekTooltip(event, title);
-    }
-    return ''
-  }
+// @Injectable()
+// export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
+//   override weekTooltip(event: CalendarEvent, title: string) : string {
+//     if (!event.meta.tmpEvent) {
+//       return super.weekTooltip(event, title);
+//     }
+//     return ''
+//   }
 
-  override dayTooltip(event: CalendarEvent, title: string) : string {
-    if (!event.meta.tmpEvent) {
-      return super.dayTooltip(event, title);
-    }
-    return ''
-  }
-}
+//   override dayTooltip(event: CalendarEvent, title: string) : string {
+//     if (!event.meta.tmpEvent) {
+//       return super.dayTooltip(event, title);
+//     }
+//     return ''
+//   }
+// }
 
 @Component({
   selector: 'app-booking-table',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './booking-table.component.html',
   styleUrls: ['./booking-table.component.css'],
-  providers: [
-    {
-      provide: CalendarEventTitleFormatter,
-      useClass: CustomEventTitleFormatter,
-    },
-  ],
+  // providers: [
+  //   {
+  //     provide: CalendarEventTitleFormatter,
+  //     useClass: CustomEventTitleFormatter,
+  //   },
+  // ],
   styles: [
     `
       .disable-hover {
@@ -79,15 +79,27 @@ export class BookingTableComponent implements OnInit {
               private router : Router) {}
 
   ngOnInit(): void {
-    this.bookingService.getBookings()
-    .subscribe({
-      next: (bookings) => {
-        this.events = bookings.value
-      },
-      error: (response) => {
-        console.log(response);
-      }
-    });
+    var modal: CalendarEvent = {
+      start: new Date(),
+      end: new Date(),
+      title: 'please work'
+  };
+    this.events.push(modal);
+    // this.bookingService.getBookings()
+    // .subscribe({
+    //   next: (bookings) => {
+    //     this.events = bookings.value;
+
+    //     // bookings.value.forEach((booking) =>
+    //     // {
+    //     //   this.events.push(booking)
+    //     // })
+    //     console.log(this.events)
+    //   },
+    //   error: (response) => {
+    //     console.log(response);
+    //   }
+    // });
   }
 
   minDate: Date = new Date();

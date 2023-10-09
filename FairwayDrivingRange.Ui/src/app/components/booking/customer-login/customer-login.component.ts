@@ -18,17 +18,17 @@ export class CustomerLoginComponent {
   constructor(private infoService: CustomerInformationService,
     public router : Router) {}
 
-  loginProcess() {
+  // loginProcess() {
 
-    this.infoService.login().subscribe((result: IApiResponse) => {
-      if (result.isSuccess){
-        sessionStorage.setItem('customer',this.customerObj);
+  //   this.infoService.login().subscribe((result: IApiResponse) => {
+  //     if (result.isSuccess){
+  //       sessionStorage.setItem('customer',this.customerObj);
 
-        this.router.navigate(['confirmation'])
-      }
-      if (!result.isSuccess){
-        alert(result.errorMessage)
-      }
-    })
-  }
+  //       this.router.navigate(['confirmation'])
+  //     }
+  //     if (!result.isSuccess){
+  //       alert(result.errorMessage)
+  //     }
+  //   })
+  // }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FairwayDrivingRange.Infrastructure
+﻿namespace FairwayDrivingRange.Infrastructure
 {
     public interface IRepository<TEntity>
     {
@@ -12,7 +6,7 @@ namespace FairwayDrivingRange.Infrastructure
 
         public TEntity GetById(int id);
 
-        public bool Create(TEntity entity);
+        public bool Add(TEntity entity);
 
         public bool Update(TEntity entity);
 

@@ -48,7 +48,7 @@ namespace FairwayDrivingRange.Application
 
             var transaction = mapper.Map<Transaction>(transactionDto);
 
-            var result = repository.Create(transaction);
+            var result = repository.Add(transaction);
 
             return new ApiResponseDto<bool>(result);
         }

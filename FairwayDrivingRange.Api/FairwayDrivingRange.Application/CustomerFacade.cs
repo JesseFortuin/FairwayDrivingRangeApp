@@ -31,7 +31,7 @@ namespace FairwayDrivingRange.Application
 
             var customer = mapper.Map<CustomerInformation>(customerDto);
 
-            var result = repository.Create(customer);
+            var result = repository.Add(customer);
 
             return new ApiResponseDto<bool>(result);
         }

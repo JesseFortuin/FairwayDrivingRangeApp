@@ -1,5 +1,7 @@
 export interface IAddBooking{
   start : Date,
   end: Date,
-  email: string
+  email: string,
+  name: string,
+  phone: number
 }
