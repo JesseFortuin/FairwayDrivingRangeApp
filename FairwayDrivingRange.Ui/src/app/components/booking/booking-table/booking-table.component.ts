@@ -2,55 +2,22 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  Injectable,
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { CalendarEvent, CalendarEventTitleFormatter, CalendarWeekViewBeforeRenderEvent,  } from 'angular-calendar';
+import { CalendarEvent, CalendarWeekViewBeforeRenderEvent,  } from 'angular-calendar';
 import { WeekViewHourSegment } from 'calendar-utils';
 import { fromEvent } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
 import { addDays, addMinutes, endOfWeek } from 'date-fns';
 import { BookingService } from 'src/app/services/booking/booking.service';
-import { Router } from '@angular/router';
-
-
-function floorToNearest(amount: number, precision: number) {
-  return Math.floor(amount / precision) * precision;
-}
-
-function ceilToNearest(amount: number, precision: number) {
-  return Math.ceil(amount / precision) * precision;
-}
-
-// @Injectable()
-// export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
-//   override weekTooltip(event: CalendarEvent, title: string) : string {
-//     if (!event.meta.tmpEvent) {
-//       return super.weekTooltip(event, title);
-//     }
-//     return ''
-//   }
-
-//   override dayTooltip(event: CalendarEvent, title: string) : string {
-//     if (!event.meta.tmpEvent) {
-//       return super.dayTooltip(event, title);
-//     }
-//     return ''
-//   }
-// }
+import { ceilToNearest, floorToNearest } from '../../../shared/functions/mathHelperFunctions';
 
 @Component({
   selector: 'app-booking-table',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './booking-table.component.html',
   styleUrls: ['./booking-table.component.css'],
-  // providers: [
-  //   {
-  //     provide: CalendarEventTitleFormatter,
-  //     useClass: CustomEventTitleFormatter,
-  //   },
-  // ],
   styles: [
     `
       .disable-hover {
@@ -75,31 +42,28 @@ export class BookingTableComponent implements OnInit {
   dayEndHour: number = 19;
 
   constructor(private cdr: ChangeDetectorRef,
-              private bookingService : BookingService,
-              private router : Router) {}
+              private bookingService : BookingService) {}
 
   ngOnInit(): void {
-    var modal: CalendarEvent = {
-      start: new Date(),
-      end: new Date(),
-      title: 'please work'
-  };
-    this.events.push(modal);
-    // this.bookingService.getBookings()
-    // .subscribe({
-    //   next: (bookings) => {
-    //     this.events = bookings.value;
 
-    //     // bookings.value.forEach((booking) =>
-    //     // {
-    //     //   this.events.push(booking)
-    //     // })
-    //     console.log(this.events)
-    //   },
-    //   error: (response) => {
-    //     console.log(response);
-    //   }
-    // });
+    this.bookingService.getBookings()
+    .subscribe({
+      next: (bookings) => {
+
+        bookings.value.forEach((booking) =>
+        {
+          var session: CalendarEvent = {
+            start: new Date(booking.start),
+            end: new Date(booking.end!),
+            title: 'booked'
+          }
+          this.events.push(session)
+        })
+        this.refresh();
+      },
+      error: (response) => {
+        console.log(response);
+      }});
   }
 
   minDate: Date = new Date();
@@ -137,16 +101,6 @@ export class BookingTableComponent implements OnInit {
     this.events = [...this.events, dragToSelectEvent];
     console.log(this.events);
 
-    // this.bookingService.addBooking(dragToSelectEvent).subscribe((result: IApiResponse) =>{
-    //   if (result.isSuccess){
-    //     console.log(result.value)
-    //   }
-
-    //   if (!result.isSuccess){
-    //     console.log(result.errorMessage)
-    //   }
-    // });
-
     const segmentPosition = segmentElement.getBoundingClientRect();
     this.dragToCreateActive = true;
     const endOfView = endOfWeek(this.viewDate, {
@@ -168,8 +122,7 @@ export class BookingTableComponent implements OnInit {
           30
         );
 
-        const daysDiff =
-          floorToNearest(
+        const daysDiff = floorToNearest(
             (mouseMoveEvent as MouseEvent).clientX - segmentPosition.left,
             segmentPosition.width
           ) / segmentPosition.width;

@@ -11,9 +11,9 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var bookingDto = new AddBookingEmailDto
             {
-                email = "",
-                start = new DateTime(),
-                end = DateTime.Now.AddHours(1),
+                Email = "",
+                Start = new DateTime(),
+                End = DateTime.Now.AddHours(1),
             };
 
             var expected = ApiResponseDto<bool>.Error("Invalid Email");
@@ -31,9 +31,9 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var bookingDto = new AddBookingEmailDto
             {
-                email = null,
-                start = new DateTime(),
-                end = DateTime.Now.AddHours(1),
+                Email = null,
+                Start = new DateTime(),
+                End = DateTime.Now.AddHours(1),
             };
 
             var expected = ApiResponseDto<bool>.Error("Invalid Email");
@@ -51,9 +51,9 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var bookingDto = new AddBookingEmailDto
             {
-                email = "bingbong@gmail.com",
-                start = DateTime.Now,
-                end = DateTime.Now.AddHours(1)
+                Email = "bingbong@gmail.com",
+                Start = DateTime.Now,
+                End = DateTime.Now.AddHours(1)
             };
 
             var expected = ApiResponseDto<bool>.Error("Customer Not Found");
@@ -71,15 +71,15 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var bookingDto = new AddBookingEmailDto
             {
-                email = "e@gmail.com",
-                start = DateTime.Now,
-                end = DateTime.Now.AddHours(1)
+                Email = "e@gmail.com",
+                Start = DateTime.Now,
+                End = DateTime.Now.AddHours(1)
             };
 
             var booking = new Booking
             {
                 CustomerId = 1,
-                DateBooked = DateTime.Now,
+                Start = DateTime.Now,
                 End = DateTime.Now.AddHours(1)
             };
 
@@ -102,66 +102,6 @@ namespace FairwayDrivingRange.Test
 
             //Assert
             Assert.Equal(expected.Value, actual.Value);
-        }
-
-        [Fact]
-        public void AddBooking_Fails_InvalidBookingDtoIdNegativeNumber()
-        {
-            //Arrange
-            var bookingDto = new AddBookingDto
-            {
-                customerId = -1,
-                start = new DateTime(),
-                end = DateTime.Now.AddHours(1),
-            };
-
-            var expected = ApiResponseDto<bool>.Error("Invalid Customer Id");
-
-            //Act
-            var actual = bookingFacade.AddBooking(bookingDto);
-
-            //Assert
-            Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
-        }
-
-        [Fact]
-        public void AddBooking_Fails_InvalidBookingDtoIdZero()
-        {
-            //Arrange
-            var bookingDto = new AddBookingDto
-            {
-                customerId = 0,
-                start = DateTime.Now,
-                end = DateTime.Now.AddHours(1)          
-            };
-
-            var expected = ApiResponseDto<bool>.Error("Invalid Customer Id");
-
-            //Act
-            var actual = bookingFacade.AddBooking(bookingDto);
-
-            //Assert
-            Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
-        }
-
-        [Fact]
-        public void AddBooking_Fails_CustomerNotFound()
-        {
-            //Arrange
-            var bookingDto = new AddBookingDto
-            {
-                customerId = 1,
-                start = DateTime.Now,
-                end = DateTime.Now.AddHours(1)
-            };
-
-            var expected = ApiResponseDto<bool>.Error("Customer Not Found");
-
-            //Act
-            var actual = bookingFacade.AddBooking(bookingDto);
-
-            //Assert
-            Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
         }
 
         //[Fact]
@@ -263,15 +203,15 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var bookingDto = new AddBookingDto
             {
-                customerId = 1,
-                start = DateTime.Now,
-                end= DateTime.Now.AddHours(1)
+                Start = DateTime.Now,
+                End= DateTime.Now.AddHours(1),
+                Name = "J",
+                Email = "e@gmail.com"
             };
 
             var booking = new Booking
             {
-                CustomerId = 1,
-                DateBooked = DateTime.Now,
+                Start = DateTime.Now,
                 End = DateTime.Now.AddHours(1)
             };
 
@@ -303,17 +243,15 @@ namespace FairwayDrivingRange.Test
             {
                 new BookingDto
                 {
-                    id = 1,
-                    start = DateTime.Today,
-                    end = DateTime.Today,
-                    customerId = 1
+                    Id = 1,
+                    Start = DateTime.Today,
+                    End = DateTime.Today
                 },
                 new BookingDto
                 {
-                    id = 2,
-                    start = DateTime.Today,
-                    end = DateTime.Today,
-                    customerId = 2
+                    Id = 2,
+                    Start = DateTime.Today,
+                    End = DateTime.Today
                 }
             };
 
@@ -321,13 +259,13 @@ namespace FairwayDrivingRange.Test
             {
                 new Booking
                 {
-                    DateBooked = DateTime.Today,
+                    Start = DateTime.Today,
                     End = DateTime.Today,
                     CustomerId = 1
                 },
                 new Booking
                 {
-                    DateBooked = DateTime.Today,
+                    Start = DateTime.Today,
                     End = DateTime.Today,
                     CustomerId = 2
                 }
@@ -359,15 +297,13 @@ namespace FairwayDrivingRange.Test
             var actual = bookingFacade.GetBookings();
 
             //Assert
-            Assert.Equal(expected.Value.ToList()[0].id, actual.Value.ToList()[0].id);
-            Assert.Equal(expected.Value.ToList()[0].end, actual.Value.ToList()[0].end);
-            Assert.Equal(expected.Value.ToList()[0].start, actual.Value.ToList()[0].start);
-            Assert.Equal(expected.Value.ToList()[0].customerId, actual.Value.ToList()[0].customerId);
+            Assert.Equal(expected.Value.ToList()[0].Id, actual.Value.ToList()[0].Id);
+            Assert.Equal(expected.Value.ToList()[0].End, actual.Value.ToList()[0].End);
+            Assert.Equal(expected.Value.ToList()[0].Start, actual.Value.ToList()[0].Start);
 
-            Assert.Equal(expected.Value.ToList()[1].id, actual.Value.ToList()[1].id);
-            Assert.Equal(expected.Value.ToList()[1].start, actual.Value.ToList()[1].start);
-            Assert.Equal(expected.Value.ToList()[1].end, actual.Value.ToList()[1].end);
-            Assert.Equal(expected.Value.ToList()[1].customerId, actual.Value.ToList()[1].customerId);
+            Assert.Equal(expected.Value.ToList()[1].Id, actual.Value.ToList()[1].Id);
+            Assert.Equal(expected.Value.ToList()[1].Start, actual.Value.ToList()[1].Start);
+            Assert.Equal(expected.Value.ToList()[1].End, actual.Value.ToList()[1].End);
         }
 
         [Fact]
@@ -415,17 +351,16 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var booking = new Booking
             {
-                DateBooked = DateTime.Today,
+                Start = DateTime.Today,
                 End = DateTime.Today,
                 CustomerId = 1
             };
 
             var bookingDto = new BookingDto
             {
-                id = 1,
-                start = DateTime.Today,
-                end = DateTime.Today,
-                customerId = 1
+                Id = 1,
+                Start = DateTime.Today,
+                End = DateTime.Today
             };
 
             var customer = new CustomerInformation
@@ -448,10 +383,9 @@ namespace FairwayDrivingRange.Test
             var actual = bookingFacade.GetBookingById(id);
 
             //Assert
-            Assert.Equal(expected.Value.id, actual.Value.id);
-            Assert.Equal(expected.Value.end, actual.Value.end);
-            Assert.Equal(expected.Value.start, actual.Value.start);
-            Assert.Equal(expected.Value.customerId, actual.Value.customerId);
+            Assert.Equal(expected.Value.Id, actual.Value.Id);
+            Assert.Equal(expected.Value.End, actual.Value.End);
+            Assert.Equal(expected.Value.Start, actual.Value.Start);
         }
 
         [Fact]
@@ -505,13 +439,13 @@ namespace FairwayDrivingRange.Test
             {
                 new Booking
                 {
-                    DateBooked = DateTime.Today,
+                    Start = DateTime.Today,
                     End = DateTime.Today,
                     CustomerId = 1
                 },
                 new Booking
                 {
-                    DateBooked = DateTime.Today,
+                    Start = DateTime.Today,
                     End = DateTime.Today,
                     CustomerId = 2
                 }
@@ -597,11 +531,11 @@ namespace FairwayDrivingRange.Test
         public void UpdateBooking_Fails_InvalidDtoCustomerId()
         {
             //Arrange
-            var bookingDto = new AddBookingDto
+            var bookingDto = new UpdateBookingDto
             {
-                customerId = 0,
-                start = DateTime.Now,
-                end = DateTime.Today,
+                CustomerId = 0,
+                Start = DateTime.Now,
+                End = DateTime.Today,
             };
 
             var customer = new CustomerInformation
@@ -612,7 +546,7 @@ namespace FairwayDrivingRange.Test
 
             var booking = new Booking
             {
-                DateBooked = DateTime.Today,
+                Start = DateTime.Today,
                 End = DateTime.Today,
                 CustomerId = 1
             };
@@ -635,8 +569,8 @@ namespace FairwayDrivingRange.Test
         //[Fact]
         //public void UpdateBooking_Fails_InvalidDtoLane()
         //{
-        //    //Arrange
-        //    var bookingDto = new AddBookingDto
+        //    Arrange
+        //    var bookingDto = new UpdateBookingDto
         //    {
         //        customerId = 1,
         //        start = DateTime.Now,
@@ -665,10 +599,10 @@ namespace FairwayDrivingRange.Test
 
         //    var expected = ApiResponseDto<bool>.Error("Invalid Booking Object");
 
-        //    //Act
+        //    Act
         //    var actual = bookingFacade.UpdateBooking(1, bookingDto);
 
-        //    //Assert
+        //    Assert
         //    Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
         //}
 
@@ -676,24 +610,24 @@ namespace FairwayDrivingRange.Test
         public void UpdateCustomer_Succeeds_CustomerUpdated()
         {
             //Arrange
-            var bookingDto = new AddBookingDto
+            var bookingDto = new UpdateBookingDto
             {
-                customerId = 2,
-                start = DateTime.Now,
-                end = DateTime.Today,
+                Start = DateTime.Now,
+                End = DateTime.Today,
+                CustomerId = 2
             };
 
             var bookings = new List<Booking>
             {
                 new Booking
                 {
-                    DateBooked = DateTime.Today,
+                    Start = DateTime.Today,
                     End = DateTime.Today,
                     CustomerId = 1
                 },
                 new Booking
                 {
-                    DateBooked = DateTime.Today,
+                    Start = DateTime.Today,
                     End = DateTime.Today,
                     CustomerId = 2
                 }
@@ -727,9 +661,8 @@ namespace FairwayDrivingRange.Test
             var booking = bookingFacade.GetBookingById(1);
 
             //Assert
-            Assert.Equal(booking.Value.start, bookingDto.start);
-            Assert.Equal(booking.Value.end, bookingDto.end);
-            Assert.Equal(booking.Value.customerId, bookingDto.customerId);
+            Assert.Equal(booking.Value.Start, bookingDto.Start);
+            Assert.Equal(booking.Value.End, bookingDto.End);
             Assert.Equal(expected.Value, actual.Value);
         }
     }

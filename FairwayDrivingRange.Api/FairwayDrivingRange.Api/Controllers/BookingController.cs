@@ -48,7 +48,7 @@ namespace FairwayDrivingRange.Api.Controllers
         }
 
         [HttpPut("{bookingId}")]
-        public ActionResult<ApiResponseDto<bool>> UpdateBooking(int bookingId, AddBookingDto bookingDto)
+        public ActionResult<ApiResponseDto<bool>> UpdateBooking(int bookingId, UpdateBookingDto bookingDto)
         {
             var result = bookingFacade.UpdateBooking(bookingId, bookingDto);
 

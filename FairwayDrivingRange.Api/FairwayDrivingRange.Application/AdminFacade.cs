@@ -36,20 +36,20 @@ namespace FairwayDrivingRange.Application
                 return ApiResponseDto<string>.Error("Insert Employee Details");
             }
 
-            if (string.IsNullOrWhiteSpace(adminDto.adminName) ||
-                string.IsNullOrWhiteSpace(adminDto.password))
+            if (string.IsNullOrWhiteSpace(adminDto.AdminName) ||
+                string.IsNullOrWhiteSpace(adminDto.Password))
             {
                 return ApiResponseDto<string>.Error("Insert Valid Details");
             }
 
-            var admin = adminRepository.GetAdminByName(adminDto.adminName);
+            var admin = adminRepository.GetAdminByName(adminDto.AdminName);
 
             if (admin == null)
             {
                 return ApiResponseDto<string>.Error("Invalid Username Or Password");
             }
 
-            if (!BCrypt.Net.BCrypt.Verify(adminDto.password, admin.Password))
+            if (!BCrypt.Net.BCrypt.Verify(adminDto.Password, admin.Password))
             {
                 return ApiResponseDto<string>.Error("Invalid Username Or Password");
             }
@@ -66,15 +66,15 @@ namespace FairwayDrivingRange.Application
                 return ApiResponseDto<bool>.Error("Insert Employee Details");
             }
 
-            if (string.IsNullOrWhiteSpace(adminDto.adminName) ||
-                string.IsNullOrWhiteSpace(adminDto.password))
+            if (string.IsNullOrWhiteSpace(adminDto.AdminName) ||
+                string.IsNullOrWhiteSpace(adminDto.Password))
             {
                 return ApiResponseDto<bool>.Error("Insert Valid Details");
             }
 
-            var passwordHash = BCrypt.Net.BCrypt.HashPassword(adminDto.password);
+            var passwordHash = BCrypt.Net.BCrypt.HashPassword(adminDto.Password);
 
-            adminDto.password = passwordHash;
+            adminDto.Password = passwordHash;
 
             var admin = mapper.Map<Admin>(adminDto);
 

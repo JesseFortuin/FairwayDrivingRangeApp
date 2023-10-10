@@ -2,12 +2,12 @@
 {
     public class AddTransactionDto
     {
-        public int bookingId { get; set; }
+        public int BookingId { get; set; }
 
-        public double? clubPrice { get; set; }
+        public double? ClubPrice { get; set; }
 
-        public double bookingPrice { get; set; }
+        public double BookingPrice { get; set; }
 
-        public double total { get; set; }
+        public double Total { get; set; }
     }
 }

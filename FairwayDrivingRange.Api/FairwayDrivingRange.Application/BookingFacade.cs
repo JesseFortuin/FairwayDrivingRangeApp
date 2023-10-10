@@ -8,17 +8,14 @@ namespace FairwayDrivingRange.Application
     public class BookingFacade : IBookingFacade
     {
         private readonly IRepository<Booking> bookingRepository;
-        private readonly IRepository<CustomerInformation> customerRepository;
         private readonly ICustomerRepository iCustomerRepository;
         private readonly IMapper mapper;
 
         public BookingFacade(IRepository<Booking> repository,
-                            IRepository<CustomerInformation> customerRepository,
                             ICustomerRepository iCustomerRepository,
                             IMapper mapper)
         {
             this.bookingRepository = repository;
-            this.customerRepository = customerRepository;
             this.iCustomerRepository = iCustomerRepository;
             this.mapper = mapper;
         }
@@ -31,18 +28,20 @@ namespace FairwayDrivingRange.Application
             //    return ApiResponseDto<bool>.Error("Invalid Booking Object");
             //}
 
-            if (string.IsNullOrWhiteSpace(bookingDto.name) ||
-                string.IsNullOrWhiteSpace(bookingDto.email))
+            if (string.IsNullOrWhiteSpace(bookingDto.Name) ||
+                string.IsNullOrWhiteSpace(bookingDto.Email))
             {
                 return ApiResponseDto<bool>.Error("Invalid Customer Object");
             }
 
-            var customer = new CustomerInformation
-            {
-                Name = bookingDto.name,
-                Email = bookingDto.email,
-                Phone = bookingDto.phone
-            };
+            //var customer = new CustomerInformation
+            //{
+            //    Name = bookingDto.name,
+            //    Email = bookingDto.email,
+            //    Phone = bookingDto.phone
+            //};
+
+            var customer = mapper.Map<CustomerInformation>(bookingDto);
 
             //var customerResult = customerRepository.Create(customer);
 
@@ -57,19 +56,17 @@ namespace FairwayDrivingRange.Application
 
             var result = bookingRepository.Add(booking);
 
-
-
             return new ApiResponseDto<bool>(result);
         }
 
         public ApiResponseDto<bool> AddBookingEmail(AddBookingEmailDto bookingDto)
         {
-            if (string.IsNullOrWhiteSpace(bookingDto.email))
+            if (string.IsNullOrWhiteSpace(bookingDto.Email))
             {
                 return ApiResponseDto<bool>.Error("Invalid Email");
             }
 
-            var customer = iCustomerRepository.GetCustomerByEmail(bookingDto.email);
+            var customer = iCustomerRepository.GetCustomerByEmail(bookingDto.Email);
 
             if (customer == null)
             {
@@ -136,7 +133,7 @@ namespace FairwayDrivingRange.Application
             return new ApiResponseDto<IEnumerable<BookingDto>>(bookingDtos);
         }
 
-        public ApiResponseDto<bool> UpdateBooking(int bookingId, AddBookingDto bookingDto)
+        public ApiResponseDto<bool> UpdateBooking(int bookingId, UpdateBookingDto bookingDto)
         {
             if (bookingId <= 0)
             {
@@ -157,17 +154,17 @@ namespace FairwayDrivingRange.Application
             //    return ApiResponseDto<bool>.Error("Invalid Booking Object");
             //}
 
-            if (bookingDto.customerId <= 0)
+            if (bookingDto.CustomerId <= 0)
             {
                 return ApiResponseDto<bool>.Error("Invalid Booking Object");
             }
 
-            if (bookingDto.customerId <= 0)
+            if (bookingDto.CustomerId <= 0)
             {
                 return ApiResponseDto<bool>.Error("Invalid Customer Id");
             }
 
-            var customer = bookingRepository.GetById(bookingDto.customerId);
+            var customer = bookingRepository.GetById(bookingDto.CustomerId);
 
             if (customer == null ||
                 customer.Customer == null)

@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FairwayDrivingRange.Shared.Dtos
+﻿namespace FairwayDrivingRange.Shared.Dtos
 {
     public class BookingDto
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public DateTime start { get; set; }
+        public DateTime Start { get; set; }
 
-        public DateTime end { get; set; }
-
-        public int customerId { get; set; }
+        public DateTime End { get; set; }
     }
 }

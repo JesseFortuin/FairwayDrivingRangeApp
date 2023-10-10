@@ -22,7 +22,7 @@ namespace FairwayDrivingRange.Application
 
         public ApiResponseDto<bool> AddGolfClub(AddGolfClubDto golfClubDto)
         {
-            if (golfClubDto.serialNumber <= 0)
+            if (golfClubDto.SerialNumber <= 0)
             {
                 return ApiResponseDto<bool>.Error("Invalid Serial Number");
             };
@@ -95,21 +95,21 @@ namespace FairwayDrivingRange.Application
                 return ApiResponseDto<bool>.Error("Golf Club Not Found");
             }
 
-            if (golfClubDto.serialNumber <= 0)
+            if (golfClubDto.SerialNumber <= 0)
             {
                 return ApiResponseDto<bool>.Error("Invalid Serial Number");
             };
 
-            if (golfClubDto.bookingId <= 0)
+            if (golfClubDto.BookingId <= 0)
             {
                 return ApiResponseDto<bool>.Error("Invalid Booking Id");
             }
 
             var booking = new Booking();
 
-            if (golfClubDto.bookingId != null)
+            if (golfClubDto.BookingId != null)
             {
-                booking = bookingRepository.GetById(golfClubDto.bookingId.GetValueOrDefault());
+                booking = bookingRepository.GetById(golfClubDto.BookingId.GetValueOrDefault());
 
                 if (booking == null ||
                     booking.Id == 0)

@@ -22,26 +22,26 @@ namespace FairwayDrivingRange.Application
 
         public ApiResponseDto<bool> AddTransaction(AddTransactionDto transactionDto)
         {
-            if (transactionDto.bookingId <= 0)
+            if (transactionDto.BookingId <= 0)
             {
                 return ApiResponseDto<bool>.Error("Invalid Booking Id");
             }
 
-            var booking = bookingRepository.GetById(transactionDto.bookingId);
+            var booking = bookingRepository.GetById(transactionDto.BookingId);
 
             if (booking == null)
             {
                 return ApiResponseDto<bool>.Error("Booking Not Found");
             }
 
-            if (transactionDto.bookingPrice <= 0 ||
-                transactionDto.total <= 0)
+            if (transactionDto.BookingPrice <= 0 ||
+                transactionDto.Total <= 0)
             {
                 return ApiResponseDto<bool>.Error("Booking Price And Total Can Not Be 0");
             }
 
-            if (transactionDto.clubPrice + transactionDto.bookingPrice 
-                != transactionDto.total)
+            if (transactionDto.ClubPrice + transactionDto.BookingPrice 
+                != transactionDto.Total)
             {
                 return ApiResponseDto<bool>.Error("Total Price Does Not Add Up");
             }
@@ -102,26 +102,26 @@ namespace FairwayDrivingRange.Application
 
         public ApiResponseDto<bool> UpdateTransaction(int transactionId, AddTransactionDto transactionDto)
         {
-            if (transactionDto.bookingId <= 0)
+            if (transactionDto.BookingId <= 0)
             {
                 return ApiResponseDto<bool>.Error("Invalid Booking Id");
             }
 
-            var booking = bookingRepository.GetById(transactionDto.bookingId);
+            var booking = bookingRepository.GetById(transactionDto.BookingId);
 
             if (booking == null)
             {
                 return ApiResponseDto<bool>.Error("Booking Not Found");
             }
 
-            if (transactionDto.bookingPrice <= 0 ||
-                transactionDto.total <= 0)
+            if (transactionDto.BookingPrice <= 0 ||
+                transactionDto.Total <= 0)
             {
                 return ApiResponseDto<bool>.Error("Booking Price And Total Can Not Be 0");
             }
 
-            if (transactionDto.clubPrice + transactionDto.bookingPrice
-                != transactionDto.total)
+            if (transactionDto.ClubPrice + transactionDto.BookingPrice
+                != transactionDto.Total)
             {
                 return ApiResponseDto<bool>.Error("Total Price Does Not Add Up");
             }

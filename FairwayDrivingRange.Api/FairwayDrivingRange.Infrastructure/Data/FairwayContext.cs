@@ -1,10 +1,5 @@
 ﻿using FairwayDrivingRange.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FairwayDrivingRange.Infrastructure.Data
 {
@@ -53,7 +48,7 @@ namespace FairwayDrivingRange.Infrastructure.Data
 * |            |   Zaurak                      | 2023-10-03 - added end column and removed lane column in Booking table
 * |            |   Zaniah                      | 2023-10-06 - Linked transaction table to booking 
 * |            |   Yildun                      | 2023-10-06 - Made Customer optional on booking table
-* |            |   Yed_Prior                   | 
+* |            |   Yed_Prior                   | 2023-10-10 - Booking Table column DateBooked changed to Start
 * |            |   Yed_Posterior               | 
 * |            |   Wezen                       | 
 * |            |   Wazn                        | 

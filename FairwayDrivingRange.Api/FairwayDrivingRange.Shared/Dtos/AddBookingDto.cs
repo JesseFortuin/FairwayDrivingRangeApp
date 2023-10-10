@@ -2,16 +2,14 @@
 {
     public class AddBookingDto
     {
-        public DateTime start { get; set; }
+        public DateTime Start { get; set; }
 
-        public DateTime end { get; set; }
+        public DateTime End { get; set; }
 
-        public int customerId { get; set; }
+        public string Name { get; set; }
 
-        public string name { get; set; }
+        public string Email { get; set; }
 
-        public string email { get; set; }
-
-        public long phone { get; set; }
+        public long Phone { get; set; }
     }
 }

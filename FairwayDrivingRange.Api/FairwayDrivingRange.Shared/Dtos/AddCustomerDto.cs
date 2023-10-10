@@ -2,10 +2,10 @@
 {
     public class AddCustomerDto
     {
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        public string email { get; set; }
+        public string Email { get; set; }
 
-        public long phone { get; set; }
+        public long Phone { get; set; }
     }
 }

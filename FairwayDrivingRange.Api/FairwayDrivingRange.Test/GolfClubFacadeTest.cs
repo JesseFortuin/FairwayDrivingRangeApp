@@ -16,9 +16,9 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var golfClubDto = new AddGolfClubDto
             {
-                serialNumber = 0,
+                SerialNumber = 0,
 
-                isAvailable = false,
+                IsAvailable = false,
             };
 
             var expected = ApiResponseDto<bool>.Error("Invalid Serial Number");
@@ -36,9 +36,9 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var golfClubDto = new AddGolfClubDto
             {
-                serialNumber = 5550000,
+                SerialNumber = 5550000,
 
-                isAvailable = false,
+                IsAvailable = false,
             };
 
             var expected = new ApiResponseDto<bool>(true);
@@ -149,20 +149,20 @@ namespace FairwayDrivingRange.Test
             {
                 new GolfClubDto
                 {
-                    id = 1,
+                    Id = 1,
 
-                    serialNumber = 1220000,
+                    SerialNumber = 1220000,
 
-                    isAvailable = false
+                    IsAvailable = false
                 },
 
                 new GolfClubDto
                 {
-                    id = 2,
+                    Id = 2,
 
-                    serialNumber = 1250000,
+                    SerialNumber = 1250000,
 
-                    isAvailable = true
+                    IsAvailable = true
                 }
             };
 
@@ -173,9 +173,9 @@ namespace FairwayDrivingRange.Test
 
             //Assert
 
-            Assert.Equal(expected.Value.ToList()[0].id, actual.Value.ToList()[0].id);
-            Assert.Equal(expected.Value.ToList()[0].serialNumber, actual.Value.ToList()[0].serialNumber);
-            Assert.Equal(expected.Value.ToList()[0].isAvailable, actual.Value.ToList()[0].isAvailable);
+            Assert.Equal(expected.Value.ToList()[0].Id, actual.Value.ToList()[0].Id);
+            Assert.Equal(expected.Value.ToList()[0].SerialNumber, actual.Value.ToList()[0].SerialNumber);
+            Assert.Equal(expected.Value.ToList()[0].IsAvailable, actual.Value.ToList()[0].IsAvailable);
         }
 
         [Fact]
@@ -236,11 +236,11 @@ namespace FairwayDrivingRange.Test
 
             var golfClubDto = new GolfClubDto
             {
-                id = 1,
+                Id = 1,
 
-                serialNumber = 5550000,
+                SerialNumber = 5550000,
 
-                isAvailable = false,
+                IsAvailable = false,
             };
 
             context.GolfClubs.Add(golfClub);
@@ -255,9 +255,9 @@ namespace FairwayDrivingRange.Test
             var actual = golfClubFacade.GetGolfClubById(id);
 
             //Assert
-            Assert.Equal(expected.Value.id, actual.Value.id);
-            Assert.Equal(expected.Value.serialNumber, actual.Value.serialNumber);
-            Assert.Equal(expected.Value.isAvailable, actual.Value.isAvailable);
+            Assert.Equal(expected.Value.Id, actual.Value.Id);
+            Assert.Equal(expected.Value.SerialNumber, actual.Value.SerialNumber);
+            Assert.Equal(expected.Value.IsAvailable, actual.Value.IsAvailable);
         }
 
         [Fact]
@@ -296,8 +296,8 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var golfClubDto = new UpdateGolfClubDto
             {
-                serialNumber = -1,
-                isAvailable = false,
+                SerialNumber = -1,
+                IsAvailable = false,
             };
             
             var golfClub = new GolfClub
@@ -328,9 +328,9 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var golfClubDto = new UpdateGolfClubDto
             {
-                bookingId = -1,
-                serialNumber = 0005463,
-                isAvailable = true
+                BookingId = -1,
+                SerialNumber = 0005463,
+                IsAvailable = true
             };
 
             var golfClub = new GolfClub
@@ -361,9 +361,9 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var golfClubDto = new UpdateGolfClubDto
             {
-                bookingId = 1,
-                serialNumber = 0005463,
-                isAvailable = true
+                BookingId = 1,
+                SerialNumber = 0005463,
+                IsAvailable = true
             };
 
             var golfClub = new GolfClub
@@ -394,7 +394,7 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var booking = new Booking
             {
-                DateBooked = DateTime.Today,
+                Start = DateTime.Today,
                 //Lane = 4,
                 CustomerId = 1,
             };
@@ -407,9 +407,9 @@ namespace FairwayDrivingRange.Test
 
             var golfClubDto = new UpdateGolfClubDto
             {
-                bookingId = 1,
-                serialNumber = 0005463,
-                isAvailable = true
+                BookingId = 1,
+                SerialNumber = 0005463,
+                IsAvailable = true
             };
 
             var golfClub = new GolfClub
@@ -437,9 +437,9 @@ namespace FairwayDrivingRange.Test
             var updatedClub = golfClubFacade.GetGolfClubById(id);
 
             //Assert
-            Assert.Equal(updatedClub.Value.bookingId, golfClubDto.bookingId);
-            Assert.Equal(updatedClub.Value.serialNumber, golfClubDto.serialNumber);
-            Assert.Equal(updatedClub.Value.isAvailable, golfClubDto.isAvailable);
+            Assert.Equal(updatedClub.Value.BookingId, golfClubDto.BookingId);
+            Assert.Equal(updatedClub.Value.SerialNumber, golfClubDto.SerialNumber);
+            Assert.Equal(updatedClub.Value.IsAvailable, golfClubDto.IsAvailable);
             Assert.Equal(expected.Value, actual.Value);
         }
     }

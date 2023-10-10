@@ -11,10 +11,10 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                bookingId = -1,
-                clubPrice = 0,
-                bookingPrice = 120,
-                total = 120
+                BookingId = -1,
+                ClubPrice = 0,
+                BookingPrice = 120,
+                Total = 120
             };
 
             var expected = ApiResponseDto<bool>.Error("Invalid Booking Id");
@@ -32,10 +32,10 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                bookingId = 0,
-                clubPrice = 0,
-                bookingPrice = 120,
-                total = 120
+                BookingId = 0,
+                ClubPrice = 0,
+                BookingPrice = 120,
+                Total = 120
             };
 
             var expected = ApiResponseDto<bool>.Error("Invalid Booking Id");
@@ -53,15 +53,15 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                bookingId = 1,
-                clubPrice = 0,
-                bookingPrice = 120,
-                total = 0
+                BookingId = 1,
+                ClubPrice = 0,
+                BookingPrice = 120,
+                Total = 0
             };
 
             var booking = new Booking
             {
-                DateBooked = DateTime.Now,
+                Start = DateTime.Now,
                 End = DateTime.Now.AddHours(1),
             };
 
@@ -84,15 +84,15 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                bookingId = 1,
-                clubPrice = 65,
-                bookingPrice = 0,
-                total = 120
+                BookingId = 1,
+                ClubPrice = 65,
+                BookingPrice = 0,
+                Total = 120
             };
 
             var booking = new Booking
             {
-                DateBooked = DateTime.Now, 
+                Start = DateTime.Now, 
                 End = DateTime.Now.AddHours(1),
                 IsPaid = false
             };
@@ -116,15 +116,15 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                bookingId = 1,
-                clubPrice = 65,
-                bookingPrice = 80,
-                total = 120
+                BookingId = 1,
+                ClubPrice = 65,
+                BookingPrice = 80,
+                Total = 120
             };
 
             var booking = new Booking
             {
-                DateBooked = DateTime.Now,
+                Start = DateTime.Now,
                 End = DateTime.Now.AddHours(1),
                 IsPaid = false
             };
@@ -148,10 +148,10 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                bookingId = 1,
-                clubPrice = 0,
-                bookingPrice = 120,
-                total = 120
+                BookingId = 1,
+                ClubPrice = 0,
+                BookingPrice = 120,
+                Total = 120
             };
 
             var expected = ApiResponseDto<bool>.Error("Booking Not Found");
@@ -169,15 +169,15 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                bookingId = 1,
-                clubPrice = 0,
-                bookingPrice = 120,
-                total = 120
+                BookingId = 1,
+                ClubPrice = 0,
+                BookingPrice = 120,
+                Total = 120
             };
 
             var booking = new Booking
             {
-                DateBooked = DateTime.Now,
+                Start = DateTime.Now,
                 End = DateTime.Now.AddHours(1),
                 IsPaid = false
             };
@@ -202,19 +202,19 @@ namespace FairwayDrivingRange.Test
             {
                 new TransactionDto
                 {
-                    id = 1,
-                    clubPrice = 0,
-                    bookingPrice = 120,
-                    total = 120,
-                    bookingId = 1,
+                    Id = 1,
+                    ClubPrice = 0,
+                    BookingPrice = 120,
+                    Total = 120,
+                    BookingId = 1,
                 },
                 new TransactionDto
                 {
-                    id = 2,
-                    bookingId = 2,
-                    clubPrice = 50,
-                    bookingPrice = 120,
-                    total = 170
+                    Id = 2,
+                    BookingId = 2,
+                    ClubPrice = 50,
+                    BookingPrice = 120,
+                    Total = 170
                 }
             };
 
@@ -240,13 +240,13 @@ namespace FairwayDrivingRange.Test
             {
                 new Booking
                 {
-                    DateBooked = DateTime.Now,
+                    Start = DateTime.Now,
                     End = DateTime.Now.AddHours(1),
                     IsPaid = false
                 },
                 new Booking
                 {
-                    DateBooked = DateTime.Now,
+                    Start = DateTime.Now,
                     End = DateTime.Now.AddHours(2),
                     IsPaid = false
                 }
@@ -264,17 +264,17 @@ namespace FairwayDrivingRange.Test
             var actual = transactionFacade.GetTransactions();
 
             //Assert
-            Assert.Equal(expected.Value.ToList()[0].id, actual.Value.ToList()[0].id);
-            Assert.Equal(expected.Value.ToList()[0].clubPrice, actual.Value.ToList()[0].clubPrice);
-            Assert.Equal(expected.Value.ToList()[0].bookingPrice, actual.Value.ToList()[0].bookingPrice);
-            Assert.Equal(expected.Value.ToList()[0].total, actual.Value.ToList()[0].total);
-            Assert.Equal(expected.Value.ToList()[0].bookingId, actual.Value.ToList()[0].bookingId);
+            Assert.Equal(expected.Value.ToList()[0].Id, actual.Value.ToList()[0].Id);
+            Assert.Equal(expected.Value.ToList()[0].ClubPrice, actual.Value.ToList()[0].ClubPrice);
+            Assert.Equal(expected.Value.ToList()[0].BookingPrice, actual.Value.ToList()[0].BookingPrice);
+            Assert.Equal(expected.Value.ToList()[0].Total, actual.Value.ToList()[0].Total);
+            Assert.Equal(expected.Value.ToList()[0].BookingId, actual.Value.ToList()[0].BookingId);
 
-            Assert.Equal(expected.Value.ToList()[1].id, actual.Value.ToList()[1].id);
-            Assert.Equal(expected.Value.ToList()[1].clubPrice, actual.Value.ToList()[1].clubPrice);
-            Assert.Equal(expected.Value.ToList()[1].bookingPrice, actual.Value.ToList()[1].bookingPrice);
-            Assert.Equal(expected.Value.ToList()[1].total, actual.Value.ToList()[1].total);
-            Assert.Equal(expected.Value.ToList()[1].bookingId, actual.Value.ToList()[1].bookingId);
+            Assert.Equal(expected.Value.ToList()[1].Id, actual.Value.ToList()[1].Id);
+            Assert.Equal(expected.Value.ToList()[1].ClubPrice, actual.Value.ToList()[1].ClubPrice);
+            Assert.Equal(expected.Value.ToList()[1].BookingPrice, actual.Value.ToList()[1].BookingPrice);
+            Assert.Equal(expected.Value.ToList()[1].Total, actual.Value.ToList()[1].Total);
+            Assert.Equal(expected.Value.ToList()[1].BookingId, actual.Value.ToList()[1].BookingId);
         }
 
         [Fact]
@@ -330,16 +330,16 @@ namespace FairwayDrivingRange.Test
 
             var transactionDto = new TransactionDto
             {
-                id = 1,
-                clubPrice = 0,
-                bookingPrice = 120,
-                total = 120,
-                bookingId = 1
+                Id = 1,
+                ClubPrice = 0,
+                BookingPrice = 120,
+                Total = 120,
+                BookingId = 1
             };
 
             var booking = new Booking
             {
-                DateBooked = DateTime.Now,
+                Start = DateTime.Now,
                 End = DateTime.Now.AddHours(1),
                 IsPaid = false
             };
@@ -358,11 +358,11 @@ namespace FairwayDrivingRange.Test
             var actual = transactionFacade.GetTransactionById(id);
 
             //Assert
-            Assert.Equal(expected.Value.id, actual.Value.id);
-            Assert.Equal(expected.Value.clubPrice, actual.Value.clubPrice);
-            Assert.Equal(expected.Value.bookingPrice, actual.Value.bookingPrice);
-            Assert.Equal(expected.Value.total, actual.Value.total);
-            Assert.Equal(expected.Value.bookingId, actual.Value.bookingId);
+            Assert.Equal(expected.Value.Id, actual.Value.Id);
+            Assert.Equal(expected.Value.ClubPrice, actual.Value.ClubPrice);
+            Assert.Equal(expected.Value.BookingPrice, actual.Value.BookingPrice);
+            Assert.Equal(expected.Value.Total, actual.Value.Total);
+            Assert.Equal(expected.Value.BookingId, actual.Value.BookingId);
         }
 
         [Fact]
@@ -434,13 +434,13 @@ namespace FairwayDrivingRange.Test
             {
                 new Booking
                 {
-                    DateBooked = DateTime.Now,
+                    Start = DateTime.Now,
                     End = DateTime.Now.AddHours(1),
                     IsPaid = false
                 },
                 new Booking
                 {
-                    DateBooked = DateTime.Now,
+                    Start = DateTime.Now,
                     End = DateTime.Now.AddHours(2),
                     IsPaid = false
                 }
@@ -475,15 +475,15 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                clubPrice = 0,
-                bookingPrice = 120,
-                total = 120,
-                bookingId = 1
+                ClubPrice = 0,
+                BookingPrice = 120,
+                Total = 120,
+                BookingId = 1
             };
 
             var booking = new Booking
             {
-                DateBooked = DateTime.Now,
+                Start = DateTime.Now,
                 End = DateTime.Now.AddHours(2),
                 IsPaid = false
             };
@@ -507,15 +507,15 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                clubPrice = 0,
-                bookingPrice = 120,
-                total = 120,
-                bookingId = 1
+                ClubPrice = 0,
+                BookingPrice = 120,
+                Total = 120,
+                BookingId = 1
             };
 
             var booking = new Booking
             {
-                DateBooked = DateTime.Now,
+                Start = DateTime.Now,
                 End = DateTime.Now.AddHours(2),
                 IsPaid = false
             };
@@ -539,15 +539,15 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                clubPrice = 0,
-                bookingPrice = 120,
-                total = 120,
-                bookingId = 1
+                ClubPrice = 0,
+                BookingPrice = 120,
+                Total = 120,
+                BookingId = 1
             };
 
             var booking = new Booking
             {
-                DateBooked = DateTime.Now,
+                Start = DateTime.Now,
                 End = DateTime.Now.AddHours(2),
                 IsPaid = false
             };
@@ -571,15 +571,15 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                clubPrice = 0,
-                bookingPrice = 120,
-                total = 120,
-                bookingId = 0
+                ClubPrice = 0,
+                BookingPrice = 120,
+                Total = 120,
+                BookingId = 0
             };
 
             var booking = new Booking
             {
-                DateBooked = DateTime.Now,
+                Start = DateTime.Now,
                 End = DateTime.Now.AddHours(2),
                 IsPaid = false
             };
@@ -613,15 +613,15 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                clubPrice = 5,
-                bookingPrice = 120,
-                total = 120,
-                bookingId = 1
+                ClubPrice = 5,
+                BookingPrice = 120,
+                Total = 120,
+                BookingId = 1
             };
 
             var booking = new Booking
             {
-                DateBooked = DateTime.Now,
+                Start = DateTime.Now,
                 End = DateTime.Now.AddHours(2),
                 IsPaid = false
             };
@@ -655,10 +655,10 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var transactionDto = new AddTransactionDto
             {
-                clubPrice = 5,
-                bookingPrice = 120,
-                total = 125,
-                bookingId = 2
+                ClubPrice = 5,
+                BookingPrice = 120,
+                Total = 125,
+                BookingId = 2
             };
 
             var transactions = new List<Transaction>
@@ -683,13 +683,13 @@ namespace FairwayDrivingRange.Test
             {
                 new Booking
                 {
-                    DateBooked = DateTime.Now,
+                    Start = DateTime.Now,
                     End = DateTime.Now.AddHours(1),
                     IsPaid = false
                 },
                 new Booking
                 {
-                    DateBooked = DateTime.Now,
+                    Start = DateTime.Now,
                     End = DateTime.Now.AddHours(2),
                     IsPaid = false
                 }
@@ -709,10 +709,10 @@ namespace FairwayDrivingRange.Test
             var transaction = transactionFacade.GetTransactionById(1);
 
             //Assert
-            Assert.Equal(transaction.Value.clubPrice, transactionDto.clubPrice);
-            Assert.Equal(transaction.Value.bookingPrice, transactionDto.bookingPrice);
-            Assert.Equal(transaction.Value.total, transactionDto.total);
-            Assert.Equal(transaction.Value.bookingId, transactionDto.bookingId);
+            Assert.Equal(transaction.Value.ClubPrice, transactionDto.ClubPrice);
+            Assert.Equal(transaction.Value.BookingPrice, transactionDto.BookingPrice);
+            Assert.Equal(transaction.Value.Total, transactionDto.Total);
+            Assert.Equal(transaction.Value.BookingId, transactionDto.BookingId);
             Assert.Equal(expected.Value, actual.Value);
         }
     }

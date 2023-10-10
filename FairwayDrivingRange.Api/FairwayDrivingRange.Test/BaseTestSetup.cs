@@ -69,7 +69,7 @@ namespace FairwayDrivingRange.Test
 
             bookingRepository = new Repository<Booking>(context);
 
-            bookingFacade = new BookingFacade(bookingRepository, customerInformationRepository, customerRepos, mapper);
+            bookingFacade = new BookingFacade(bookingRepository, customerRepos, mapper);
 
             golfClubRepository = new Repository<GolfClub>(context);
 

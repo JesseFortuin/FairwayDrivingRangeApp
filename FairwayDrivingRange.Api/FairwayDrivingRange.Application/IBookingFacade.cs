@@ -8,7 +8,7 @@ namespace FairwayDrivingRange.Application
 
         public ApiResponseDto<bool> AddBookingEmail(AddBookingEmailDto bookingDto);
 
-        public ApiResponseDto<bool> UpdateBooking(int bookingId, AddBookingDto bookingDto);
+        public ApiResponseDto<bool> UpdateBooking(int bookingId, UpdateBookingDto bookingDto);
 
         public ApiResponseDto<IEnumerable<BookingDto>> GetBookings();
 

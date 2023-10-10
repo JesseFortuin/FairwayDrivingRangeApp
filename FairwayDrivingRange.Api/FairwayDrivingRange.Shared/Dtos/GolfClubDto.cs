@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FairwayDrivingRange.Shared.Dtos
+﻿namespace FairwayDrivingRange.Shared.Dtos
 {
     public class GolfClubDto
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public int serialNumber { get; set; }
+        public int SerialNumber { get; set; }
 
-        public int? bookingId { get; set; }
+        public int? BookingId { get; set; }
 
-        public bool isAvailable { get; set; }
+        public bool IsAvailable { get; set; }
     }
 }

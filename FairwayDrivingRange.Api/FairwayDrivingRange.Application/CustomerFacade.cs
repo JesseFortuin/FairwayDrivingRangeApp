@@ -23,8 +23,8 @@ namespace FairwayDrivingRange.Application
         public ApiResponseDto<bool> AddCustomer(AddCustomerDto customerDto) 
         { 
             if (customerDto == null || 
-                string.IsNullOrWhiteSpace(customerDto.name) ||
-                string.IsNullOrWhiteSpace(customerDto.email))
+                string.IsNullOrWhiteSpace(customerDto.Name) ||
+                string.IsNullOrWhiteSpace(customerDto.Email))
             {
                 return ApiResponseDto<bool>.Error("Invalid Customer Object");
             }
@@ -117,8 +117,8 @@ namespace FairwayDrivingRange.Application
             }
 
             if (customerDto == null ||
-                string.IsNullOrWhiteSpace(customerDto.name) ||
-                string.IsNullOrWhiteSpace(customerDto.email))
+                string.IsNullOrWhiteSpace(customerDto.Name) ||
+                string.IsNullOrWhiteSpace(customerDto.Email))
             {
                 return ApiResponseDto<bool>.Error("Invalid Customer Object");
             }
