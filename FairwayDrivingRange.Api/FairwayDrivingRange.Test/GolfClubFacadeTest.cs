@@ -1,10 +1,5 @@
 ﻿using FairwayDrivingRange.Domain.Entities;
 using FairwayDrivingRange.Shared.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FairwayDrivingRange.Test
 {
@@ -16,7 +11,7 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var golfClubDto = new AddGolfClubDto
             {
-                SerialNumber = 0,
+                SerialNumber = "",
 
                 IsAvailable = false,
             };
@@ -36,7 +31,7 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var golfClubDto = new AddGolfClubDto
             {
-                SerialNumber = 5550000,
+                SerialNumber = "5550000",
 
                 IsAvailable = false,
             };
@@ -87,19 +82,19 @@ namespace FairwayDrivingRange.Test
             var golfClubId = 1;
 
             var golfClubCount = 1;
-            
+
             var golfClubs = new List<GolfClub>
             {
                 new GolfClub
                 {
-                    SerialNumber = 1220000,
+                    SerialNumber = "1220000",
 
                     IsAvailable = false
                 },
 
                 new GolfClub
                 {
-                    SerialNumber = 1250000,
+                    SerialNumber = "1250000",
 
                     IsAvailable = true
                 }
@@ -128,14 +123,14 @@ namespace FairwayDrivingRange.Test
             {
                 new GolfClub
                 {
-                    SerialNumber = 1220000,
+                    SerialNumber = "1220000",
 
                     IsAvailable = false
                 },
 
                 new GolfClub
                 {
-                    SerialNumber = 1250000,
+                    SerialNumber = "1250000",
 
                     IsAvailable = true
                 }
@@ -151,7 +146,7 @@ namespace FairwayDrivingRange.Test
                 {
                     Id = 1,
 
-                    SerialNumber = 1220000,
+                    SerialNumber = "1220000",
 
                     IsAvailable = false
                 },
@@ -160,7 +155,7 @@ namespace FairwayDrivingRange.Test
                 {
                     Id = 2,
 
-                    SerialNumber = 1250000,
+                    SerialNumber = "1250000",
 
                     IsAvailable = true
                 }
@@ -229,7 +224,7 @@ namespace FairwayDrivingRange.Test
             //Arrange 
             var golfClub = new GolfClub
             {
-                SerialNumber = 5550000,
+                SerialNumber = "5550000",
 
                 IsAvailable = false,
             };
@@ -238,7 +233,7 @@ namespace FairwayDrivingRange.Test
             {
                 Id = 1,
 
-                SerialNumber = 5550000,
+                SerialNumber = "5550000",
 
                 IsAvailable = false,
             };
@@ -296,13 +291,13 @@ namespace FairwayDrivingRange.Test
             //Arrange
             var golfClubDto = new UpdateGolfClubDto
             {
-                SerialNumber = -1,
+                SerialNumber = "  ",
                 IsAvailable = false,
             };
-            
+
             var golfClub = new GolfClub
             {
-                SerialNumber = 5550000,
+                SerialNumber = "5550000",
 
                 IsAvailable = false,
             };
@@ -329,13 +324,13 @@ namespace FairwayDrivingRange.Test
             var golfClubDto = new UpdateGolfClubDto
             {
                 BookingId = -1,
-                SerialNumber = 0005463,
+                SerialNumber = "0005463",
                 IsAvailable = true
             };
 
             var golfClub = new GolfClub
             {
-                SerialNumber = 5550000,
+                SerialNumber = "5550000",
 
                 IsAvailable = false
             };
@@ -362,13 +357,13 @@ namespace FairwayDrivingRange.Test
             var golfClubDto = new UpdateGolfClubDto
             {
                 BookingId = 1,
-                SerialNumber = 0005463,
+                SerialNumber = "0005463",
                 IsAvailable = true
             };
 
             var golfClub = new GolfClub
             {
-                SerialNumber = 5550000,
+                SerialNumber = "5550000",
 
                 IsAvailable = false
             };
@@ -408,13 +403,13 @@ namespace FairwayDrivingRange.Test
             var golfClubDto = new UpdateGolfClubDto
             {
                 BookingId = 1,
-                SerialNumber = 0005463,
+                SerialNumber = "0005463",
                 IsAvailable = true
             };
 
             var golfClub = new GolfClub
             {
-                SerialNumber = 5550000,
+                SerialNumber = "5550000",
 
                 IsAvailable = false
             };

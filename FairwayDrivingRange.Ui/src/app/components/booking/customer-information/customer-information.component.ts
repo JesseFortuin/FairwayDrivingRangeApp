@@ -39,7 +39,6 @@ export class CustomerInformationComponent {
 
     this.infoService.makeBooking(this.bookingObj).subscribe((result: IApiResponse) =>{
       if (result.isSuccess){
-        // sessionStorage.setItem('customer',this.customerObj);
         this.router.navigate(['confirmation'])
       }
 

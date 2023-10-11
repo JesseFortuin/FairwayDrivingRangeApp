@@ -22,7 +22,7 @@ namespace FairwayDrivingRange.Application
 
         public ApiResponseDto<bool> AddGolfClub(AddGolfClubDto golfClubDto)
         {
-            if (golfClubDto.SerialNumber <= 0)
+            if (string.IsNullOrWhiteSpace(golfClubDto.SerialNumber))
             {
                 return ApiResponseDto<bool>.Error("Invalid Serial Number");
             };
@@ -95,7 +95,7 @@ namespace FairwayDrivingRange.Application
                 return ApiResponseDto<bool>.Error("Golf Club Not Found");
             }
 
-            if (golfClubDto.SerialNumber <= 0)
+            if (string.IsNullOrWhiteSpace(golfClubDto.SerialNumber))
             {
                 return ApiResponseDto<bool>.Error("Invalid Serial Number");
             };

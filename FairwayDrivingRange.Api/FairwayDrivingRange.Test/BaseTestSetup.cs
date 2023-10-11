@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using FairwayDrivingRange.Application;
+using FairwayDrivingRange.Application.Services;
 using FairwayDrivingRange.Domain.Entities;
 using FairwayDrivingRange.Infrastructure;
 using FairwayDrivingRange.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 /*
  TODO 
@@ -14,13 +16,7 @@ namespace FairwayDrivingRange.Test
 {
     public class BaseTestSetup
     {
-        public IRepository<Admin> adminRepository;
-
-        public IAdminRepository adminRepos;
-
         public ICustomerRepository customerRepos;
-
-        public IAdminFacade adminFacade;
 
         public IRepository<CustomerInformation> customerInformationRepository;
 
@@ -29,6 +25,14 @@ namespace FairwayDrivingRange.Test
         public IRepository<Booking> bookingRepository;
 
         public IBookingFacade bookingFacade;
+
+        public IRepository<Admin> adminRepository;
+
+        public IAdminRepository adminRepos;
+
+        public IAuthenticationService authenticationService;
+
+        public IAdminFacade adminFacade;
 
         public IRepository<GolfClub> golfClubRepository;
 
@@ -40,28 +44,27 @@ namespace FairwayDrivingRange.Test
 
         public readonly FairwayContext context;
 
-        //private readonly Jwt jwt;
-
-        public BaseTestSetup(/*IOptions<Jwt> options*/)
+        public BaseTestSetup()
         {
             var mapperConfiguration = new MapperConfiguration(configuration =>
             {
                 configuration.AddProfile(new AutoMapperProfiles());
             });
 
-            //jwt = options.Value;
+            var inMemorySettings = new Dictionary<string, string>
+            {
+                {"Jwt:Token", "Keeping this here for now. It's a secret" }
+            };
+
+            IConfiguration configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection(inMemorySettings)
+                .Build();
 
             var mapper = mapperConfiguration.CreateMapper();
 
             context = new FairwayContext(DatabaseSetup().Options);
 
-            adminRepository = new Repository<Admin>(context);
-
-            adminRepos = new AdminRepository(context);
-
             customerRepos = new CustomerRespository(context);
-
-            //adminFacade = new AdminFacade(adminRepository, adminRepos, mapper, jwt);
 
             customerInformationRepository = new Repository<CustomerInformation>(context);
 
@@ -70,6 +73,14 @@ namespace FairwayDrivingRange.Test
             bookingRepository = new Repository<Booking>(context);
 
             bookingFacade = new BookingFacade(bookingRepository, customerRepos, mapper);
+
+            adminRepository = new Repository<Admin>(context);
+
+            adminRepos = new AdminRepository(context);
+
+            authenticationService = new AuthenticationService(configuration);
+
+            adminFacade = new AdminFacade(adminRepository, adminRepos, mapper, authenticationService);
 
             golfClubRepository = new Repository<GolfClub>(context);
 

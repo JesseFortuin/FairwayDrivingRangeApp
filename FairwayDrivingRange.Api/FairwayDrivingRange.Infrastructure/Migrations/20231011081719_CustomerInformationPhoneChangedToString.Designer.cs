@@ -4,6 +4,7 @@ using FairwayDrivingRange.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FairwayDrivingRange.Infrastructure.Migrations
 {
     [DbContext(typeof(FairwayContext))]
-    partial class FairwayContextModelSnapshot : ModelSnapshot
+    [Migration("20231011081719_CustomerInformationPhoneChangedToString")]
+    partial class CustomerInformationPhoneChangedToString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,9 +111,8 @@ namespace FairwayDrivingRange.Infrastructure.Migrations
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
 
-                    b.Property<string>("SerialNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("SerialNumber")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

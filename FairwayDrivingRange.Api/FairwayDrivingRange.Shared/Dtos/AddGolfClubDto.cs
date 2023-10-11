@@ -2,7 +2,7 @@
 {
     public class AddGolfClubDto
     {
-        public int SerialNumber { get; set; }
+        public string SerialNumber { get; set; }
 
         public bool IsAvailable { get; set; }
     }

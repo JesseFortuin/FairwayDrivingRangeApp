@@ -2,7 +2,7 @@
 {
     public class UpdateGolfClubDto
     {
-        public int SerialNumber { get; set; }
+        public string SerialNumber { get; set; }
 
         public int? BookingId { get; set; }
 
