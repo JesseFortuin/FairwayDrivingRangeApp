@@ -12,6 +12,10 @@ import { finalize, takeUntil } from 'rxjs/operators';
 import { addDays, addMinutes, endOfWeek } from 'date-fns';
 import { BookingService } from 'src/app/services/booking/booking.service';
 import { ceilToNearest, floorToNearest } from '../../../shared/functions/mathHelperFunctions';
+import { CustomerInformationService } from 'src/app/services/customer-information.service';
+import { IAddBooking } from 'src/app/shared/interfaces/IAddBooking';
+import { IApiResponse } from 'src/app/shared/interfaces/IApiResponse';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-booking-table',
@@ -42,7 +46,9 @@ export class BookingTableComponent implements OnInit {
   dayEndHour: number = 19;
 
   constructor(private cdr: ChangeDetectorRef,
-              private bookingService : BookingService) {}
+              private bookingService : BookingService,
+              private infoService: CustomerInformationService,
+              public router : Router) {}
 
   ngOnInit(): void {
 
@@ -140,5 +146,39 @@ export class BookingTableComponent implements OnInit {
   private refresh() {
     this.events = [...this.events];
     this.cdr.detectChanges();
+  }
+
+  customerObj: any = {
+    name: '',
+    email: '',
+    phone: 0
+  }
+
+  booking: CalendarEvent = JSON.parse(sessionStorage.getItem('booking')!);
+
+  bookingObj: IAddBooking = {
+    start: this.booking.start,
+    end: this.booking.end!,
+    name: '',
+    email: '',
+    phone: 0
+  }
+
+  registerProcess() {
+    this.bookingObj.name = this.customerObj.name;
+
+    this.bookingObj.email = this.customerObj.email;
+
+    this.bookingObj.phone = this.customerObj.phone;
+
+    this.infoService.makeBooking(this.bookingObj).subscribe((result: IApiResponse) =>{
+      if (result.isSuccess){
+        this.router.navigate(['confirmation'])
+      }
+
+      if (!result.isSuccess){
+         alert(result.errorMessage)
+      }
+    })
   }
 }

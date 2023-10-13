@@ -30,21 +30,21 @@ export class CustomerInformationComponent {
     phone: 0
   }
 
-  registerProcess() {
-    this.bookingObj.name = this.customerObj.name;
+  // registerProcess() {
+  //   this.bookingObj.name = this.customerObj.name;
 
-    this.bookingObj.email = this.customerObj.email;
+  //   this.bookingObj.email = this.customerObj.email;
 
-    this.bookingObj.phone = this.customerObj.phone;
+  //   this.bookingObj.phone = this.customerObj.phone;
 
-    this.infoService.makeBooking(this.bookingObj).subscribe((result: IApiResponse) =>{
-      if (result.isSuccess){
-        this.router.navigate(['confirmation'])
-      }
+  //   this.infoService.makeBooking(this.bookingObj).subscribe((result: IApiResponse) =>{
+  //     if (result.isSuccess){
+  //       this.router.navigate(['confirmation'])
+  //     }
 
-      if (!result.isSuccess){
-         alert(result.errorMessage)
-      }
-    })
-  }
+  //     if (!result.isSuccess){
+  //        alert(result.errorMessage)
+  //     }
+  //   })
+  // }
 }

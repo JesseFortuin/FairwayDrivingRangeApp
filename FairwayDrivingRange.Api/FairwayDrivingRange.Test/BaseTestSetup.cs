@@ -7,11 +7,6 @@ using FairwayDrivingRange.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-/*
- TODO 
- setup admin facade tests
- */
-
 namespace FairwayDrivingRange.Test
 {
     public class BaseTestSetup

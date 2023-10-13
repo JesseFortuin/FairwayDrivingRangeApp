@@ -1,15 +1,12 @@
 ﻿using FairwayDrivingRange.Shared.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FairwayDrivingRange.Application
 {
     public interface IGolfClubFacade
     {
         public ApiResponseDto<bool> AddGolfClub(AddGolfClubDto golfClubDto);
+
+        public ApiResponseDto<bool> AddAllGolfClubs(params AddGolfClubDto[] golfClubDtos);
 
         public ApiResponseDto<bool> UpdateGolfClub(int golfClubId, UpdateGolfClubDto golfClubDto);
 

@@ -34,6 +34,27 @@ namespace FairwayDrivingRange.Application
             return new ApiResponseDto<bool>(result);
         }
 
+        public ApiResponseDto<bool> AddAllGolfClubs(params AddGolfClubDto[] golfClubDtos)
+        {
+            var golfClubs = new List<GolfClub>();
+
+            foreach (var golfClubDto in golfClubDtos)
+            {
+                if (string.IsNullOrWhiteSpace(golfClubDto.SerialNumber))
+                {
+                    return ApiResponseDto<bool>.Error("Invalid Serial Number");
+                };
+
+                var golfClub = mapper.Map<GolfClub>(golfClubDto);
+
+                golfClubs.Add(golfClub);
+            }       
+
+            var result = repository.AddAll(golfClubs.ToArray());
+
+            return new ApiResponseDto<bool>(result);
+        }
+
         public ApiResponseDto<bool> DeleteGolfClub(int golfClubId)
         {
             if (golfClubId <= 0)

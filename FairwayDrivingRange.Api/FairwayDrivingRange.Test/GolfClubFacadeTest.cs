@@ -46,6 +46,66 @@ namespace FairwayDrivingRange.Test
         }
 
         [Fact]
+        public void AddAllGolfClub_Fails_InvalidSerialNumber()
+        {
+            //Arrange
+            var golfClubDtos = new List<AddGolfClubDto>
+            {
+                new AddGolfClubDto
+                {
+                    SerialNumber = "65674743",
+
+                    IsAvailable = false,
+                },
+
+                new AddGolfClubDto
+                {
+                    SerialNumber = "",
+
+                    IsAvailable = false,
+                }
+            };
+
+            var expected = ApiResponseDto<bool>.Error("Invalid Serial Number");
+            //Act
+
+            var actual = golfClubFacade.AddAllGolfClubs(golfClubDtos.ToArray());
+
+            //Assert
+            Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
+        }
+
+        [Fact]
+        public void AddAllGolfClubs_Succeeds_GolfClubAdded()
+        {
+            //Arrange
+            var golfClubDtos = new List<AddGolfClubDto>
+            {
+                new AddGolfClubDto
+                {
+                    SerialNumber = "65674743",
+
+                    IsAvailable = false,
+                },
+
+                new AddGolfClubDto
+                {
+                    SerialNumber = "96456346",
+
+                    IsAvailable = false,
+                }
+            };
+
+            var expected = new ApiResponseDto<bool>(true);
+            //Act
+
+            var actual = golfClubFacade.AddAllGolfClubs(golfClubDtos.ToArray());
+
+            //Assert
+            Assert.Equal(expected.Value, actual.Value);
+        }
+
+        [Fact]
         public void DeleteGolfClub_Fails_InvalidGolfClubId()
         {
             //Arrange

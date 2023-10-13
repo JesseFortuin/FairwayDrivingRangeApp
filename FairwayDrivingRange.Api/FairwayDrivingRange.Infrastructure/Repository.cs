@@ -1,10 +1,5 @@
 ﻿using FairwayDrivingRange.Domain.Entities;
 using FairwayDrivingRange.Infrastructure.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FairwayDrivingRange.Infrastructure
 {
@@ -20,6 +15,15 @@ namespace FairwayDrivingRange.Infrastructure
         public bool Add(T entity)
         {
             fairwayContext.Set<T>().Add(entity);
+
+            fairwayContext.SaveChanges();
+
+            return true;
+        }
+
+        public bool AddAll(params T[] entity)
+        {
+            fairwayContext.Set<T>().AddRange(entity);
 
             fairwayContext.SaveChanges();
 
