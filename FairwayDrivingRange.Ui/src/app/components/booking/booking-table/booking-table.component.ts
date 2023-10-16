@@ -16,6 +16,7 @@ import { CustomerInformationService } from 'src/app/services/customer-informatio
 import { IAddBooking } from 'src/app/shared/interfaces/IAddBooking';
 import { IApiResponse } from 'src/app/shared/interfaces/IApiResponse';
 import { Router } from '@angular/router';
+import { th } from 'date-fns/locale';
 
 @Component({
   selector: 'app-booking-table',
@@ -34,6 +35,8 @@ import { Router } from '@angular/router';
 
 export class BookingTableComponent implements OnInit {
   viewDate = new Date();
+
+  currentDate = new Date();
 
   events: CalendarEvent[] = [];
 
@@ -63,6 +66,14 @@ export class BookingTableComponent implements OnInit {
             end: new Date(booking.end!),
             title: 'booked'
           }
+          if (session.end!.getTime() < this.currentDate.getTime() ){
+            session.cssClass = 'red';
+          }
+
+          if (session.start.getTime() > this.currentDate.getTime() ){
+            session.cssClass = 'green';
+          }
+
           this.events.push(session)
         })
         this.refresh();
@@ -157,8 +168,8 @@ export class BookingTableComponent implements OnInit {
   booking: CalendarEvent = JSON.parse(sessionStorage.getItem('booking')!);
 
   bookingObj: IAddBooking = {
-    start: this.booking.start,
-    end: this.booking.end!,
+    start: new Date,
+    end: new Date,
     name: '',
     email: '',
     phone: 0
@@ -170,6 +181,10 @@ export class BookingTableComponent implements OnInit {
     this.bookingObj.email = this.customerObj.email;
 
     this.bookingObj.phone = this.customerObj.phone;
+
+    this.bookingObj.start = this.booking.start!
+
+    this.bookingObj.end = this.booking.end!
 
     this.infoService.makeBooking(this.bookingObj).subscribe((result: IApiResponse) =>{
       if (result.isSuccess){

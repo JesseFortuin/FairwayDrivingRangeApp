@@ -27,6 +27,11 @@ namespace FairwayDrivingRange.Application
                 return ApiResponseDto<bool>.Error("Invalid Serial Number");
             };
 
+            if (string.IsNullOrWhiteSpace(golfClubDto.ClubType))
+            {
+                return ApiResponseDto<bool>.Error("Invalid Club Type");
+            };
+
             var golfClub = mapper.Map<GolfClub>(golfClubDto);
 
             var result = repository.Add(golfClub);
@@ -43,6 +48,11 @@ namespace FairwayDrivingRange.Application
                 if (string.IsNullOrWhiteSpace(golfClubDto.SerialNumber))
                 {
                     return ApiResponseDto<bool>.Error("Invalid Serial Number");
+                };
+
+                if (string.IsNullOrWhiteSpace(golfClubDto.ClubType))
+                {
+                    return ApiResponseDto<bool>.Error("Invalid Club Type");
                 };
 
                 var golfClub = mapper.Map<GolfClub>(golfClubDto);
@@ -119,6 +129,11 @@ namespace FairwayDrivingRange.Application
             if (string.IsNullOrWhiteSpace(golfClubDto.SerialNumber))
             {
                 return ApiResponseDto<bool>.Error("Invalid Serial Number");
+            };
+
+            if (string.IsNullOrWhiteSpace(golfClubDto.ClubType))
+            {
+                return ApiResponseDto<bool>.Error("Invalid Club Type");
             };
 
             if (golfClubDto.BookingId <= 0)

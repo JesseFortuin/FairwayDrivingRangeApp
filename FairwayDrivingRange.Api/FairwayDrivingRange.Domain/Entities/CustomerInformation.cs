@@ -8,7 +8,7 @@
 
         public string Email { get; set; }
 
-        public string? Phone {  get; set; }
+        public string Phone {  get; set; }
 
         public List<Booking> Booking { get; set; } = new List<Booking>();
 

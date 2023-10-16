@@ -13,6 +13,8 @@ namespace FairwayDrivingRange.Test
             {
                 SerialNumber = "",
 
+                ClubType = "Driver",
+
                 IsAvailable = false,
             };
 
@@ -32,6 +34,8 @@ namespace FairwayDrivingRange.Test
             var golfClubDto = new AddGolfClubDto
             {
                 SerialNumber = "5550000",
+
+                ClubType = "Wedge",
 
                 IsAvailable = false,
             };
@@ -55,6 +59,8 @@ namespace FairwayDrivingRange.Test
                 {
                     SerialNumber = "65674743",
 
+                    ClubType = "Putter",
+
                     IsAvailable = false,
                 },
 
@@ -62,11 +68,47 @@ namespace FairwayDrivingRange.Test
                 {
                     SerialNumber = "",
 
+                    ClubType = "Iron",
+
                     IsAvailable = false,
                 }
             };
 
             var expected = ApiResponseDto<bool>.Error("Invalid Serial Number");
+            //Act
+
+            var actual = golfClubFacade.AddAllGolfClubs(golfClubDtos.ToArray());
+
+            //Assert
+            Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
+        }
+
+        [Fact]
+        public void AddAllGolfClub_Fails_InvalidClubType()
+        {
+            //Arrange
+            var golfClubDtos = new List<AddGolfClubDto>
+            {
+                new AddGolfClubDto
+                {
+                    SerialNumber = "65674743",
+
+                    ClubType = "",
+
+                    IsAvailable = false,
+                },
+
+                new AddGolfClubDto
+                {
+                    SerialNumber = "65674743",
+
+                    ClubType = " ",
+
+                    IsAvailable = false,
+                }
+            };
+
+            var expected = ApiResponseDto<bool>.Error("Invalid Club Type");
             //Act
 
             var actual = golfClubFacade.AddAllGolfClubs(golfClubDtos.ToArray());
@@ -85,12 +127,16 @@ namespace FairwayDrivingRange.Test
                 {
                     SerialNumber = "65674743",
 
+                    ClubType = "Iron",
+
                     IsAvailable = false,
                 },
 
                 new AddGolfClubDto
                 {
                     SerialNumber = "96456346",
+
+                    ClubType = "Iron",
 
                     IsAvailable = false,
                 }
@@ -149,12 +195,16 @@ namespace FairwayDrivingRange.Test
                 {
                     SerialNumber = "1220000",
 
+                    ClubType = "Iron",
+
                     IsAvailable = false
                 },
 
                 new GolfClub
                 {
                     SerialNumber = "1250000",
+
+                    ClubType = "Iron",
 
                     IsAvailable = true
                 }
@@ -185,12 +235,16 @@ namespace FairwayDrivingRange.Test
                 {
                     SerialNumber = "1220000",
 
+                    ClubType = "Iron",
+
                     IsAvailable = false
                 },
 
                 new GolfClub
                 {
                     SerialNumber = "1250000",
+
+                    ClubType = "Iron",
 
                     IsAvailable = true
                 }
@@ -208,6 +262,8 @@ namespace FairwayDrivingRange.Test
 
                     SerialNumber = "1220000",
 
+                    ClubType = "Iron",
+
                     IsAvailable = false
                 },
 
@@ -216,6 +272,8 @@ namespace FairwayDrivingRange.Test
                     Id = 2,
 
                     SerialNumber = "1250000",
+
+                    ClubType = "Iron",
 
                     IsAvailable = true
                 }
@@ -286,6 +344,8 @@ namespace FairwayDrivingRange.Test
             {
                 SerialNumber = "5550000",
 
+                ClubType = "Iron",
+
                 IsAvailable = false,
             };
 
@@ -294,6 +354,8 @@ namespace FairwayDrivingRange.Test
                 Id = 1,
 
                 SerialNumber = "5550000",
+
+                ClubType = "Iron",
 
                 IsAvailable = false,
             };
@@ -352,12 +414,17 @@ namespace FairwayDrivingRange.Test
             var golfClubDto = new UpdateGolfClubDto
             {
                 SerialNumber = "  ",
+
+                ClubType = "Iron",
+
                 IsAvailable = false,
             };
 
             var golfClub = new GolfClub
             {
                 SerialNumber = "5550000",
+
+                ClubType = "Iron",
 
                 IsAvailable = false,
             };
@@ -378,6 +445,43 @@ namespace FairwayDrivingRange.Test
         }
 
         [Fact]
+        public void UpdateGolfClub_Fails_InvalidClubType()
+        {
+            //Arrange
+            var golfClubDto = new UpdateGolfClubDto
+            {
+                SerialNumber = "5550000",
+
+                ClubType = "  ",
+
+                IsAvailable = false,
+            };
+
+            var golfClub = new GolfClub
+            {
+                SerialNumber = "5550000",
+
+                ClubType = "Iron",
+
+                IsAvailable = false,
+            };
+
+            context.GolfClubs.Add(golfClub);
+
+            context.SaveChanges();
+
+            var id = 1;
+
+            var expected = ApiResponseDto<bool>.Error("Invalid Club Type");
+
+            //Act
+            var actual = golfClubFacade.UpdateGolfClub(id, golfClubDto);
+
+            //Assert
+            Assert.Equal(expected.ErrorMessage, actual.ErrorMessage);
+        }
+
+        [Fact]
         public void UpdateGolfClub_Fails_InvalidBookingId()
         {
             //Arrange
@@ -385,12 +489,15 @@ namespace FairwayDrivingRange.Test
             {
                 BookingId = -1,
                 SerialNumber = "0005463",
+                ClubType = "Iron",
                 IsAvailable = true
             };
 
             var golfClub = new GolfClub
             {
                 SerialNumber = "5550000",
+
+                ClubType = "Iron",
 
                 IsAvailable = false
             };
@@ -417,13 +524,19 @@ namespace FairwayDrivingRange.Test
             var golfClubDto = new UpdateGolfClubDto
             {
                 BookingId = 1,
+
                 SerialNumber = "0005463",
+
+                ClubType = "Iron",
+
                 IsAvailable = true
             };
 
             var golfClub = new GolfClub
             {
                 SerialNumber = "5550000",
+
+                ClubType = "Iron",
 
                 IsAvailable = false
             };
@@ -464,12 +577,15 @@ namespace FairwayDrivingRange.Test
             {
                 BookingId = 1,
                 SerialNumber = "0005463",
+                ClubType = "Iron",
                 IsAvailable = true
             };
 
             var golfClub = new GolfClub
             {
                 SerialNumber = "5550000",
+
+                ClubType = "Iron",
 
                 IsAvailable = false
             };

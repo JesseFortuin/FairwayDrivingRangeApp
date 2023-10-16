@@ -24,7 +24,7 @@ namespace FairwayDrivingRange.Api.Controllers
         }
 
         [HttpGet("{bookingId}")]
-        public ActionResult<ApiResponseDto<BookingDto>> GetBooking(int bookingId)
+        public ActionResult<ApiResponseDto<BookingDto>> GetBookingById(int bookingId)
         {
             var result = bookingFacade.GetBookingById(bookingId);
 

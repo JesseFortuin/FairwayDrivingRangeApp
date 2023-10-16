@@ -45,7 +45,7 @@ namespace FairwayDrivingRange.Application
 
             //var customerResult = customerRepository.Create(customer);
 
-            //if (customerResult == false) 
+            //if (customerResult == false)
             //{
             //    return ApiResponseDto<bool>.Error("Customer Could Not Be Added");
             //};
@@ -54,9 +54,17 @@ namespace FairwayDrivingRange.Application
 
             booking.Customer = customer;
 
-            var result = bookingRepository.Add(booking);
+            try
+            {
+                var result = bookingRepository.Add(booking);
 
-            return new ApiResponseDto<bool>(result);
+                return new ApiResponseDto<bool>(result);
+            }
+            catch (Exception ex)
+            {
+
+                return ApiResponseDto<bool>.Error(ex.Message);
+            }
         }
 
         public ApiResponseDto<bool> AddBookingEmail(AddBookingEmailDto bookingDto)

@@ -51,7 +51,7 @@ namespace FairwayDrivingRange.Infrastructure.Data
 * |            |   Yed_Prior                   | 2023-10-10 - Booking Table column DateBooked changed to Start
 * |            |   Yed_Posterior               | 2023-10-11 - CustomerInformation table phone column changed to string
 * |            |   Wezen                       | 2023-10-11 - GolfClub serial number column changed to string
-* |            |   Wazn                        | 
+* |            |   Wazn                        | 2023-10-16 - GolfClub Table ClubType column added
 * |            |   Wasat                       | 
 * |            |   Vindemiatrix                | 
 * |            |   Veritate                    | 

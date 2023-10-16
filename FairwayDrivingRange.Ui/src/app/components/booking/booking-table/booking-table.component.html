@@ -25,12 +25,9 @@
             <input type="tel" class="form-control" id="phone" placeholder="Contact number" [(ngModel)]="customerObj.phone"  name="phone" required>
             <div class="invalid-feedback">Please fill in field</div>
           </div>
-          <button style="display: block;" type="submit" class="me-5 btn btn-success">Confirm</button>
+          <button style="display: inline-block;" type="submit" class="me-4 mt-2 btn btn-success">Confirm</button>
+          <button style="display: inline-block;" type="button" class=" btn mt-2 btn-secondary" data-bs-dismiss="modal">Close</button>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Confirm</button>
       </div>
     </div>
   </div>
