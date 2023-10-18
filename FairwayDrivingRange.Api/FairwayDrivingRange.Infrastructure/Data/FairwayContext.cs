@@ -52,7 +52,7 @@ namespace FairwayDrivingRange.Infrastructure.Data
 * |            |   Yed_Posterior               | 2023-10-11 - CustomerInformation table phone column changed to string
 * |            |   Wezen                       | 2023-10-11 - GolfClub serial number column changed to string
 * |            |   Wazn                        | 2023-10-16 - GolfClub Table ClubType column added
-* |            |   Wasat                       | 
+* |            |   Wasat                       | 2023-10-18 - Booking Table IsCancelled column added
 * |            |   Vindemiatrix                | 
 * |            |   Veritate                    | 
 * |            |   Vega                        | 

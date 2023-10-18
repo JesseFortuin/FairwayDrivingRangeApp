@@ -29,7 +29,8 @@ namespace FairwayDrivingRange.Application
             //}
 
             if (string.IsNullOrWhiteSpace(bookingDto.Name) ||
-                string.IsNullOrWhiteSpace(bookingDto.Email))
+                string.IsNullOrWhiteSpace(bookingDto.Email) ||
+                string.IsNullOrWhiteSpace(bookingDto.Phone))
             {
                 return ApiResponseDto<bool>.Error("Invalid Customer Object");
             }
@@ -108,9 +109,18 @@ namespace FairwayDrivingRange.Application
                 return ApiResponseDto<bool>.Error("Booking Not Found");
             }
 
-            var result = bookingRepository.Delete(booking);
+            try
+            {
+                booking.IsCancelled = true;
 
-            return new ApiResponseDto<bool>(result);
+                var result = bookingRepository.Update(booking);
+
+                return new ApiResponseDto<bool>(result);
+            }
+            catch (Exception ex)
+            {
+                return ApiResponseDto<bool>.Error(ex.Message);
+            }
         }
 
         public ApiResponseDto<BookingDto> GetBookingById(int bookingId)
@@ -182,9 +192,16 @@ namespace FairwayDrivingRange.Application
 
             mapper.Map(bookingDto, booking);
 
-            var result = bookingRepository.Update(booking);
+            try
+            {
+                var result = bookingRepository.Update(booking);
 
-            return new ApiResponseDto<bool>(result);
+                return new ApiResponseDto<bool>(result);
+            }
+            catch (Exception ex)
+            {
+                return ApiResponseDto<bool>.Error(ex.Message);
+            }
         }
     }
 }

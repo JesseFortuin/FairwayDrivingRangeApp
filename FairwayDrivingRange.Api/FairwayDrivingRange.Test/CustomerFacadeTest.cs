@@ -51,7 +51,8 @@ namespace FairwayDrivingRange.Test
             var customerDto = new AddCustomerDto
             {
                 Name = "Test Name",
-                Email = "thisisanEmail@email.com"
+                Email = "thisisanEmail@email.com",
+                Phone = "03493922"
             };
 
             var expected = new ApiResponseDto<bool>(true);
@@ -72,13 +73,15 @@ namespace FairwayDrivingRange.Test
                     {
                         Id = 1,
                         Name = "J",
-                        Email = "e@gmail.com"
+                        Email = "e@gmail.com",
+                        Phone = "03493922"
                     },
                     new CustomerDto
                     {
                         Id = 2,
                         Name = "k",
-                        Email = "e@gmail.com"
+                        Email = "e@gmail.com",
+                        Phone = "03493922"
                     }
                 };
 
@@ -87,12 +90,14 @@ namespace FairwayDrivingRange.Test
                 new CustomerInformation
                 {
                     Name = "J",
-                    Email = "e@gmail.com"
+                    Email = "e@gmail.com",
+                    Phone = "03493922"
                 },
                 new CustomerInformation
                 {
                     Name = "k",
-                    Email = "e@gmail.com"
+                    Email = "e@gmail.com",
+                    Phone = "03493922"
                 }
             };
 
@@ -123,7 +128,8 @@ namespace FairwayDrivingRange.Test
             {
                 Id = 1,
                 Name = "J",
-                Email = "e@gmail.com"
+                Email = "e@gmail.com",
+                Phone = "03493922"
             };
 
             var customers = new List<CustomerInformation>
@@ -131,12 +137,14 @@ namespace FairwayDrivingRange.Test
                 new CustomerInformation
                 {
                     Name = "J",
-                    Email = "e@gmail.com"
+                    Email = "e@gmail.com",
+                    Phone = "03493922"
                 },
                 new CustomerInformation
                 {
                     Name = "k",
-                    Email = "e@gmail.com"
+                    Email = "e@gmail.com",
+                    Phone = "03493922"
                 }
             };
 
@@ -247,12 +255,14 @@ namespace FairwayDrivingRange.Test
                 new CustomerInformation
                 {
                     Name = "J",
-                    Email = "e@gmail.com"
+                    Email = "e@gmail.com",
+                    Phone = "03493922"
                 },
                 new CustomerInformation
                 {
                     Name = "k",
-                    Email = "e@gmail.com"
+                    Email = "e@gmail.com",
+                    Phone = "03493922"
                 }
             };
 
@@ -317,7 +327,8 @@ namespace FairwayDrivingRange.Test
             var customerDto = new AddCustomerDto
             {
                 Name = "",
-                Email = "eg@gmail.com"
+                Email = "eg@gmail.com",
+                Phone = "03493922"
             };
 
             var customers = new List<CustomerInformation>
@@ -325,12 +336,14 @@ namespace FairwayDrivingRange.Test
                 new CustomerInformation
                 {
                     Name = "J",
-                    Email = "e@gmail.com"
+                    Email = "e@gmail.com",
+                    Phone = "03493922"
                 },
                 new CustomerInformation
                 {
                     Name = "k",
-                    Email = "e@gmail.com"
+                    Email = "e@gmail.com",
+                    Phone = "03493922"
                 }
             };
 
@@ -354,7 +367,8 @@ namespace FairwayDrivingRange.Test
             var customerDto = new AddCustomerDto
             {
                 Name = "W",
-                Email = ""
+                Email = "",
+                Phone = "03493922"
             };
 
             var customers = new List<CustomerInformation>
@@ -362,12 +376,14 @@ namespace FairwayDrivingRange.Test
                 new CustomerInformation
                 {
                     Name = "J",
-                    Email = "e@gmail.com"
+                    Email = "e@gmail.com",
+                    Phone = "03493922"
                 },
                 new CustomerInformation
                 {
                     Name = "k",
-                    Email = "e@gmail.com"
+                    Email = "e@gmail.com",
+                    Phone = "03493922"
                 }
             };
 
@@ -391,7 +407,8 @@ namespace FairwayDrivingRange.Test
             var customerDto = new AddCustomerDto
             {
                 Name = "W",
-                Email = "eg@gmail.com"
+                Email = "eg@gmail.com",
+                Phone = "03493922"
             };
 
             var customers = new List<CustomerInformation>
@@ -399,12 +416,14 @@ namespace FairwayDrivingRange.Test
                 new CustomerInformation
                 {
                     Name = "J",
-                    Email = "e@gmail.com"
+                    Email = "e@gmail.com",
+                    Phone = "03493922"
                 },
                 new CustomerInformation
                 {
                     Name = "k",
-                    Email = "e@gmail.com"
+                    Email = "e@gmail.com",
+                    Phone = "03493922"
                 }
             };
 

@@ -24,16 +24,24 @@ namespace FairwayDrivingRange.Application
         { 
             if (customerDto == null || 
                 string.IsNullOrWhiteSpace(customerDto.Name) ||
-                string.IsNullOrWhiteSpace(customerDto.Email))
+                string.IsNullOrWhiteSpace(customerDto.Email) ||
+                string.IsNullOrWhiteSpace(customerDto.Phone))
             {
                 return ApiResponseDto<bool>.Error("Invalid Customer Object");
             }
 
             var customer = mapper.Map<CustomerInformation>(customerDto);
 
-            var result = repository.Add(customer);
+            try
+            {
+                var result = repository.Add(customer);
 
-            return new ApiResponseDto<bool>(result);
+                return new ApiResponseDto<bool>(result);
+            }
+            catch (Exception ex)
+            {
+                return ApiResponseDto<bool>.Error(ex.Message);
+            }
         }
 
         public ApiResponseDto<bool> DeleteCustomer(int customerId)
@@ -50,9 +58,16 @@ namespace FairwayDrivingRange.Application
                 return ApiResponseDto<bool>.Error("Customer Not Found");
             }
 
-            var result = repository.Delete(customer);
+            try
+            {
+                var result = repository.Delete(customer);
 
-            return new ApiResponseDto<bool>(result);
+                return new ApiResponseDto<bool>(result);
+            }
+            catch (Exception ex)
+            {
+                return ApiResponseDto<bool>.Error(ex.Message);
+            }      
         }
 
         public ApiResponseDto<CustomerDto> GetCustomerById(int customerId)
@@ -118,16 +133,24 @@ namespace FairwayDrivingRange.Application
 
             if (customerDto == null ||
                 string.IsNullOrWhiteSpace(customerDto.Name) ||
-                string.IsNullOrWhiteSpace(customerDto.Email))
+                string.IsNullOrWhiteSpace(customerDto.Email) ||
+                string.IsNullOrWhiteSpace(customerDto.Phone))
             {
                 return ApiResponseDto<bool>.Error("Invalid Customer Object");
             }
 
             mapper.Map(customerDto, customer);
 
-            var result = repository.Update(customer);
+            try
+            {
+                var result = repository.Update(customer);
 
-            return new ApiResponseDto<bool>(result);
+                return new ApiResponseDto<bool>(result);
+            }
+            catch (Exception ex)
+            {
+                return ApiResponseDto<bool>.Error(ex.Message);
+            }
         }
     }
 }

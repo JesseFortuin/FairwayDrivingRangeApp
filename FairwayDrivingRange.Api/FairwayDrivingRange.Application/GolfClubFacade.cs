@@ -34,9 +34,16 @@ namespace FairwayDrivingRange.Application
 
             var golfClub = mapper.Map<GolfClub>(golfClubDto);
 
-            var result = repository.Add(golfClub);
+            try
+            {
+                var result = repository.Add(golfClub);
 
-            return new ApiResponseDto<bool>(result);
+                return new ApiResponseDto<bool>(result);
+            }
+            catch (Exception ex)
+            {
+                return ApiResponseDto<bool>.Error(ex.Message);
+            }
         }
 
         public ApiResponseDto<bool> AddAllGolfClubs(params AddGolfClubDto[] golfClubDtos)
@@ -58,11 +65,18 @@ namespace FairwayDrivingRange.Application
                 var golfClub = mapper.Map<GolfClub>(golfClubDto);
 
                 golfClubs.Add(golfClub);
-            }       
+            }
 
-            var result = repository.AddAll(golfClubs.ToArray());
+            try
+            {
+                var result = repository.AddAll(golfClubs.ToArray());
 
-            return new ApiResponseDto<bool>(result);
+                return new ApiResponseDto<bool>(result);
+            }
+            catch (Exception ex)
+            {
+                return ApiResponseDto<bool>.Error(ex.Message);
+            }
         }
 
         public ApiResponseDto<bool> DeleteGolfClub(int golfClubId)
@@ -79,9 +93,16 @@ namespace FairwayDrivingRange.Application
                 return ApiResponseDto<bool>.Error("Golf Club Not Found");
             };
 
-            var result = repository.Delete(golfClub);
+            try
+            {
+                var result = repository.Delete(golfClub);
 
-            return new ApiResponseDto<bool>(result);
+                return new ApiResponseDto<bool>(result);
+            }
+            catch (Exception ex)
+            {
+                return ApiResponseDto<bool>.Error(ex.Message);
+            }        
         }
 
         public ApiResponseDto<GolfClubDto> GetGolfClubById(int golfClubId)
@@ -156,9 +177,16 @@ namespace FairwayDrivingRange.Application
 
             mapper.Map(golfClubDto, golfClub);
 
-            var result = repository.Update(golfClub);
+            try
+            {
+                var result = repository.Update(golfClub);
 
-            return new ApiResponseDto<bool>(result);
+                return new ApiResponseDto<bool>(result);
+            }
+            catch (Exception ex)
+            {
+                return ApiResponseDto<bool>.Error(ex.Message);
+            }
         }
     }
 }

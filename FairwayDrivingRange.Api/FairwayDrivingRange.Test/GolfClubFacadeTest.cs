@@ -570,7 +570,8 @@ namespace FairwayDrivingRange.Test
             var customer = new CustomerInformation
             {
                 Name = "J",
-                Email = "e@gmail.com"
+                Email = "e@gmail.com",
+                Phone = "03493922"
             };
 
             var golfClubDto = new UpdateGolfClubDto

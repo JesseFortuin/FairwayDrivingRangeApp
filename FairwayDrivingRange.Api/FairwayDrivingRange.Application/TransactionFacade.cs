@@ -48,9 +48,16 @@ namespace FairwayDrivingRange.Application
 
             var transaction = mapper.Map<Transaction>(transactionDto);
 
-            var result = repository.Add(transaction);
+            try
+            {
+                var result = repository.Add(transaction);
 
-            return new ApiResponseDto<bool>(result);
+                return new ApiResponseDto<bool>(result);
+            }
+            catch (Exception ex)
+            {
+                return ApiResponseDto<bool>.Error(ex.Message);
+            }
         }
 
         public ApiResponseDto<bool> DeleteTransaction(int transactionId)
@@ -67,9 +74,16 @@ namespace FairwayDrivingRange.Application
                 return ApiResponseDto<bool>.Error("Transaction Not Found");
             }
 
-            var result = repository.Delete(transaction);
+            try
+            {
+                var result = repository.Delete(transaction);
 
-            return new ApiResponseDto<bool>(result);
+                return new ApiResponseDto<bool>(result);
+            }
+            catch (Exception ex)
+            {
+                return ApiResponseDto<bool>.Error(ex.Message);
+            }
         }
 
         public ApiResponseDto<TransactionDto> GetTransactionById(int transactionId)
@@ -140,9 +154,16 @@ namespace FairwayDrivingRange.Application
 
             mapper.Map(transactionDto, transaction);
 
-            var result = repository.Update(transaction);
+            try
+            {
+                var result = repository.Update(transaction);
 
-            return new ApiResponseDto<bool>(result);
+                return new ApiResponseDto<bool>(result);
+            }
+            catch (Exception ex)
+            {
+                return ApiResponseDto<bool>.Error(ex.Message);
+            }      
         }
     }
 }

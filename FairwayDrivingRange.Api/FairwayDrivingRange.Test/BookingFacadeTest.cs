@@ -86,7 +86,8 @@ namespace FairwayDrivingRange.Test
             var customer = new CustomerInformation
             {
                 Name = "J",
-                Email = "e@gmail.com"
+                Email = "e@gmail.com",
+                Phone = "03493922"
             };
 
             context.CustomerInformation.Add(customer);
@@ -206,7 +207,8 @@ namespace FairwayDrivingRange.Test
                 Start = DateTime.Now,
                 End= DateTime.Now.AddHours(1),
                 Name = "J",
-                Email = "e@gmail.com"
+                Email = "e@gmail.com",
+                Phone = "03493922"
             };
 
             var booking = new Booking
@@ -218,7 +220,8 @@ namespace FairwayDrivingRange.Test
             var customer = new CustomerInformation
             {
                 Name = "J",
-                Email = "e@gmail.com"
+                Email = "e@gmail.com",
+                Phone = "03493922"
             };
 
             context.CustomerInformation.Add(customer);
@@ -276,12 +279,14 @@ namespace FairwayDrivingRange.Test
                 new CustomerInformation
                 {
                     Name = "J",
-                    Email = "e@gmail.com"
+                    Email = "e@gmail.com",
+                    Phone = "03493922"
                 },
                 new CustomerInformation
                 {
                     Name = "k",
-                    Email = "e@gmail.com"
+                    Email = "e@gmail.com",
+                    Phone = "03493922"
                 }
             };
 
@@ -366,7 +371,8 @@ namespace FairwayDrivingRange.Test
             var customer = new CustomerInformation
             {
                 Name = "J",
-                Email = "e@gmail.com"
+                Email = "e@gmail.com",
+                Phone = "03493922"
             };
 
             var id = 1;
@@ -431,9 +437,7 @@ namespace FairwayDrivingRange.Test
         public void DeleteBooking_Succeeds_BookingDeleted()
         {
             //Arrange
-            var expectedBookings = 1;
-
-            var expectedCustomers = 2;
+            var expected = true;
 
             var addedbookings = new List<Booking>
             {
@@ -456,12 +460,14 @@ namespace FairwayDrivingRange.Test
                 new CustomerInformation
                 {
                     Name = "J",
-                    Email = "e@gmail.com"
+                    Email = "e@gmail.com",
+                    Phone = "03493922"
                 },
                 new CustomerInformation
                 {
                     Name = "k",
-                    Email = "e@gmail.com"
+                    Email = "e@gmail.com",
+                    Phone = "03493922"
                 }
             };
 
@@ -474,18 +480,10 @@ namespace FairwayDrivingRange.Test
             //Act
             var actual = bookingFacade.DeleteBooking(1);
 
-            var bookings = bookingFacade.GetBookings();
-
-            var bookingCount = bookings.Value.Count();
-
-            var customers = customerFacade.GetCustomers();
-
-            var customerCount = customers.Value.Count();
+            var booking = bookingFacade.GetBookingById(1);
 
             //Assert
-            Assert.Equal(customerCount, expectedCustomers);
-
-            Assert.Equal(bookingCount, expectedBookings);
+            Assert.Equal(booking.Value.IsCancelled, expected);
         }
 
         [Fact]
@@ -541,7 +539,8 @@ namespace FairwayDrivingRange.Test
             var customer = new CustomerInformation
             {
                 Name = "J",
-                Email = "e@gmail.com"
+                Email = "e@gmail.com",
+                Phone = "03493922"
             };
 
             var booking = new Booking
@@ -638,12 +637,14 @@ namespace FairwayDrivingRange.Test
                 new CustomerInformation
                 {
                     Name = "J",
-                    Email = "e@gmail.com"
+                    Email = "e@gmail.com",
+                    Phone = "03493922"
                 },
                 new CustomerInformation
                 {
                     Name = "k",
-                    Email = "e@gmail.com"
+                    Email = "e@gmail.com",
+                    Phone = "03493922"
                 }
             };
 

@@ -16,7 +16,6 @@ import { CustomerInformationService } from 'src/app/services/customer-informatio
 import { IAddBooking } from 'src/app/shared/interfaces/IAddBooking';
 import { IApiResponse } from 'src/app/shared/interfaces/IApiResponse';
 import { Router } from '@angular/router';
-import { th } from 'date-fns/locale';
 
 @Component({
   selector: 'app-booking-table',
@@ -64,23 +63,19 @@ export class BookingTableComponent implements OnInit {
           var session: CalendarEvent = {
             start: new Date(booking.start),
             end: new Date(booking.end!),
-            title: 'booked'
-          }
-          if (session.end!.getTime() < this.currentDate.getTime() ){
-            session.cssClass = 'red';
+            title: 'booked',
+            cssClass: 'green'
           }
 
-          if (session.start.getTime() > this.currentDate.getTime() ){
-            session.cssClass = 'green';
+          if (session.end!.getTime() > this.currentDate.getTime() ){
+            this.events.push(session)
           }
-
-          this.events.push(session)
         })
         this.refresh();
       },
       error: (response) => {
         console.log(response);
-      }});
+    }});
   }
 
   minDate: Date = new Date();
@@ -148,9 +143,9 @@ export class BookingTableComponent implements OnInit {
         if (newEnd > segment.date && newEnd < endOfView) {
           dragToSelectEvent.end = newEnd;
         }
-        this.refresh();
-
         sessionStorage.setItem('booking', JSON.stringify(dragToSelectEvent))
+
+        this.refresh();
       });
   }
 
@@ -173,6 +168,9 @@ export class BookingTableComponent implements OnInit {
     name: '',
     email: '',
     phone: 0
+  }
+
+  eventClicked ({event}: {event: CalendarEvent}): void {
   }
 
   registerProcess() {

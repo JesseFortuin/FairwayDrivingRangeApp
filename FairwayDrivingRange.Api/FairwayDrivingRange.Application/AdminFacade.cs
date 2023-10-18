@@ -73,9 +73,16 @@ namespace FairwayDrivingRange.Application
 
             var admin = mapper.Map<Admin>(adminDto);
 
-            var result = repository.Add(admin);
+            try
+            {
+                var result = repository.Add(admin);
 
-            return new ApiResponseDto<bool>(result);
+                return new ApiResponseDto<bool>(result);
+            }
+            catch (Exception ex)
+            {
+                return ApiResponseDto<bool>.Error(ex.Message);
+            }
         }
     }
 }

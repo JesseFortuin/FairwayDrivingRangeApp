@@ -16,6 +16,8 @@
 
         public bool IsPaid { get; set; }
 
+        public bool IsCancelled { get; set; }
+
         public List<GolfClub> Clubs { get; set; } = new List<GolfClub>();
     }
 }
