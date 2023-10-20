@@ -9,7 +9,7 @@ import { CalendarEvent, CalendarWeekViewBeforeRenderEvent,  } from 'angular-cale
 import { WeekViewHourSegment } from 'calendar-utils';
 import { fromEvent } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
-import { addDays, addMinutes, endOfWeek } from 'date-fns';
+import { addDays, addMinutes, endOfWeek, parseISO } from 'date-fns';
 import { BookingService } from 'src/app/services/booking/booking.service';
 import { ceilToNearest, floorToNearest } from '../../../shared/functions/mathHelperFunctions';
 import { CustomerInformationService } from 'src/app/services/customer-information.service';
@@ -53,6 +53,11 @@ export class BookingTableComponent implements OnInit {
               public router : Router) {}
 
   ngOnInit(): void {
+    this.bookingService.getGolfClubs().subscribe({
+      next: (golfClubs) => {
+        
+      }
+    });
 
     this.bookingService.getBookings()
     .subscribe({
@@ -66,10 +71,11 @@ export class BookingTableComponent implements OnInit {
             title: 'booked',
             cssClass: 'green'
           }
+          this.events.push(session);
 
-          if (session.end!.getTime() > this.currentDate.getTime() ){
-            this.events.push(session)
-          }
+          // if (session.end!.getTime() > this.currentDate.getTime() ){
+          //   this.events.push(session)
+          // }
         })
         this.refresh();
       },
@@ -143,7 +149,7 @@ export class BookingTableComponent implements OnInit {
         if (newEnd > segment.date && newEnd < endOfView) {
           dragToSelectEvent.end = newEnd;
         }
-        sessionStorage.setItem('booking', JSON.stringify(dragToSelectEvent))
+        sessionStorage.setItem('booking', JSON.stringify(dragToSelectEvent));
 
         this.refresh();
       });
@@ -160,7 +166,7 @@ export class BookingTableComponent implements OnInit {
     phone: 0
   }
 
-  booking: CalendarEvent = JSON.parse(sessionStorage.getItem('booking')!);
+  private booking = {} as CalendarEvent;
 
   bookingObj: IAddBooking = {
     start: new Date,
@@ -174,15 +180,17 @@ export class BookingTableComponent implements OnInit {
   }
 
   registerProcess() {
+    this.booking = JSON.parse(sessionStorage.getItem('booking')!);
+
     this.bookingObj.name = this.customerObj.name;
 
     this.bookingObj.email = this.customerObj.email;
 
     this.bookingObj.phone = this.customerObj.phone;
 
-    this.bookingObj.start = this.booking.start!
+    this.bookingObj.start = this.booking.start;
 
-    this.bookingObj.end = this.booking.end!
+    this.bookingObj.end = this.booking.end!;
 
     this.infoService.makeBooking(this.bookingObj).subscribe((result: IApiResponse) =>{
       if (result.isSuccess){

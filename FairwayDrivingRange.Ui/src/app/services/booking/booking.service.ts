@@ -4,6 +4,7 @@ import { CalendarEvent } from 'angular-calendar';
 import { Observable } from 'rxjs';
 import { IAddBooking } from 'src/app/shared/interfaces/IAddBooking';
 import { IGetBookings } from 'src/app/shared/interfaces/IGetBookings';
+import { IGetGolfClubs } from 'src/app/shared/interfaces/IGetGolfClubs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,9 @@ export class BookingService {
 
   addBooking(data: IAddBooking): Observable<any> {
     return this.http.post(`${this.url}Booking/email`, data)
+  }
+
+  getGolfClubs(): Observable<IGetGolfClubs> {
+    return this.http.get<IGetGolfClubs>(this.url + 'GolfClub');
   }
 }

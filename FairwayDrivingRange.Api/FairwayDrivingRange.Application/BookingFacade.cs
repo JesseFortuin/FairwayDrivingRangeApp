@@ -9,14 +9,17 @@ namespace FairwayDrivingRange.Application
     {
         private readonly IRepository<Booking> bookingRepository;
         private readonly ICustomerRepository iCustomerRepository;
+        private readonly IRepository<GolfClub> golfClubRepository;
         private readonly IMapper mapper;
 
         public BookingFacade(IRepository<Booking> repository,
                             ICustomerRepository iCustomerRepository,
+                            IRepository<GolfClub> golfClubRepository,
                             IMapper mapper)
         {
             this.bookingRepository = repository;
             this.iCustomerRepository = iCustomerRepository;
+            this.golfClubRepository = golfClubRepository;
             this.mapper = mapper;
         }
 
@@ -54,6 +57,22 @@ namespace FairwayDrivingRange.Application
             var booking = mapper.Map<Booking>(bookingDto);
 
             booking.Customer = customer;
+
+            var golfClubs = new List<GolfClub>();
+
+            if (bookingDto.GolfClubIds.Length > 0) 
+            {
+                foreach (var golfClubId in bookingDto.GolfClubIds)
+                {
+                    var golfClub = golfClubRepository.GetById(golfClubId);
+
+                    golfClubs.Add(golfClub);
+                }
+            }
+
+            golfClubRepository.UpdateAll(golfClubs.ToArray());
+
+            booking.Clubs = golfClubs;
 
             try
             {

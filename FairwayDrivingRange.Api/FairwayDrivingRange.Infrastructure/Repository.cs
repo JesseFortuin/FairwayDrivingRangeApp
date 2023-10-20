@@ -57,5 +57,14 @@ namespace FairwayDrivingRange.Infrastructure
 
             return true;
         }
+
+        public bool UpdateAll(params T[] entity)
+        {
+            fairwayContext.Set<T>().UpdateRange(entity);
+
+            fairwayContext.SaveChanges();
+
+            return true;
+        }
     }
 }

@@ -12,6 +12,8 @@
 
         public bool Update(TEntity entity);
 
+        public bool UpdateAll(params TEntity[] entity);
+
         public bool Delete(TEntity entity);
     }
 }
