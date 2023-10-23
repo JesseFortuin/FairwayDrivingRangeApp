@@ -2,14 +2,13 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Contact Details</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form class="was-validated" style="max-width: 360px; margin: auto;" (ngSubmit)="registerProcess()">
-          <h1 class="font-weight-normal mb-3 h3">Contact details</h1>
           <div class="form-group">
             <label class="visually-hidden" for="Name">Name</label>
             <input type="text" class="form-control" id="name" placeholder="name" name="name" autofocus [(ngModel)]="customerObj.name" required>
@@ -25,6 +24,39 @@
             <input type="tel" class="form-control" id="phone" placeholder="Contact number" [(ngModel)]="customerObj.phone"  name="phone" required>
             <div class="invalid-feedback">Please fill in field</div>
           </div>
+          <div>
+            <input class="me-1" type="checkbox" (change)="onClick($event)">
+            <label for="show" name="show">Hire Golf Clubs</label>
+          </div>
+          <div class="mb-3" style="display: none;" id="clubs">
+            <div style="display: inline-block;">
+              <label for="drivers">Drivers: </label>
+              <select  class="me-5" style="display: block;" name="drivers" id="drivers">
+                <option>0</option>
+                <option *ngFor="let driver of driverClubs; let i = index">
+                  {{ i + 1}}
+                </option>
+              </select>
+            </div>
+            <div style="display: inline-block;">
+              <label for="irons" class="ms-5">Irons: </label>
+              <select class="me-5 ms-5" style="display: block;" name="irons" id="irons">
+                <option>0</option>
+                <option *ngFor="let iron of ironClubs; let i = index" >
+                  {{ i + 1 }}
+                </option>
+              </select>
+            </div>
+            <div style="display: inline-block;">
+              <label class="ms-5" for="putters">Putters: </label>
+              <select class="ms-5" style="display: block;" name="putters" id="putters">
+                <option>0</option>
+                <option *ngFor="let putter of puttingClubs; let i = index">
+                  {{ i + 1}}
+                </option>
+              </select>
+            </div>
+          </div>
           <button style="display: inline-block;" type="submit" class="me-4 mt-2 btn btn-success">Confirm</button>
           <button style="display: inline-block;" type="button" class=" btn mt-2 btn-secondary" data-bs-dismiss="modal">Close</button>
         </form>
@@ -32,6 +64,7 @@
     </div>
   </div>
 </div>
+
 <div class="row mt-3">
   <div class="col-md-6">
     <div class="btn-group">

@@ -16,6 +16,7 @@ import { CustomerInformationService } from 'src/app/services/customer-informatio
 import { IAddBooking } from 'src/app/shared/interfaces/IAddBooking';
 import { IApiResponse } from 'src/app/shared/interfaces/IApiResponse';
 import { Router } from '@angular/router';
+import { IGolfClub } from 'src/app/shared/interfaces/IGolfClub';
 
 @Component({
   selector: 'app-booking-table',
@@ -47,6 +48,12 @@ export class BookingTableComponent implements OnInit {
 
   dayEndHour: number = 19;
 
+  driverClubs: IGolfClub[] = [];
+
+  puttingClubs: IGolfClub[] = [];
+
+  ironClubs: IGolfClub[] = [];
+
   constructor(private cdr: ChangeDetectorRef,
               private bookingService : BookingService,
               private infoService: CustomerInformationService,
@@ -55,9 +62,22 @@ export class BookingTableComponent implements OnInit {
   ngOnInit(): void {
     this.bookingService.getGolfClubs().subscribe({
       next: (golfClubs) => {
-        
-      }
-    });
+        // this.golfClubs = golfClubs.value;
+        golfClubs.value.forEach(club => {
+          if (club.clubType === 'Driver') {
+            this.driverClubs.push(club);
+          };
+          if (club.clubType === 'Putter') {
+            this.puttingClubs.push(club);
+          };
+          if (club.clubType === 'Iron') {
+            this.ironClubs.push(club);
+          };
+        });
+      },
+      error: (response) => {
+        console.log(response);
+    }});
 
     this.bookingService.getBookings()
     .subscribe({
@@ -83,6 +103,7 @@ export class BookingTableComponent implements OnInit {
         console.log(response);
     }});
   }
+
 
   minDate: Date = new Date();
 
@@ -117,8 +138,6 @@ export class BookingTableComponent implements OnInit {
     };
 
     this.events = [...this.events, dragToSelectEvent];
-    console.log(this.events);
-
     const segmentPosition = segmentElement.getBoundingClientRect();
     this.dragToCreateActive = true;
     const endOfView = endOfWeek(this.viewDate, {
@@ -149,6 +168,8 @@ export class BookingTableComponent implements OnInit {
         if (newEnd > segment.date && newEnd < endOfView) {
           dragToSelectEvent.end = newEnd;
         }
+
+        console.log(this.events)
         sessionStorage.setItem('booking', JSON.stringify(dragToSelectEvent));
 
         this.refresh();
@@ -201,5 +222,15 @@ export class BookingTableComponent implements OnInit {
          alert(result.errorMessage)
       }
     })
+  }
+
+  onClick(event: any) {
+    var clubSelection = document.getElementById('clubs');
+
+    if (event.target.checked) {
+        clubSelection!.style.display = 'block';
+    } else {
+      clubSelection!.style.display = 'none';
+    }
   }
 }
