@@ -54,6 +54,12 @@ export class BookingTableComponent implements OnInit {
 
   ironClubs: IGolfClub[] = [];
 
+  driversNeeded: any[] = [];
+
+  puttersNeeded: any[] = [];
+
+  ironsNeeded: any[] = [];
+
   constructor(private cdr: ChangeDetectorRef,
               private bookingService : BookingService,
               private infoService: CustomerInformationService,
@@ -103,7 +109,6 @@ export class BookingTableComponent implements OnInit {
         console.log(response);
     }});
   }
-
 
   minDate: Date = new Date();
 
@@ -169,8 +174,9 @@ export class BookingTableComponent implements OnInit {
           dragToSelectEvent.end = newEnd;
         }
 
-        console.log(this.events)
-        sessionStorage.setItem('booking', JSON.stringify(dragToSelectEvent));
+        this.bookingObj.start = dragToSelectEvent.start;
+
+        this.bookingObj.end = dragToSelectEvent.end!;
 
         this.refresh();
       });
@@ -194,7 +200,8 @@ export class BookingTableComponent implements OnInit {
     end: new Date,
     name: '',
     email: '',
-    phone: 0
+    phone: 0,
+    golfClubsForHire: []
   }
 
   eventClicked ({event}: {event: CalendarEvent}): void {
@@ -209,9 +216,7 @@ export class BookingTableComponent implements OnInit {
 
     this.bookingObj.phone = this.customerObj.phone;
 
-    this.bookingObj.start = this.booking.start;
-
-    this.bookingObj.end = this.booking.end!;
+    this.bookingObj.golfClubsForHire = [this.driversNeeded, this.ironsNeeded, this.puttersNeeded]
 
     this.infoService.makeBooking(this.bookingObj).subscribe((result: IApiResponse) =>{
       if (result.isSuccess){
@@ -222,6 +227,18 @@ export class BookingTableComponent implements OnInit {
          alert(result.errorMessage)
       }
     })
+  }
+
+  driverSelect (data: any) {
+    this.driversNeeded = [1 , data]
+  }
+
+  ironSelect (data: any) {
+    this.ironsNeeded = [2, data];
+  }
+
+  putterSelect (data: any) {
+    this.puttersNeeded = [3, data];
   }
 
   onClick(event: any) {

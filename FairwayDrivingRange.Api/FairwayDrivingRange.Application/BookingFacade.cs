@@ -1,7 +1,9 @@
-﻿using AutoMapper;
+﻿using Ardalis.Specification;
+using AutoMapper;
 using FairwayDrivingRange.Domain.Entities;
 using FairwayDrivingRange.Infrastructure;
 using FairwayDrivingRange.Shared.Dtos;
+using FairwayDrivingRange.Shared.Enums;
 
 namespace FairwayDrivingRange.Application
 {
@@ -25,12 +27,6 @@ namespace FairwayDrivingRange.Application
 
         public ApiResponseDto<bool> AddBooking(AddBookingDto bookingDto)
         {
-            //if (bookingDto.lane <= 0 ||
-            //    bookingDto.lane > 10)
-            //{
-            //    return ApiResponseDto<bool>.Error("Invalid Booking Object");
-            //}
-
             if (string.IsNullOrWhiteSpace(bookingDto.Name) ||
                 string.IsNullOrWhiteSpace(bookingDto.Email) ||
                 string.IsNullOrWhiteSpace(bookingDto.Phone))
@@ -38,41 +34,50 @@ namespace FairwayDrivingRange.Application
                 return ApiResponseDto<bool>.Error("Invalid Customer Object");
             }
 
-            //var customer = new CustomerInformation
-            //{
-            //    Name = bookingDto.name,
-            //    Email = bookingDto.email,
-            //    Phone = bookingDto.phone
-            //};
+            var typeOne = bookingDto.GolfClubsForHire[0].GolfClubTypes.ToString();
+
+            var typeTwo = bookingDto.GolfClubsForHire[1].GolfClubTypes.ToString();
+
+            var typeThree = bookingDto.GolfClubsForHire[2].GolfClubTypes.ToString();
 
             var customer = mapper.Map<CustomerInformation>(bookingDto);
-
-            //var customerResult = customerRepository.Create(customer);
-
-            //if (customerResult == false)
-            //{
-            //    return ApiResponseDto<bool>.Error("Customer Could Not Be Added");
-            //};
 
             var booking = mapper.Map<Booking>(bookingDto);
 
             booking.Customer = customer;
 
-            var golfClubs = new List<GolfClub>();
+            var golfClubs = golfClubRepository.GetAll();
 
-            if (bookingDto.GolfClubIds.Length > 0) 
+            var clubsBooked = new List<GolfClub>(); 
+
+            for (int i = 0; i < bookingDto.GolfClubsForHire[0].Quantity; i++)
             {
-                foreach (var golfClubId in bookingDto.GolfClubIds)
-                {
-                    var golfClub = golfClubRepository.GetById(golfClubId);
+                var club = golfClubs.First(g => g.ClubType == typeOne && g.IsAvailable);
 
-                    golfClubs.Add(golfClub);
-                }
+                club.IsAvailable = false;
+
+                clubsBooked.Add(club);
             }
 
-            golfClubRepository.UpdateAll(golfClubs.ToArray());
+            for (int i = 0; i < bookingDto.GolfClubsForHire[1].Quantity; i++)
+            {
+                var club = golfClubs.First(g => g.ClubType == typeTwo && g.IsAvailable);
 
-            booking.Clubs = golfClubs;
+                club.IsAvailable = false;
+
+                clubsBooked.Add(club);
+            }
+
+            for (int i = 0; i < bookingDto.GolfClubsForHire[2].Quantity; i++)
+            {
+                var club = golfClubs.First(g => g.ClubType == typeThree && g.IsAvailable);
+
+                club.IsAvailable = false;
+
+                clubsBooked.Add(club);
+            }
+
+            booking.Clubs = clubsBooked;
 
             try
             {

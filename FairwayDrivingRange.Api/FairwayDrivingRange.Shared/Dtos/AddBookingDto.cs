@@ -12,6 +12,6 @@
 
         public string Phone { get; set; }
 
-        public int[] GolfClubIds { get; set; }
+        public List<AddGolfClubsForHireDto> GolfClubsForHire { get; set; }
     }
 }

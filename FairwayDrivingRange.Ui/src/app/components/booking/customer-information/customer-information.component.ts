@@ -22,12 +22,13 @@ export class CustomerInformationComponent {
 
   booking: CalendarEvent = JSON.parse(sessionStorage.getItem('booking')!);
 
-  bookingObj: IAddBooking = {
+    bookingObj: IAddBooking = {
     start: this.booking.start,
     end: this.booking.end!,
     name: '',
     email: '',
-    phone: 0
+    phone: 0,
+    golfClubsForHire: []
   }
 
   // registerProcess() {

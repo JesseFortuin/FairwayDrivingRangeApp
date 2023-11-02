@@ -6,5 +6,5 @@ export interface IAddBooking{
   email: string,
   name: string,
   phone: number,
-  golfClubs?: IGolfClub[]
+  golfClubsForHire: any[];
 }
