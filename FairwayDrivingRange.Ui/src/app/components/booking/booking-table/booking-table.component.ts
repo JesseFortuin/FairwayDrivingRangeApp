@@ -17,6 +17,7 @@ import { IAddBooking } from 'src/app/shared/interfaces/IAddBooking';
 import { IApiResponse } from 'src/app/shared/interfaces/IApiResponse';
 import { Router } from '@angular/router';
 import { IGolfClub } from 'src/app/shared/interfaces/IGolfClub';
+import { IClubsForHire } from 'src/app/shared/interfaces/IClubsForHire';
 
 @Component({
   selector: 'app-booking-table',
@@ -59,6 +60,21 @@ export class BookingTableComponent implements OnInit {
   puttersNeeded: any[] = [];
 
   ironsNeeded: any[] = [];
+
+  private driversForHire: IClubsForHire = {
+    golfClubTypes: 0,
+    quantity: 0
+  }
+
+  private ironsForHire: IClubsForHire = {
+    golfClubTypes: 0,
+    quantity: 0
+  }
+
+  private puttersForHire: IClubsForHire = {
+    golfClubTypes: 0,
+    quantity: 0
+  }
 
   constructor(private cdr: ChangeDetectorRef,
               private bookingService : BookingService,
@@ -216,7 +232,9 @@ export class BookingTableComponent implements OnInit {
 
     this.bookingObj.phone = this.customerObj.phone;
 
-    this.bookingObj.golfClubsForHire = [this.driversNeeded, this.ironsNeeded, this.puttersNeeded]
+    this.bookingObj.golfClubsForHire = [this.driversForHire, this.ironsForHire, this.puttersForHire]
+
+    console.log(this.bookingObj)
 
     this.infoService.makeBooking(this.bookingObj).subscribe((result: IApiResponse) =>{
       if (result.isSuccess){
@@ -229,16 +247,22 @@ export class BookingTableComponent implements OnInit {
     })
   }
 
-  driverSelect (data: any) {
-    this.driversNeeded = [1 , data]
+  driverSelect (data: number) {
+    this.driversForHire.golfClubTypes = 1;
+
+    this.driversForHire.quantity = data;
   }
 
-  ironSelect (data: any) {
-    this.ironsNeeded = [2, data];
+  ironSelect (data: number) {
+    this.ironsForHire.golfClubTypes = 2;
+
+    this.ironsForHire.quantity = data;
   }
 
-  putterSelect (data: any) {
-    this.puttersNeeded = [3, data];
+  putterSelect (data: number) {
+    this.puttersForHire.golfClubTypes = 3;
+
+    this.puttersForHire.quantity = data;
   }
 
   onClick(event: any) {

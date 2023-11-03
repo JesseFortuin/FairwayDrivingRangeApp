@@ -67,7 +67,9 @@ namespace FairwayDrivingRange.Test
 
             bookingRepository = new Repository<Booking>(context);
 
-            bookingFacade = new BookingFacade(bookingRepository, customerRepos, golfClubRepository, mapper);
+            golfClubRepository = new Repository<GolfClub>(context);
+
+            bookingFacade = new BookingFacade(bookingRepository, golfClubRepository, customerRepos, mapper);
 
             adminRepository = new Repository<Admin>(context);
 
@@ -76,8 +78,6 @@ namespace FairwayDrivingRange.Test
             authenticationService = new AuthenticationService(configuration);
 
             adminFacade = new AdminFacade(adminRepository, adminRepos, mapper, authenticationService);
-
-            golfClubRepository = new Repository<GolfClub>(context);
 
             golfClubFacade = new GolfClubFacade(golfClubRepository, bookingRepository, mapper);
 

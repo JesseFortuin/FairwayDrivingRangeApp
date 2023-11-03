@@ -2,8 +2,8 @@
 {
     public enum GolfClubTypes
     {
-        Drivers = 1,
-        Irons = 2,
-        Putters = 3
+        Driver = 1,
+        Iron = 2,
+        Putter = 3
     }
 }

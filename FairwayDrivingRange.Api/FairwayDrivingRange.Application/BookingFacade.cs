@@ -10,18 +10,18 @@ namespace FairwayDrivingRange.Application
     public class BookingFacade : IBookingFacade
     {
         private readonly IRepository<Booking> bookingRepository;
-        private readonly ICustomerRepository iCustomerRepository;
         private readonly IRepository<GolfClub> golfClubRepository;
+        private readonly ICustomerRepository iCustomerRepository;
         private readonly IMapper mapper;
 
         public BookingFacade(IRepository<Booking> repository,
-                            ICustomerRepository iCustomerRepository,
                             IRepository<GolfClub> golfClubRepository,
+                            ICustomerRepository iCustomerRepository,
                             IMapper mapper)
         {
             this.bookingRepository = repository;
-            this.iCustomerRepository = iCustomerRepository;
             this.golfClubRepository = golfClubRepository;
+            this.iCustomerRepository = iCustomerRepository;
             this.mapper = mapper;
         }
 

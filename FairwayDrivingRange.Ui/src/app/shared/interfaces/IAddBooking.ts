@@ -1,4 +1,4 @@
-import { IGolfClub } from "./IGolfClub";
+import { IClubsForHire } from "./IClubsForHire";
 
 export interface IAddBooking{
   start : Date,
@@ -6,5 +6,5 @@ export interface IAddBooking{
   email: string,
   name: string,
   phone: number,
-  golfClubsForHire: any[];
+  golfClubsForHire: IClubsForHire[];
 }

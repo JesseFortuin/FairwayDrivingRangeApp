@@ -1,5 +1,6 @@
 ﻿using FairwayDrivingRange.Domain.Entities;
 using FairwayDrivingRange.Shared.Dtos;
+using FairwayDrivingRange.Shared.Enums;
 
 namespace FairwayDrivingRange.Test
 {
@@ -205,10 +206,28 @@ namespace FairwayDrivingRange.Test
             var bookingDto = new AddBookingDto
             {
                 Start = DateTime.Now,
-                End= DateTime.Now.AddHours(1),
+                End = DateTime.Now.AddHours(1),
                 Name = "J",
                 Email = "e@gmail.com",
-                Phone = "03493922"
+                Phone = "03493922",
+                GolfClubsForHire = new List<AddGolfClubsForHireDto>
+                {
+                    new AddGolfClubsForHireDto
+                    {
+                        GolfClubTypes = GolfClubTypes.Driver,
+                        Quantity = 1,
+                    },
+                    new AddGolfClubsForHireDto
+                    {
+                        GolfClubTypes = GolfClubTypes.Putter,
+                        Quantity = 0,
+                    },
+                    new AddGolfClubsForHireDto
+                    {
+                        GolfClubTypes = GolfClubTypes.Iron,
+                        Quantity = 2,
+                    }
+                }
             };
 
             var booking = new Booking
@@ -224,7 +243,39 @@ namespace FairwayDrivingRange.Test
                 Phone = "03493922"
             };
 
+            var golfClubs = new List<GolfClub>
+            {
+                new GolfClub
+                {
+                    SerialNumber = "1220000",
+
+                    ClubType = "Iron",
+
+                    IsAvailable = true
+                },
+
+                new GolfClub
+                {
+                    SerialNumber = "1250000",
+
+                    ClubType = "Iron",
+
+                    IsAvailable = true
+                },
+
+                new GolfClub
+                {
+                    SerialNumber = "1250000",
+
+                    ClubType = "Driver",
+
+                    IsAvailable = true
+                }
+            };
+
             context.CustomerInformation.Add(customer);
+
+            context.GolfClubs.AddRange(golfClubs);
 
             context.Bookings.Add(booking);
 
